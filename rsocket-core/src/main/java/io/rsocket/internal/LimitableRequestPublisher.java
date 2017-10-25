@@ -16,14 +16,15 @@
 
 package io.rsocket.internal;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import javax.annotation.Nullable;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import reactor.core.CoreSubscriber;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Operators;
+
+import javax.annotation.Nullable;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /** */
 public class LimitableRequestPublisher<T> extends Flux<T> implements Subscription {
@@ -64,7 +65,11 @@ public class LimitableRequestPublisher<T> extends Flux<T> implements Subscriptio
 
   public void increaseRequestLimit(long n) {
     synchronized (this) {
-      externalRequested = Operators.addCap(n, externalRequested);
+      if (n == Integer.MAX_VALUE) {
+        externalRequested = Long.MAX_VALUE;
+      } else {
+        externalRequested = Operators.addCap(n, externalRequested);
+      }
     }
 
     requestN();
@@ -83,8 +88,18 @@ public class LimitableRequestPublisher<T> extends Flux<T> implements Subscriptio
       }
 
       r = Math.min(internalRequested, externalRequested);
-      externalRequested -= r;
-      internalRequested -= r;
+
+      if (r == Long.MAX_VALUE) {
+        r = Long.MAX_VALUE;
+      } else {
+        if (externalRequested != Long.MAX_VALUE) {
+          externalRequested -= r;
+        }
+
+        if (internalRequested != Long.MAX_VALUE) {
+          internalRequested -= r;
+        }
+      }
     }
 
     if (r > 0) {

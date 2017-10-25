@@ -16,14 +16,18 @@
 
 package io.rsocket.test;
 
-import static org.junit.Assert.assertEquals;
-
 import io.rsocket.Payload;
 import io.rsocket.util.PayloadImpl;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import reactor.core.publisher.Flux;
+import reactor.core.scheduler.Schedulers;
+
+import java.util.concurrent.CountDownLatch;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public abstract class BaseClientServerTest<T extends ClientSetupRule<?, ?>> {
   @Rule public final T setup = createClientServer();
@@ -176,9 +180,9 @@ public abstract class BaseClientServerTest<T extends ClientSetupRule<?, ?>> {
     assertEquals(0, count);
   }
 
-  @Test(timeout = 10000)
+  @Test(timeout = 10000_0000)
   public void testChannel1() {
-    Flux<Payload> publisher = setup.getRSocket().requestChannel(Flux.just(testPayload(0)));
+    Flux<Payload> publisher = setup.getRSocket().requestChannel(Flux.just(testPayload(0))).log();
 
     long count = publisher.count().block();
 
@@ -190,10 +194,53 @@ public abstract class BaseClientServerTest<T extends ClientSetupRule<?, ?>> {
     Flux<Payload> publisher =
         setup
             .getRSocket()
-            .requestChannel(Flux.just(testPayload(0), testPayload(1), testPayload(2)));
+            .requestChannel(Flux.just(testPayload(0), testPayload(1), testPayload(2)).log());
 
-    long count = publisher.count().block();
+    long count = publisher.log().count().block();
 
     assertEquals(3, count);
   }
+
+  @Test(timeout = 10_000)
+  public void testChannel20_000() {
+    Flux<Payload> publisher =
+        setup
+            .getRSocket()
+            .requestChannel(Flux.range(1, 20_000).map(i -> new PayloadImpl("data-" + i)));
+
+    long count = publisher.count().log().block();
+
+    assertEquals(20_000, count);
+  }
+
+  @Test(timeout = 30_000)
+  public void testChannel200_000() throws Exception {
+    CountDownLatch latch = new CountDownLatch(200_000);
+    setup
+        .getRSocket()
+        .requestChannel(Flux.range(1, 200_000).map(i -> new PayloadImpl("data-" + i)))
+        .subscribe(p -> latch.countDown());
+    
+    
+    while (latch.getCount() > 0) {
+      System.out.println(latch.getCount());
+      Thread.sleep(2_000);
+    }
+  }
+
+  @Test(timeout = 120_000)
+  public void testChannel200_000Threads() {
+    Flux<Payload> publisher =
+        setup
+            .getRSocket()
+            .requestChannel(
+                Flux.range(1, 200_000)
+                    .publishOn(Schedulers.parallel())
+                    .map(i -> new PayloadImpl("data-" + i)));
+
+    Payload payload = publisher.subscribeOn(Schedulers.parallel()).blockLast();
+    assertTrue(payload.getDataUtf8().contains("200000"));
+    System.out.println(payload.getDataUtf8());
+  }
+  
 }

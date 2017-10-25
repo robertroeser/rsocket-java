@@ -16,10 +16,20 @@
 package io.rsocket.transport.netty;
 
 import io.rsocket.test.BaseClientServerTest;
+import org.junit.Test;
+import reactor.ipc.netty.tcp.TcpClient;
+import reactor.ipc.netty.tcp.TcpServer;
 
 public class TcpClientServerTest extends BaseClientServerTest<TcpClientSetupRule> {
   @Override
   protected TcpClientSetupRule createClientServer() {
     return new TcpClientSetupRule();
+  }
+  
+  @Test
+  public void test() {
+    TcpServer tcpServer = TcpServer.create(8801);
+    TcpClient client = TcpClient.create(8001);
+    
   }
 }

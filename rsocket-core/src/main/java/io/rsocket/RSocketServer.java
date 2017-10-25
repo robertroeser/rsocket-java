@@ -34,6 +34,7 @@ import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import reactor.core.Disposable;
 import reactor.core.publisher.*;
+import reactor.core.scheduler.Schedulers;
 
 /** Server side RSocket. Receives {@link Frame}s from a {@link RSocketClient} */
 class RSocketServer implements RSocket {
@@ -58,14 +59,8 @@ class RSocketServer implements RSocket {
 
     // DO NOT Change the order here. The Send processor must be subscribed to before receiving
     // connections
-    this.sendProcessor = EmitterProcessor.<Frame>create().serialize();
-
-    connection
-        .send(sendProcessor)
-        .doOnError(this::handleSendProcessorError)
-        .doFinally(this::handleSendProcessorCancel)
-        .subscribe();
-
+    this.sendProcessor = DirectProcessor.<Frame>create();
+  
     this.receiveDisposable =
         connection
             .receive()
@@ -73,6 +68,12 @@ class RSocketServer implements RSocket {
             .doOnError(errorConsumer)
             .then()
             .subscribe();
+    
+    connection
+        .send(sendProcessor)
+        .doOnError(this::handleSendProcessorError)
+        .doFinally(this::handleSendProcessorCancel)
+        .subscribe();
 
     this.connection
         .onClose()
@@ -318,9 +319,13 @@ class RSocketServer implements RSocket {
               frames.increaseRequestLimit(initialRequestN);
               return frames;
             })
-        .concatWith(Mono.just(Frame.PayloadFrame.from(streamId, FrameType.COMPLETE)))
+        // .concatWith(Mono.just(Frame.PayloadFrame.from(streamId, FrameType.COMPLETE)))
         .onErrorResume(t -> Mono.just(Frame.Error.from(streamId, t)))
         .doOnNext(sendProcessor::onNext)
+        .doOnComplete(
+            () -> {
+              sendProcessor.onNext(Frame.PayloadFrame.from(streamId, FrameType.COMPLETE));
+            })
         .doFinally(signalType -> removeSubscription(streamId))
         .subscribe();
 
@@ -343,7 +348,8 @@ class RSocketServer implements RSocket {
                 })
             .doOnRequest(
                 l -> {
-                  sendProcessor.onNext(Frame.RequestN.from(streamId, l));
+//                  sendProcessor.onNext(Frame.RequestN.from(streamId, l));
+                  connection.sendOne(Frame.RequestN.from(streamId, l)).subscribe();
                 })
             .doFinally(signalType -> removeChannelProcessor(streamId));
 
