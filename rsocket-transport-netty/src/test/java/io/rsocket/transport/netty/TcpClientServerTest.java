@@ -25,11 +25,4 @@ public class TcpClientServerTest extends BaseClientServerTest<TcpClientSetupRule
   protected TcpClientSetupRule createClientServer() {
     return new TcpClientSetupRule();
   }
-  
-  @Test
-  public void test() {
-    TcpServer tcpServer = TcpServer.create(8801);
-    TcpClient client = TcpClient.create(8001);
-    
-  }
 }

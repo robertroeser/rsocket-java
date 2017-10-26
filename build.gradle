@@ -57,14 +57,14 @@ subprojects {
     ext {
         // common
         jsr305Version = '3.0.2'
-        reactorVersion = '3.1.0.RELEASE'
-        nettyVersion = '4.1.15.Final'
+        reactorVersion = '3.1.1.RELEASE'
+        nettyVersion = '4.1.16.Final'
         reactiveStreamsVersion = '1.0.1'
         slf4jVersion = '1.7.25'
         // aeron
         aeronVersion = '1.4.1'
         // netty
-        reactorNettyVersion = '0.7.0.M2'
+        reactorNettyVersion = '0.7.1.RELEASE'
         // spectator
         spectatorVersion = '0.57.1'
         hdrHistogramVersion = '2.1.9'
