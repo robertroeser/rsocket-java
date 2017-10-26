@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 package io.rsocket.transport.netty;
+import io.netty.buffer.ByteBuf;
 import io.rsocket.DuplexConnection;
 import io.rsocket.Frame;
 import org.reactivestreams.Publisher;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-import reactor.core.publisher.MonoProcessor;
+import reactor.core.publisher.*;
+import reactor.ipc.netty.ByteBufFlux;
 import reactor.ipc.netty.NettyContext;
 import reactor.ipc.netty.NettyInbound;
 import reactor.ipc.netty.NettyOutbound;
@@ -29,13 +29,15 @@ public class NettyDuplexConnection implements DuplexConnection {
   private final NettyOutbound out;
   private final NettyContext context;
   private final MonoProcessor<Void> onClose;
+  private final UnicastProcessor<Frame> sendProcessor;
   
   public NettyDuplexConnection(NettyInbound in, NettyOutbound out, NettyContext context) {
     this.in = in;
     this.out = out;
     this.context = context;
     this.onClose = MonoProcessor.create();
-    
+    this.sendProcessor = UnicastProcessor.create();
+
     context.onClose(onClose::onComplete);
     this.onClose
         .doFinally(
@@ -44,16 +46,27 @@ public class NettyDuplexConnection implements DuplexConnection {
               this.context.channel().close();
             })
         .subscribe();
+
+    sendProcessor
+        .map(Frame::content)
+        .concatMap(out::sendObject).then().subscribe();
+
+    //sendProcessor.subscribe(out::sendObject);
+    //Flux.from(out.send(sendProcessor.doOnRequest(l -> System.out.println(l)))).subscribe();
   }
   
   @Override
   public Mono<Void> send(Publisher<Frame> frames) {
-    return Flux.from(frames).concatMap(this::sendOne).then();
+    Flux.from(frames).doOnNext(sendProcessor::onNext).subscribe();
+    return Mono.empty();
+    //return Flux.from(frames).concatMap(this::sendOne).then();
   }
   
   @Override
   public Mono<Void> sendOne(Frame frame) {
-    return out.sendObject(frame.content()).then();
+    //return out.sendObject(frame.content()).then();
+    sendProcessor.onNext(frame);
+    return Mono.empty();
   }
   
   @Override
