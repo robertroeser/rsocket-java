@@ -60,6 +60,7 @@ public class TcpClientTransport implements ClientTransport {
             client
                 .newHandler(
                     (in, out) -> {
+                      out.options(sendOptions -> sendOptions.flushOnEach(true));
                       in.context().addHandler("client-length-codec", new RSocketLengthCodec());
                       NettyDuplexConnection connection =
                           new NettyDuplexConnection(in, out, in.context());

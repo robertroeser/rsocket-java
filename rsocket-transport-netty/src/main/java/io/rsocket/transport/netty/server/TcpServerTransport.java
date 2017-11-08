@@ -54,6 +54,7 @@ public class TcpServerTransport implements ServerTransport<NettyContextCloseable
     return server
         .newHandler(
             (in, out) -> {
+              out.options(sendOptions -> sendOptions.flushOnEach(true));
               in.context().addHandler("server-length-codec", new RSocketLengthCodec());
               NettyDuplexConnection connection = new NettyDuplexConnection(in, out, in.context());
               acceptor.apply(connection).subscribe();

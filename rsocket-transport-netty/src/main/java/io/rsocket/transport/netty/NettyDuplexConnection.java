@@ -15,6 +15,7 @@
  */
 package io.rsocket.transport.netty;
 
+import io.netty.buffer.ByteBuf;
 import io.rsocket.DuplexConnection;
 import io.rsocket.Frame;
 import org.reactivestreams.Publisher;
@@ -47,16 +48,23 @@ public class NettyDuplexConnection implements DuplexConnection {
         .subscribe();
   }
 
+//  @Override
+//  public Mono<Void> send(Publisher<Frame> frames) {
+//    return Flux.from(frames).concatMap(this::sendOne).then();
+//  }
+//
+//  @Override
+//  public Mono<Void> sendOne(Frame frame) {
+//    return out.sendObject(frame.content()).then();
+//  }
+  
+  
   @Override
-  public Mono<Void> send(Publisher<Frame> frames) {
-    return Flux.from(frames).concatMap(this::sendOne).then();
+  public Mono<Void> send(Publisher<Frame> frame) {
+    Flux<ByteBuf> map = Flux.from(frame).map(frame1 -> frame1.content());
+    return out.send(map).then();
   }
-
-  @Override
-  public Mono<Void> sendOne(Frame frame) {
-    return out.sendObject(frame.content()).then();
-  }
-
+  
   @Override
   public Flux<Frame> receive() {
     return in.receive().map(buf -> Frame.from(buf.retain()));
