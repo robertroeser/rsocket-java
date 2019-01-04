@@ -29,13 +29,17 @@ import reactor.netty.FutureMono;
 import reactor.netty.NettyPipeline;
 
 import java.util.Objects;
-import java.util.Queue;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-/** An implementation of {@link DuplexConnection} that connects via TCP. */
+/**
+ * An implementation of {@link DuplexConnection} that connects via TCP.
+ */
 public final class TcpDuplexConnection implements DuplexConnection {
 
   private final Connection connection;
   private final Disposable channelClosed;
+  private final ChannelReadHandler handler;
+
   /**
    * Creates a new instance
    *
@@ -43,6 +47,17 @@ public final class TcpDuplexConnection implements DuplexConnection {
    */
   public TcpDuplexConnection(Connection connection) {
     this.connection = Objects.requireNonNull(connection, "connection must not be null");
+    handler = new ChannelReadHandler(connection.channel());
+
+    connection
+        .channel()
+        .pipeline()
+        .remove(NettyPipeline.ReactiveBridge);
+
+    connection
+        .channel().pipeline()
+        .addLast(NettyPipeline.ReactiveBridge, handler);
+
     this.channelClosed =
         FutureMono.from(connection.channel().closeFuture())
             .doFinally(
@@ -76,13 +91,14 @@ public final class TcpDuplexConnection implements DuplexConnection {
             });
   }
 
+  private AtomicBoolean once = new AtomicBoolean(false);
+
   @Override
   public Flux<Frame> receive() {
-    connection
-        .channel()
-        .pipeline()
-        .addLast(NettyPipeline.ReactiveBridge, null);
-    return connection.inbound().receive().map(buf -> Frame.from(buf.retain()));
+    if (!once.compareAndSet(false, true)) {
+      return Flux.error(new IllegalStateException("can only subscribe to receive once"));
+    }
+    return handler.getProcessor().doFinally(s -> once.set(false));
   }
 
   @Override

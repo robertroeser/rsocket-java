@@ -24,7 +24,8 @@ import reactor.core.publisher.Mono;
  * A contract providing different interaction models for <a
  * href="https://github.com/RSocket/reactivesocket/blob/master/Protocol.md">RSocket protocol</a>.
  */
-public interface RSocket extends Availability, Closeable {
+public interface
+RSocket extends Availability, Closeable {
 
   /**
    * Fire and Forget interaction model of {@code RSocket}.

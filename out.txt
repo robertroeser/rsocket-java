@@ -1,0 +1,2050 @@
+--- Execution profile ---
+Total samples:         162969
+Non-Java:              3461 (2.12%)
+Unknown (native):      5550 (3.41%)
+Not walkable (native): 26 (0.02%)
+Unknown (Java):        20146 (12.36%)
+Not walkable (Java):   475 (0.29%)
+Deopt:                 6 (0.00%)
+
+Frame buffer usage:    28.2024%
+
+      events  percent  samples  top
+  ----------  -------  -------  ---
+    12746625    7.82%    12764  reactor.core.publisher.FluxFlatMap$FlatMapInner.onSubscribe
+     8182080    5.02%     8192  reactor.core.publisher.FluxFlatMap$FlatMapMain.onNext
+     7256553    4.45%     7268  reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.drain
+     7050958    4.33%     7060  reactor.core.publisher.Mono.onAssembly
+     6489860    3.98%     6508  io.netty.util.Recycler.get
+     4795503    2.94%     4807  reactor.core.publisher.Operators$MonoSubscriber.request
+     4663164    2.86%     4672  reactor.core.publisher.Operators.setOnce
+     4613113    2.83%     4627  io.netty.channel.AbstractChannelHandlerContext.write
+     3687782    2.26%     3696  reactor.core.publisher.FluxRange$RangeSubscription.request
+     3247103    1.99%     3255  reactor.core.publisher.MonoIgnoreThen$ThenAcceptInner.onSubscribe
+     2423184    1.49%     2430  io.netty.util.collection.IntObjectHashMap.put
+     1955588    1.20%     1960  java.util.concurrent.atomic.AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.getAndSet
+     1748854    1.07%     1755  reactor.core.publisher.FluxPeek$PeekSubscriber.onNext
+     1590185    0.98%     1596  itable stub
+     1586830    0.97%     1591  java.util.concurrent.atomic.AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.accessCheck
+     1564208    0.96%     1568  java.util.concurrent.atomic.AtomicReferenceFieldUpdater$AtomicReferenceFieldUpdaterImpl.accessCheck
+     1446017    0.89%     1450  io.netty.channel.AbstractChannelHandlerContext.isNotValidPromise
+     1311469    0.80%     1315  io.netty.util.collection.IntObjectHashMap.put
+     1200317    0.74%     1188  copy_user_enhanced_fast_string_[k]
+     1171198    0.72%     1174  io.netty.util.ReferenceCountUtil.touch
+     1159820    0.71%     1163  java.util.concurrent.atomic.AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.getAndAdd
+     1156023    0.71%     1158  reactor.core.publisher.InnerOperator.currentContext
+     1153398    0.71%     1155  java_lang_Throwable::fill_in_stack_trace(Handle, methodHandle const&, Thread*)
+     1142899    0.70%     1144  BacktraceBuilder::push(Method*, int, Thread*)
+     1141030    0.70%     1144  java.lang.Object.<init>
+     1124679    0.69%     1128  io.netty.buffer.AbstractReferenceCountedByteBuf.retain0
+     1071545    0.66%     1073  reactor.core.publisher.FluxRange$RangeSubscription.slowPath
+      999733    0.61%     1001  reactor.core.publisher.Mono.doOnNext
+      997820    0.61%      998  reactor.core.publisher.Operators.validate
+      968132    0.59%      970  reactor.core.publisher.MonoDoFinally.subscribe
+      921409    0.57%      924  reactor.core.publisher.MonoOperator.<init>
+      802204    0.49%      804  reactor.core.publisher.FluxPeek$PeekSubscriber.currentContext
+      794920    0.49%      797  java.lang.Number.<init>
+      707849    0.43%      708  AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<1097844ul, G1BarrierSet>, (AccessInternal::BarrierType)2, 1097844ul>::oop_access_barrier(void*)
+      648623    0.40%      649  reactor.core.publisher.Mono.doOnSignal
+      636437    0.39%      639  reactor.core.publisher.MonoProcessor.onNext
+      614424    0.38%      616  reactor.core.publisher.FluxDoFinally$DoFinallySubscriber.request
+      570178    0.35%      571  io.rsocket.transport.netty.SendPublisher$InnerSubscriber.tryDrain
+      529065    0.32%      529  jlong_disjoint_arraycopy
+      523768    0.32%      523  __memcpy_sse2_unaligned_erms
+      506598    0.31%      508  java.util.concurrent.atomic.AtomicReferenceFieldUpdater$AtomicReferenceFieldUpdaterImpl.valueCheck
+      495285    0.30%      497  java.util.concurrent.atomic.AtomicLongFieldUpdater$CASUpdater.incrementAndGet
+      493474    0.30%      494  io.netty.buffer.PoolArena.allocate
+      489302    0.30%      491  io.rsocket.internal.UnicastMonoProcessor.onNext
+      483032    0.30%      484  io.netty.util.internal.InternalThreadLocalMap.newIndexedVariableTable
+      443885    0.27%      445  reactor.core.publisher.MonoProcessor.<init>
+      440465    0.27%      442  io.netty.channel.AbstractChannelHandlerContext.findContextOutbound
+      433310    0.27%      434  io.rsocket.internal.UnicastMonoProcessor.subscribe
+      413187    0.25%      401  io.netty.buffer.PoolThreadCache$MemoryRegionCache.free
+      407302    0.25%      409  io.netty.util.AbstractReferenceCounted.release0
+      400312    0.25%      401  io.netty.buffer.AbstractByteBuf.checkIndexBounds
+      382191    0.23%      383  CodeHeap::find_blob_unsafe(void*) const
+      375801    0.23%      377  io.netty.buffer.AbstractReferenceCountedByteBuf.release0
+      368237    0.23%      369  itable stub
+      347982    0.21%      348  Klass::java_mirror() const
+      343645    0.21%      344  io.netty.buffer.PooledByteBuf.deallocate
+      340937    0.21%      342  reactor.util.concurrent.MpscLinkedQueue$LinkedQueueNode.soNext
+      315987    0.19%      315  __memset_avx2_unaligned_erms
+      306956    0.19%      306  MemAllocator::allocate() const
+      302227    0.19%      303  io.netty.util.collection.IntObjectHashMap.objectToKey
+      298396    0.18%      299  register_finalizer Runtime1 stub
+      287485    0.18%      288  io.netty.buffer.PoolChunk.initBufWithSubpage
+      285793    0.18%      286  AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<2670710ul, G1BarrierSet>, (AccessInternal::BarrierType)1, 2670710ul>::oop_access_barrier(oopDesc*, long, oopDesc*)
+      279254    0.17%      271  io.netty.buffer.PoolThreadCache.trim
+      270811    0.17%      265  _raw_spin_lock_irqsave_[k]
+      263577    0.16%      258  AbsSeq::davg() const
+      254321    0.16%      255  itable stub
+      253857    0.16%      254  io.netty.util.concurrent.DefaultPromise.setUncancellable
+      253333    0.16%      254  io.netty.buffer.AbstractByteBuf.slice
+      253207    0.16%      250  copy_user_generic_unrolled_[k]
+      245331    0.15%      246  io.netty.util.internal.InternalThreadLocalMap.slowGet
+      241075    0.15%      238  [unknown]
+      237670    0.15%      238  io.netty.channel.ChannelOutboundBuffer.isFlushedEntry
+      235991    0.14%      237  reactor.core.publisher.FluxDoFinally$DoFinallySubscriber.onNext
+      234351    0.14%      235  java.util.concurrent.atomic.AtomicLongFieldUpdater$CASUpdater.accessCheck
+      232229    0.14%      233  reactor.core.publisher.FluxGroupBy$UnicastGroupedFlux.drainRegular
+      228469    0.14%      225  G1CollectionSet::add_eden_region(HeapRegion*)
+      224913    0.14%      226  [vdso]
+      224245    0.14%      222  G1FromCardCache::clear(unsigned int)
+      224227    0.14%      225  reactor.core.publisher.MonoFlatMapMany$FlatMapManyInner.currentContext
+      223573    0.14%      224  reactor.core.publisher.FluxPeekFuseable$PeekFuseableSubscriber.currentContext
+      215169    0.13%      213  G1Allocator::unsafe_max_tlab_alloc()
+      206873    0.13%      207  nmethod::is_zombie() const
+      206377    0.13%      206  io.netty.buffer.PooledByteBuf.<init>
+      206377    0.13%      207  io.netty.util.AbstractReferenceCounted.setRefCnt
+      205422    0.13%      206  reactor.core.publisher.MonoProcessor.<init>
+      199237    0.12%      198  __memset_avx2_erms
+      198715    0.12%      199  reactor.core.publisher.Mono.subscribe
+      195294    0.12%      196  reactor.util.concurrent.MpscLinkedQueue$LinkedQueueNode.<init>
+      194311    0.12%      195  java.util.concurrent.atomic.AtomicReferenceFieldUpdater$AtomicReferenceFieldUpdaterImpl.getAndSet
+      182087    0.11%      181  ch.qos.logback.classic.LoggerContext.getTurboFilterChainDecision_0_3OrMore
+      179465    0.11%      180  io.netty.buffer.AbstractByteBuf.slice
+      179109    0.11%      179  BacktraceBuilder::expand(Thread*)
+      178515    0.11%      179  reactor.core.publisher.Mono.<init>
+      177788    0.11%      177  OptoRuntime::new_instance_C(Klass*, JavaThread*)
+      172662    0.11%      169  update_wall_time_[k]
+      169332    0.10%      170  reactor.core.publisher.MonoIgnoreThen$ThenAcceptInner.onNext
+      169310    0.10%      169  ObjArrayAllocator::initialize(HeapWord*) const
+      169232    0.10%      165  HeapRegionType::get_trace_type()
+      168575    0.10%      167  ThreadLocalAllocBuffer::fill(HeapWord*, HeapWord*, unsigned long)
+      168354    0.10%      169  java.util.concurrent.atomic.AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.set
+      167478    0.10%      168  __vdso_clock_gettime
+      167475    0.10%      165  copy_page_to_iter_[k]
+      166743    0.10%      164  update_load_avg_[k]
+      165524    0.10%      166  io.netty.channel.epoll.AbstractEpollChannel.doBeginRead
+      165351    0.10%      166  reactor.core.publisher.FluxFlatMap$FlatMapMain.innerComplete
+      165133    0.10%      165  io.netty.channel.AbstractChannelHandlerContext.invokeChannelReadComplete
+      164788    0.10%      162  _raw_spin_lock_[k]
+      164653    0.10%      165  Handle::Handle(Thread*, oopDesc*)
+      163675    0.10%      164  io.netty.buffer.PoolThreadCache.allocate
+      163278    0.10%      163  Monitor::lock_without_safepoint_check()
+      163036    0.10%      163  ObjArrayKlass::allocate(int, Thread*)
+      162309    0.10%      163  reactor.core.publisher.FluxFlatMap$FlatMapMain.tryEmit
+      160587    0.10%      158  HSpaceCounters::update_used(unsigned long)
+      159421    0.10%      160  io.netty.buffer.WrappedByteBuf.readableBytes
+      159223    0.10%      157  rw_copy_check_uvector_[k]
+      156975    0.10%      156  OtherRegionsTable::occupied() const
+      155922    0.10%      153  G1Analytics::predict_card_num(unsigned long, bool) const
+      149850    0.09%      149  AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<574518ul, G1BarrierSet>, (AccessInternal::BarrierType)1, 574518ul>::oop_access_barrier(oopDesc*, long, oopDesc*)
+      149422    0.09%      150  io.netty.channel.epoll.EpollEventLoop.run
+      146672    0.09%      147  reactor.core.publisher.FluxFlatMap$FlatMapInner.currentContext
+      143661    0.09%      144  reactor.core.publisher.Operators.replace
+      143045    0.09%      142  G1CollectedHeap::allocate_new_tlab(unsigned long, unsigned long, unsigned long*)
+      143033    0.09%      142  MemAllocator::allocate_inside_tlab_slow(MemAllocator::Allocation&) const
+      142814    0.09%      143  java.util.Objects.requireNonNull
+      142384    0.09%      142  java.lang.Object.hashCode
+      142035    0.09%      142  io.netty.util.ResourceLeakDetector.track0
+      141441    0.09%      139  __alloc_skb_[k]
+      137307    0.08%      135  __kmalloc_node_track_caller_[k]
+      137094    0.08%      135  ip6_xmit_[k]
+      134665    0.08%      135  reactor.core.publisher.Mono.doOnError
+      134218    0.08%      134  SharedRuntime::on_slowpath_allocation_exit(JavaThread*)
+      133056    0.08%      133  java.lang.Throwable.fillInStackTrace
+      129309    0.08%      127  G1Policy::predict_yg_surv_rate(int, SurvRateGroup*) const
+      129085    0.08%      129  _dl_update_slotinfo
+      127770    0.08%      125  update_curr_[k]
+      126251    0.08%      125  Klass::class_loader() const
+      125576    0.08%      126  io.rsocket.transport.netty.ChannelReadHandler.doOnNext
+      124602    0.08%      125  reactor.core.publisher.MonoIgnoreThen$ThenIgnoreMain.ignoreDone
+      123755    0.08%      124  jbyte_disjoint_arraycopy
+      123750    0.08%      123  LeakProfiler::is_running()
+      122877    0.08%      123  __tls_get_addr
+      122863    0.08%      123  reactor.core.publisher.FlatMapTracker.add
+      122541    0.08%      122  Monitor::unlock()
+      121978    0.07%      118  cpuacct_account_field_[k]
+      121842    0.07%      120  __kmalloc_[k]
+      120749    0.07%      121  io.netty.buffer.AbstractByteBuf.readableBytes
+      119469    0.07%      120  io.netty.util.collection.IntObjectHashMap.indexOf
+      119000    0.07%      116  update_fast_timekeeper_[k]
+      118635    0.07%      119  java.lang.ThreadLocal.get
+      117423    0.07%      117  ThreadHeapSampler::enabled()
+      115833    0.07%      116  io.netty.util.concurrent.DefaultPromise.trySuccess
+      115493    0.07%      115  java.util.concurrent.ConcurrentHashMap.addCount
+      114607    0.07%      115  reactor.core.publisher.MonoIgnoreThen$ThenIgnoreInner.onComplete
+      112802    0.07%      113  G1ParCopyClosure<(G1Barrier)0, (G1Mark)0>::do_oop(oopDesc**)
+      111525    0.07%      112  java.util.concurrent.atomic.AtomicLongFieldUpdater$CASUpdater.getAndAdd
+      110213    0.07%      110  ObjectSynchronizer::FastHashCode(Thread*, oopDesc*)
+      106688    0.07%      107  frame::sender(RegisterMap*) const
+      106687    0.07%      107  reactor.core.publisher.MonoProcessor.create
+      106129    0.07%      103  rcu_check_callbacks_[k]
+      104191    0.06%      104  TypeArrayKlass::allocate_common(int, bool, Thread*)
+      103373    0.06%      103  java.lang.Throwable.fillInStackTrace
+      102261    0.06%      102  CollectedHeap::array_allocate(Klass*, int, int, bool, Thread*)
+      101390    0.06%      102  reactor.core.publisher.FlatMapTracker.remove
+      100717    0.06%       99  __fget_[k]
+      100600    0.06%      100  io.netty.util.ResourceLeakDetector$DefaultResourceLeak.<init>
+      100419    0.06%       99  DirtyCardQueueSet::num_par_ids()
+       99679    0.06%       99  jdk.internal.misc.Unsafe.checkPointer
+       99255    0.06%       98  copyin_[k]
+       97766    0.06%       98  io.rsocket.transport.netty.SendPublisher$InnerSubscriber.drain
+       97460    0.06%       97  java.util.concurrent.ConcurrentHashMap.putVal
+       96599    0.06%       95  update_cfs_group_[k]
+       94769    0.06%       95  io.netty.util.internal.PlatformDependent.getInt
+       93564    0.06%       92  skb_entail_[k]
+       93540    0.06%       94  reactor.core.publisher.FluxFlatMap$FlatMapMain.drainLoop
+       91933    0.06%       92  io.netty.buffer.PoolThreadCache.allocateTiny
+       91693    0.06%       92  CodeCache::find_blob(void*)
+       90974    0.06%       91  java.util.concurrent.ConcurrentHashMap.replaceNode
+       90802    0.06%       91  io.netty.buffer.AbstractPooledDerivedByteBuf.deallocate
+       90249    0.06%       89  G1CollectedHeap::new_region(unsigned long, bool, bool)
+       89008    0.05%       88  G1Policy::predict_region_elapsed_time_ms(HeapRegion*, bool) const
+       87280    0.05%       86  cmpxchg_double_slab.isra.61_[k]
+       86996    0.05%       86  HeapRegion::report_region_type_change(G1HeapRegionTraceType::Type)
+       86751    0.05%       87  io.netty.buffer.WrappedByteBuf.setByte
+       86214    0.05%       85  timerqueue_add_[k]
+       86026    0.05%       85  process_backlog_[k]
+       85097    0.05%       84  ip6_finish_output2_[k]
+       84942    0.05%       85  io.netty.buffer.AbstractReferenceCountedByteBuf.touch
+       84487    0.05%       83  tcp_transmit_skb_[k]
+       84299    0.05%       83  select_task_rq_fair_[k]
+       84038    0.05%       84  io.rsocket.internal.UnboundedProcessor.drainFused
+       83929    0.05%       84  java.lang.invoke.DirectMethodHandle$Holder.invokeStatic
+       81983    0.05%       82  ThreadStateTransition::transition_from_native(JavaThread*, JavaThreadState) [clone .constprop.209]
+       81934    0.05%       82  io.netty.handler.codec.ByteToMessageDecoder.channelRead
+       81313    0.05%       80  skb_copy_datagram_iter_[k]
+       81157    0.05%       81  MemAllocator::Allocation::notify_allocation_jvmti_sampler()
+       80818    0.05%       81  /tmp/libnetty_transport_native_epoll_x86_6411951674693870431800.so (deleted)
+       80779    0.05%       81  io.netty.util.Recycler$Stack.push
+       80113    0.05%       79  __free_pages_ok_[k]
+       77639    0.05%       76  mod_timer_[k]
+       76197    0.05%       76  AllocTracer::send_allocation_in_new_tlab(Klass*, HeapWord*, unsigned long, unsigned long, Thread*)
+       73861    0.05%       74  reactor.core.publisher.FluxPeek$PeekSubscriber.request
+       72906    0.04%       73  ClassLoaderDataGraph::roots_cld_do(CLDClosure*, CLDClosure*)
+       71707    0.04%       71  G1CollectedHeap::attempt_allocation_slow(unsigned long)
+       71193    0.04%       70  tcp_clean_rtx_queue_[k]
+       71129    0.04%       71  objArrayOopDesc::obj_at_put(int, oopDesc*)
+       71082    0.04%       70  __inet6_lookup_established_[k]
+       70750    0.04%       71  io.netty.buffer.PoolThreadCache.log2
+       70339    0.04%       70  InstanceKlass::klass_holder() const
+       70309    0.04%       69  syscall_return_via_sysret_[k]
+       70098    0.04%       70  __GI___writev
+       69748    0.04%       70  io.netty.channel.ChannelOutboundBuffer$Entry.<init>
+       68483    0.04%       68  ObjAllocator::initialize(HeapWord*) const
+       68414    0.04%       67  intel_pstate_update_util_[k]
+       68318    0.04%       67  _raw_spin_unlock_irqrestore_[k]
+       67906    0.04%       66  trigger_load_balance_[k]
+       67577    0.04%       68  reactor.core.publisher.MonoIgnoreThen$ThenAcceptInner.onComplete
+       67431    0.04%       66  ___slab_alloc_[k]
+       67164    0.04%       67  JVM_FillInStackTrace
+       67138    0.04%       67  io.netty.buffer.AbstractByteBuf.readerIndex
+       67126    0.04%       67  RSHashTableIter::has_next(unsigned long&)
+       66785    0.04%       67  io.netty.util.collection.IntObjectHashMap.removeAt
+       66023    0.04%       64  timekeeping_update_[k]
+       64972    0.04%       64  tcp_stream_memory_free_[k]
+       64882    0.04%       63  notifier_call_chain_[k]
+       64022    0.04%       64  io.netty.channel.ChannelOutboundBuffer.removeBytes
+       63905    0.04%       63  skb_release_data_[k]
+       62871    0.04%       62  ip6_dst_check_[k]
+       62818    0.04%       63  JVM_IHashCode
+       62778    0.04%       63  io.rsocket.Frame$Request.from
+       62126    0.04%       61  __check_object_size_[k]
+       62118    0.04%       62  update_get_addr
+       62011    0.04%       62  Java_java_lang_Throwable_fillInStackTrace
+       61986    0.04%       60  update_vsyscall_[k]
+       61932    0.04%       61  OtherRegionsTable::clear_fcc()
+       61342    0.04%       60  cpuacct_charge_[k]
+       61210    0.04%       60  common_file_perm_[k]
+       60960    0.04%       60  tcp_sendmsg_locked_[k]
+       60892    0.04%       61  G1RemSetScanState::G1ClearCardTableTask::work(unsigned int)
+       60426    0.04%       60  G1RemSet::num_par_rem_sets()
+       59898    0.04%       60  clock_gettime
+       59237    0.04%       59  MutatorAllocRegion::retire(bool)
+       58868    0.04%       58  G1SurvivorRegions::length() const
+       58852    0.04%       59  io.netty.buffer.PoolThreadCache$MemoryRegionCache.newEntry
+       58794    0.04%       59  io.rsocket.frame.RequestFrameFlyweight.computeFrameLength
+       57978    0.04%       58  io.netty.buffer.UnsafeByteBufUtil.setBytes
+       57564    0.04%       57  G1CollectedHeap::unsafe_max_tlab_alloc(Thread*) const
+       56875    0.03%       57  reactor.core.publisher.Mono.onLastAssembly
+       56729    0.03%       57  io.netty.buffer.PooledUnsafeDirectByteBuf.initMemoryAddress
+       56225    0.03%       57  jshort_disjoint_arraycopy
+       56101    0.03%       56  unsafe_arraycopy
+       56030    0.03%       56  io.netty.channel.ChannelOutboundBuffer.forEachFlushedMessage
+       56018    0.03%       56  ThreadInVMfromNative::~ThreadInVMfromNative()
+       55239    0.03%       55  io.netty.buffer.PoolChunk.initBuf
+       54793    0.03%       55  __libc_read
+       54276    0.03%       54  io.netty.buffer.PooledSlicedByteBuf$1.newObject
+       54210    0.03%       54  JfrAllocationTracer::JfrAllocationTracer(HeapWord*, unsigned long, Thread*)
+       54106    0.03%       54  CardTableBarrierSet::on_slowpath_allocation_exit(JavaThread*, oopDesc*)
+       54031    0.03%       54  G1CardTable::is_in_young(oopDesc*) const
+       53552    0.03%       53  MasterFreeRegionListMtSafeChecker::check()
+       53196    0.03%       53  io.netty.buffer.AbstractByteBuf.ensureAccessible
+       53088    0.03%       53  io.netty.util.ResourceLeakDetector$Record.<init>
+       52978    0.03%       52  decay_load_[k]
+       52780    0.03%       52  import_iovec_[k]
+       51872    0.03%       51  G1CollectedHeap::retire_mutator_alloc_region(HeapRegion*, unsigned long)
+       51818    0.03%       51  tcp_rcv_established_[k]
+       51806    0.03%       52  G1BlockOffsetTablePart::forward_to_block_containing_addr_slow(HeapWord*, HeapWord*, void const*)
+       51758    0.03%       51  tcp_recvmsg_[k]
+       51707    0.03%       51  native_sched_clock_[k]
+       51545    0.03%       51  AbsSeq::dsd() const
+       50530    0.03%       50  ch.qos.logback.classic.Logger.isErrorEnabled
+       50259    0.03%       50  jdk.internal.misc.Unsafe.checkNativeAddress
+       49912    0.03%       50  io.netty.buffer.SimpleLeakAwareByteBuf.<init>
+       49538    0.03%       49  G1ConcurrentRefine::max_num_threads()
+       49034    0.03%       49  io.netty.util.concurrent.SingleThreadEventExecutor.pollTaskFrom
+       48880    0.03%       49  io.netty.buffer.WrappedByteBuf.setShort
+       48870    0.03%       48  sock_def_readable_[k]
+       48852    0.03%       49  os::javaTimeNanos()
+       48638    0.03%       48  tcp_v6_rcv_[k]
+       47864    0.03%       48  io.netty.channel.AbstractChannel$AbstractUnsafe.flush0
+       46919    0.03%       46  ip6_mtu_[k]
+       46852    0.03%       47  reactor.core.publisher.MonoDefer.subscribe
+       46768    0.03%       46  gen8_irq_handler	[i915]_[k]
+       46701    0.03%       46  update_cfs_rq_h_load_[k]
+       46520    0.03%       46  ktime_get_[k]
+       46403    0.03%       46  __virt_addr_valid_[k]
+       46350    0.03%       46  Monitor::lock()
+       45797    0.03%       46  java.io.BufferedWriter.write
+       45699    0.03%       46  HeapRegion::clear_cardtable()
+       45036    0.03%       45  io.netty.buffer.SimpleLeakAwareByteBuf.touch
+       44996    0.03%       45  org.HdrHistogram.AbstractHistogramIterator.next
+       44963    0.03%       45  io.rsocket.framing.FrameType.hasInitialRequestN
+       44944    0.03%       45  BiasedLocking::revoke_and_rebias(Handle, bool, Thread*)
+       44911    0.03%       45  frame::is_interpreted_frame() const
+       44902    0.03%       44  detach_if_pending_[k]
+       44894    0.03%       44  read_tsc_[k]
+       43830    0.03%       44  io.netty.util.collection.IntObjectHashMap.hashIndex
+       43660    0.03%       43  __wake_up_common_[k]
+       42837    0.03%       43  io.netty.channel.AbstractChannelHandlerContext.write
+       42726    0.03%       43  java.io.PrintStream.write
+       42621    0.03%       42  __update_load_avg_se.isra.38_[k]
+       42279    0.03%       42  io.netty.channel.epoll.EpollEventLoop.processReady
+       42188    0.03%       41  __cgroup_account_cputime_field_[k]
+       42046    0.03%       42  io.netty.buffer.PooledUnsafeDirectByteBuf.memoryAddress
+       42020    0.03%       42  java.util.concurrent.ConcurrentHashMap.remove
+       41980    0.03%       41  rb_next_[k]
+       41912    0.03%       42  frame::frame(long*, long*, long*, unsigned char*)
+       41553    0.03%       41  sock_rfree_[k]
+       41531    0.03%       41  rb_erase_[k]
+       41211    0.03%       40  cpu_needs_another_gp_[k]
+       41082    0.03%       41  io.netty.buffer.WrappedByteBuf.setInt
+       41052    0.03%       41  Universe::should_fill_in_stack_trace(Handle)
+       40953    0.03%       41  io.rsocket.frame.FrameHeaderFlyweight.computeFrameHeaderLength
+       40929    0.03%       41  G1FreeCollectionSetTask::G1SerialFreeCollectionSetClosure::do_heap_region(HeapRegion*)
+       40925    0.03%       41  io.rsocket.frame.FrameHeaderFlyweight.encodeFrameHeader
+       40896    0.03%       41  io.netty.buffer.PoolChunkList.free
+       40717    0.02%       40  enqueue_to_backlog_[k]
+       40398    0.02%       40  G1CollectedHeap::max_tlab_size() const
+       40029    0.02%       40  io.netty.util.concurrent.AbstractEventExecutor.safeExecute
+       40012    0.02%       40  PcDescContainer::find_pc_desc_internal(unsigned char*, bool, PcDescSearch const&)
+       40008    0.02%       40  StringTable::possibly_parallel_oops_do(OopStorage::ParState<false, false>*, OopClosure*)
+       39948    0.02%       40  __pthread_cond_timedwait
+       39924    0.02%       40  io.netty.buffer.PooledUnsafeDirectByteBuf.hasMemoryAddress
+       39877    0.02%       40  G1ParScanThreadState::trim_queue_partially()
+       39874    0.02%       40  io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead
+       39690    0.02%       39  sk_stream_alloc_skb_[k]
+       39633    0.02%       39  tcp_v6_md5_lookup_[k]
+       39557    0.02%       39  tcp_write_xmit_[k]
+       39173    0.02%       38  input_mt_assign_slots_[k]
+       38849    0.02%       39  io.netty.buffer.AbstractByteBuf.setInt
+       38808    0.02%       39  io.netty.buffer.AbstractReferenceCountedByteBuf.release
+       38753    0.02%       38  ep_poll_callback_[k]
+       38723    0.02%       39  io.netty.buffer.AbstractReferenceCountedByteBuf.internalRefCnt
+       38598    0.02%       38  try_to_wake_up_[k]
+       37681    0.02%       37  idle_cpu_[k]
+       37193    0.02%       37  java.lang.ThreadLocal$ThreadLocalMap.getEntry
+       36904    0.02%       37  io.netty.buffer.PoolChunk.free
+       36887    0.02%       37  io.netty.buffer.AbstractByteBuf.setShort
+       36869    0.02%       37  io.netty.util.collection.IntObjectHashMap.probeNext
+       36766    0.02%       36  __hrtimer_run_queues_[k]
+       36690    0.02%       36  __dev_queue_xmit_[k]
+       36459    0.02%       36  ksize_[k]
+       36210    0.02%       36  io.netty.util.ResourceLeakDetector$Record.access$100
+       36007    0.02%       36  _init
+       35810    0.02%       36  G1ParScanThreadState::copy_to_survivor_space(InCSetState, oopDesc*, markOopDesc*)
+       35753    0.02%       35  update_blocked_averages_[k]
+       35656    0.02%       35  net_rx_action_[k]
+       35640    0.02%       35  tcp_ack_update_rtt.isra.33_[k]
+       35523    0.02%       35  select_idle_sibling_[k]
+       34917    0.02%       35  io.netty.handler.codec.ByteToMessageDecoder.callDecode
+       34867    0.02%       35  io.netty.buffer.WrappedByteBuf.hasMemoryAddress
+       34826    0.02%       34  get_nohz_timer_target_[k]
+       34617    0.02%       34  G1MonitoringSupport::update_eden_size()
+       34565    0.02%       34  loopback_xmit_[k]
+       34511    0.02%       34  tcp_ack_[k]
+       34395    0.02%       34  ipv6_rcv_[k]
+       34338    0.02%       34  vfprintf
+       33465    0.02%       33  Thread::muxAcquire(long volatile*, char const*)
+       33374    0.02%       33  _copy_from_user_[k]
+       32933    0.02%       33  reactor.core.publisher.FluxGroupBy$GroupByMain.onNext
+       32472    0.02%       32  __skb_clone_[k]
+       32427    0.02%       32  tcp_current_mss_[k]
+       32379    0.02%       32  G1Analytics::predict_young_other_time_ms(unsigned long) const
+       32248    0.02%       32  _new_instance_Java
+       32149    0.02%       32  io.netty.buffer.WrappedByteBuf.readerIndex
+       32082    0.02%       32  java_lang_Throwable::fill_in_stack_trace(Handle, methodHandle const&)
+       31924    0.02%       32  HandleMark::pop_and_restore()
+       31799    0.02%       31  synaptics_process_byte	[psmouse]_[k]
+       31501    0.02%       31  __indirect_thunk_start_[k]
+       31477    0.02%       31  sk_forced_mem_schedule_[k]
+       31457    0.02%       31  security_sock_rcv_skb_[k]
+       31435    0.02%       31  __cgroup_bpf_run_filter_skb_[k]
+       31004    0.02%       31  ThreadShadow::clear_pending_exception()
+       30990    0.02%       30  io.netty.buffer.PoolThreadCache.trim
+       30900    0.02%       31  jbyte_arraycopy
+       30894    0.02%       31  reactor.core.publisher.BlockingLastSubscriber.onNext
+       30603    0.02%       30  __fget_light_[k]
+       30569    0.02%       30  io.netty.util.internal.shaded.org.jctools.queues.MpscArrayQueue.poll
+       30156    0.02%       30  io.netty.channel.unix.FileDescriptor.readAddress
+       30136    0.02%       30  org.HdrHistogram.RecordedValuesIterator.reachedIterationLevel
+       29796    0.02%       30  G1RemSetScanState::G1ResetScanTopClosure::do_heap_region(HeapRegion*)
+       29570    0.02%       29  _copy_to_iter_[k]
+       29512    0.02%       29  ep_send_events_proc_[k]
+       29341    0.02%       29  ip_sabotage_in	[br_netfilter]_[k]
+       29133    0.02%       29  CollectedHeap::fill_with_dummy_object(HeapWord*, HeapWord*, bool)
+       29087    0.02%       29  io.netty.channel.ChannelOutboundBuffer.clearNioBuffers
+       28873    0.02%       29  reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete
+       28842    0.02%       29  reactor.core.publisher.FluxFlatMap$FlatMapInner.onNext
+       28682    0.02%       28  irq_chip_ack_parent_[k]
+       28668    0.02%       28  task_tick_fair_[k]
+       28465    0.02%       28  tcp_event_data_recv_[k]
+       28444    0.02%       28  tcp_chrono_start_[k]
+       28441    0.02%       28  do_softirq.part.17_[k]
+       28135    0.02%       28  io.netty.buffer.AbstractByteBufAllocator.directBuffer
+       27980    0.02%       27  raw_notifier_call_chain_[k]
+       27964    0.02%       28  __libc_enable_asynccancel
+       27944    0.02%       28  void OopOopIterateDispatch<G1ScanObjsDuringUpdateRSClosure>::Table::oop_oop_iterate<InstanceKlass, unsigned int>(G1ScanObjsDuringUpdateRSClosure*, oopDesc*, Klass*)
+       27934    0.02%       28  CollectedHeap::obj_allocate(Klass*, int, Thread*)
+       27537    0.02%       27  switch_to_thread_stack_[k]
+       27523    0.02%       27  __netif_receive_skb_core_[k]
+       27466    0.02%       27  __cmpxchg_double_slab.isra.51_[k]
+       27448    0.02%       27  vfs_writev_[k]
+       27423    0.02%       27  ip6_finish_output_[k]
+       27329    0.02%       27  kfree_[k]
+       26899    0.02%       27  void OopOopIterateBackwardsDispatch<G1ScanEvacuatedObjClosure>::Table::oop_oop_iterate_backwards<InstanceKlass, unsigned int>(G1ScanEvacuatedObjClosure*, oopDesc*, Klass*)
+       26880    0.02%       27  io.netty.channel.unix.FileDescriptor.writevAddresses
+       26847    0.02%       27  io.netty.buffer.PoolChunk.allocateRun
+       26793    0.02%       26  input_handle_event_[k]
+       26597    0.02%       26  io.netty.buffer.PoolThreadCache.trim
+       26518    0.02%       26  _raw_spin_lock_irq_[k]
+       26367    0.02%       26  inet6_csk_route_socket_[k]
+       26364    0.02%       26  enqueue_task_fair_[k]
+       26352    0.02%       26  copyout_[k]
+       26237    0.02%       26  io.netty.buffer.PoolChunk.allocateNode
+       26158    0.02%       26  G1RemSetTrackingPolicy::update_at_allocate(HeapRegion*)
+       26117    0.02%       26  io.netty.buffer.AbstractByteBuf.readerIndex
+       25999    0.02%       26  io.netty.channel.epoll.Native.epollWait
+       25972    0.02%       26  void G1ScanObjsDuringUpdateRSClosure::do_oop_work<unsigned int>(unsigned int*)
+       25971    0.02%       26  HeapRegionRemSetIterator::has_next(unsigned long&)
+       25928    0.02%       26  io.netty.buffer.PoolChunk.initBufWithSubpage
+       25863    0.02%       26  __tls_get_addr_slow
+       25597    0.02%       25  i8042_interrupt_[k]
+       25448    0.02%       25  tcp_push_[k]
+       25326    0.02%       25  io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueue.offerSlowPath
+       25037    0.02%       25  io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks
+       24910    0.02%       25  io.rsocket.frame.FrameHeaderFlyweight.encodeLength
+       24698    0.02%       25  java.util.concurrent.ConcurrentHashMap.get
+       24561    0.02%       24  rcu_process_callbacks_[k]
+       24543    0.02%       24  run_timer_softirq_[k]
+       24520    0.02%       24  native_read_msr_[k]
+       24475    0.02%       24  __calc_delta_[k]
+       24356    0.01%       24  HeapRegionTracer::send_region_type_change(unsigned int, G1HeapRegionTraceType::Type, G1HeapRegionTraceType::Type, unsigned long, unsigned long)
+       24315    0.01%       24  tcp_event_new_data_sent_[k]
+       24220    0.01%       24  __slab_free_[k]
+       24202    0.01%       24  __local_bh_enable_ip_[k]
+       24168    0.01%       24  G1Analytics::predict_object_copy_time_ms(unsigned long, bool) const
+       24048    0.01%       24  io.netty.channel.DefaultChannelPipeline$HeadContext.channelReadComplete
+       23738    0.01%       23  psmouse_interrupt	[psmouse]_[k]
+       23490    0.01%       23  note_gp_changes_[k]
+       23430    0.01%       23  do_syscall_64_[k]
+       23423    0.01%       23  account_entity_enqueue_[k]
+       23402    0.01%       23  __check_heap_object_[k]
+       23320    0.01%       23  kmem_cache_alloc_node_[k]
+       23309    0.01%       23  kmem_cache_free_[k]
+       23305    0.01%       23  kfree_skbmem_[k]
+       23292    0.01%       23  bictcp_acked_[k]
+       23256    0.01%       23  ObjArrayKlass::array_klass_impl(bool, int, Thread*)
+       23097    0.01%       23  io.netty.buffer.WrappedByteBuf.release
+       23068    0.01%       23  RegisterHumongousWithInCSetFastTestClosure::do_heap_region(HeapRegion*)
+       23063    0.01%       23  ThreadLocalAllocBuffer::clear_before_allocation()
+       23025    0.01%       23  io.netty.buffer.AbstractByteBuf.setByte
+       23000    0.01%       23  G1ScanRSForRegionClosure::scan_rem_set_roots(HeapRegion*)
+       22965    0.01%       23  io.netty.util.internal.MathUtil.isOutOfBounds
+       22959    0.01%       23  io.netty.util.AbstractReferenceCounted.release
+       22470    0.01%       22  handle_edge_irq_[k]
+       22462    0.01%       22  entry_SYSCALL_64_after_hwframe_[k]
+       22415    0.01%       22  ip6_output_[k]
+       22284    0.01%       22  tcp_md5_do_lookup_[k]
+       22277    0.01%       22  _raw_spin_lock_bh_[k]
+       22191    0.01%       22  ip6_autoflowlabel.part.39_[k]
+       22141    0.01%       22  JavaThread::pd_last_frame()
+       22060    0.01%       22  io.netty.buffer.SimpleLeakAwareByteBuf.closeLeak
+       22001    0.01%       22  InstanceKlass::allocate_instance(Thread*)
+       21970    0.01%       22  CodeBlob::is_zombie() const
+       21945    0.01%       22  ResourceMark::reset_to_mark()
+       21930    0.01%       22  io.netty.buffer.PooledUnsafeDirectByteBuf.init
+       21922    0.01%       22  java.util.concurrent.atomic.AtomicReferenceFieldUpdater$AtomicReferenceFieldUpdaterImpl.lazySet
+       21916    0.01%       22  G1ParScanThreadState::trim_queue()
+       21806    0.01%       22  org.HdrHistogram.AtomicHistogram.clearCounts
+       21444    0.01%       21  _find_next_bit_[k]
+       21362    0.01%       21  tcp_update_pacing_rate_[k]
+       21307    0.01%       21  InstanceKlass::array_klass_impl(bool, int, Thread*)
+       21281    0.01%       21  enqueue_entity_[k]
+       21193    0.01%       21  _copy_from_iter_full_[k]
+       21159    0.01%       21  aa_sock_msg_perm_[k]
+       21100    0.01%       21  G1CollectedHeap::new_mutator_alloc_region(unsigned long, bool)
+       21054    0.01%       21  HandleMark::initialize(Thread*)
+       21031    0.01%       21  HeapRegion::set_eden()
+       21023    0.01%       21  io.netty.channel.epoll.AbstractEpollStreamChannel.doWrite
+       20962    0.01%       21  io.netty.channel.epoll.AbstractEpollChannel.setFlag
+       20933    0.01%       21  java.lang.invoke.VarHandleObjects$Array.getVolatile
+       20921    0.01%       21  io.netty.util.Recycler$DefaultHandle.recycle
+       20357    0.01%       20  tcp_sendmsg_[k]
+       20319    0.01%       20  __accumulate_pelt_segments_[k]
+       20298    0.01%       20  io.netty.channel.epoll.AbstractEpollStreamChannel$EpollStreamUnsafe.epollInReady
+       20274    0.01%       20  __copy_skb_header_[k]
+       20107    0.01%       20  io.netty.channel.epoll.Native.epollWait0
+       20046    0.01%       20  AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<573558ul, G1BarrierSet>, (AccessInternal::BarrierType)1, 573558ul>::oop_access_barrier(oopDesc*, long, oopDesc*)
+       19990    0.01%       20  java.util.regex.Matcher.reset
+       19646    0.01%       19  _mix_pool_bytes_[k]
+       19360    0.01%       19  dst_release_[k]
+       19336    0.01%       19  hrtimer_active_[k]
+       19310    0.01%       19  ip6_rcv_finish_[k]
+       19291    0.01%       19  __tcp_select_window_[k]
+       19287    0.01%       19  do_timerfd_settime_[k]
+       19236    0.01%       19  ip6_input_finish_[k]
+       19210    0.01%       19  io.netty.buffer.PoolArena.allocateNormal
+       19124    0.01%       19  Monitor::owned_by_self() const
+       19108    0.01%       19  io.netty.buffer.AbstractByteBuf.isReadable
+       19064    0.01%       19  vtable stub
+       19024    0.01%       19  G1CardTable::g1_mark_as_young(MemRegion const&)
+       19005    0.01%       19  __libc_free
+       18995    0.01%       19  oopFactory::new_symbolArray(int, Thread*)
+       18981    0.01%       19  io.netty.util.internal.DefaultPriorityQueue.peek
+       18945    0.01%       19  JavaThread::active()
+       18931    0.01%       19  reactor.core.publisher.StrictSubscriber.request
+       18543    0.01%       18  handle_irq_event_percpu_[k]
+       18521    0.01%       18  rcu_segcblist_future_gp_needed_[k]
+       18476    0.01%       18  add_interrupt_randomness_[k]
+       18459    0.01%       18  account_user_time_[k]
+       18387    0.01%       18  io.netty.util.internal.shaded.org.jctools.queues.ConcurrentCircularArrayQueue.calcElementOffset
+       18372    0.01%       18  io.netty.util.internal.ObjectUtil.checkNotNull
+       18318    0.01%       18  iov_iter_advance_[k]
+       18316    0.01%       18  kmalloc_slab_[k]
+       18172    0.01%       18  OptoRuntime::new_array_C(Klass*, int, JavaThread*)
+       18059    0.01%       18  Monitor::ILock(Thread*)
+       18044    0.01%       18  io.netty.buffer.WrappedByteBuf.setBytes
+       18001    0.01%       18  CompiledMethod::is_compiled() const
+       17976    0.01%       18  oopDesc* JNIHandles::resolve_impl<false>(_jobject*)
+       17439    0.01%       17  serio_interrupt_[k]
+       17423    0.01%       17  trigger_dyntick_cpu.isra.35_[k]
+       17373    0.01%       17  inet6_ehashfn_[k]
+       17288    0.01%       17  tcp_established_options_[k]
+       17261    0.01%       17  prefetch_freepointer_[k]
+       17252    0.01%       17  Klass::klass_holder() const
+       17216    0.01%       17  do_iter_readv_writev_[k]
+       17200    0.01%       17  resched_curr_[k]
+       17118    0.01%       17  new_sync_read_[k]
+       17091    0.01%       17  G1AllocRegion::fill_up_remaining_space(HeapRegion*)
+       17091    0.01%       17  io.netty.buffer.AbstractByteBuf.skipBytes
+       17045    0.01%       17  __GI___printf_fp_l
+       17026    0.01%       17  JavaThread::is_Java_thread() const
+       16998    0.01%       17  io.rsocket.RSocketClient.lambda$handleRequestResponse$12
+       16997    0.01%       17  java.io.PrintStream.print
+       16988    0.01%       17  PreserveExceptionMark::PreserveExceptionMark(Thread*&)
+       16965    0.01%       17  G1BlockOffsetTablePart::zero_bottom_entry_raw()
+       16883    0.01%       17  io.netty.buffer.PoolChunk.updateParentsFree
+       16846    0.01%       17  __malloc
+       16477    0.01%       16  sun.misc.Unsafe.putObject
+       16326    0.01%       16  __handle_irq_event_percpu_[k]
+       16292    0.01%       16  apic_ack_irq_[k]
+       16247    0.01%       16  aa_label_sk_perm_[k]
+       16242    0.01%       16  get_seconds_[k]
+       16196    0.01%       16  netif_rx_internal_[k]
+       16160    0.01%       16  jdk.internal.misc.Unsafe.copyMemory
+       16159    0.01%       16  G1Analytics::predict_rs_scan_time_ms(unsigned long, bool) const
+       16153    0.01%       16  activate_task_[k]
+       16138    0.01%       16  rw_verify_area_[k]
+       16100    0.01%       16  io.netty.buffer.WrappedByteBuf.capacity
+       16047    0.01%       16  io.netty.buffer.AbstractByteBuf.getUnsignedMedium
+       16015    0.01%       16  _int_malloc
+       16012    0.01%       16  io.netty.buffer.SimpleLeakAwareByteBuf.touch
+       15948    0.01%       16  _init
+       15929    0.01%       16  __pthread_enable_asynccancel
+       15926    0.01%       16  FreeRegionList::add_ordered(FreeRegionList*)
+       15924    0.01%       16  vtable stub
+       15918    0.01%       16  reactor.core.publisher.MonoProcessor.onComplete
+       15905    0.01%       16  io.netty.buffer.PoolArena.allocate
+       15899    0.01%       16  reactor.core.publisher.FluxFlatMap$FlatMapMain.checkTerminated
+       15503    0.01%       15  profile_tick_[k]
+       15423    0.01%       15  gen6_read32	[i915]_[k]
+       15402    0.01%       15  ntp_tick_length_[k]
+       15311    0.01%       15  apparmor_file_permission_[k]
+       15285    0.01%       15  native_write_msr_[k]
+       15283    0.01%       15  update_rq_clock_[k]
+       15235    0.01%       15  hrtimer_interrupt_[k]
+       15208    0.01%       15  rb_insert_color_[k]
+       15185    0.01%       15  reweight_entity_[k]
+       15165    0.01%       15  security_socket_recvmsg_[k]
+       15164    0.01%       15  mem_cgroup_uncharge_[k]
+       15140    0.01%       15  check_preempt_curr_[k]
+       15126    0.01%       15  vfs_read_[k]
+       15093    0.01%       15  sock_read_iter_[k]
+       15085    0.01%       15  io.netty.buffer.WrappedByteBuf.isReadable
+       15083    0.01%       15  io.netty.buffer.AbstractByteBuf.adjustMarkers
+       15064    0.01%       15  tcp_poll_[k]
+       15000    0.01%       15  VMError::is_error_reported()
+       14993    0.01%       15  HeapRegionRemSet::clear_locked(bool)
+       14960    0.01%       15  org.HdrHistogram.AbstractHistogramIterator.incrementSubBucket
+       14951    0.01%       15  IndexSet::initialize(unsigned int)
+       14924    0.01%       15  frame::oops_interpreted_do(OopClosure*, RegisterMap const*, bool)
+       14815    0.01%       15  StatSamplerTask::task()
+       14707    0.01%       15  ThreadSafepointState::examine_state_of_thread()
+       14435    0.01%       14  __perf_event_task_sched_out_[k]
+       14360    0.01%       14  tcp_queue_rcv_[k]
+       14354    0.01%       14  synaptics_process_packet	[psmouse]_[k]
+       14277    0.01%       14  __schedule_[k]
+       14264    0.01%       14  native_queued_spin_lock_slowpath_[k]
+       14224    0.01%       14  __softirqentry_text_start_[k]
+       14214    0.01%       14  sched_clock_cpu_[k]
+       14213    0.01%       14  do_iter_write_[k]
+       14210    0.01%       14  inet_sendmsg_[k]
+       14172    0.01%       14  io.netty.buffer.SimpleLeakAwareByteBuf.newLeakAwareByteBuf
+       14169    0.01%       14  tcp_tso_segs_[k]
+       14165    0.01%       14  fput_[k]
+       14010    0.01%       14  __strlen_avx2
+       13997    0.01%       14  HeapRegionRemSetIterator::HeapRegionRemSetIterator(HeapRegionRemSet*)
+       13986    0.01%       14  Method::bcp_from(unsigned char*) const
+       13965    0.01%       14  jdk.internal.math.FloatingDecimal$BinaryToASCIIBuffer.developLongDigits
+       13905    0.01%       14  io.netty.channel.ChannelOutboundBuffer.remove
+       13827    0.01%       14  java.lang.Class.cast
+       13824    0.01%       14  ConstantPool::impl_signature_ref_at(int, bool)
+       13338    0.01%       13  smp_apic_timer_interrupt_[k]
+       13328    0.01%       13  ktime_get_update_offsets_now_[k]
+       13288    0.01%       13  inet_recvmsg_[k]
+       13280    0.01%       13  tcp_options_write_[k]
+       13264    0.01%       13  __acct_update_integrals_[k]
+       13240    0.01%       13  migrate_task_rq_fair_[k]
+       13231    0.01%       13  eth_type_trans_[k]
+       13225    0.01%       13  ctx_sched_out_[k]
+       13222    0.01%       13  _cond_resched_[k]
+       13211    0.01%       13  tcp_v6_send_check_[k]
+       13208    0.01%       13  lock_sock_nested_[k]
+       13173    0.01%       13  __page_cache_release_[k]
+       13158    0.01%       13  InstanceKlass::allocate_objArray(int, int, Thread*)
+       13153    0.01%       13  java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos
+       13136    0.01%       13  tcp_check_space_[k]
+       13124    0.01%       13  PhaseIdealLoop::Dominators()
+       12980    0.01%       13  PhaseChaitin::Split(unsigned int, ResourceArea*)
+       12972    0.01%       13  G1CollectedHeap::heap()
+       12963    0.01%       13  reactor.core.publisher.FluxDoFinally.createSubscriber
+       12953    0.01%       13  G1HotCardCache::drain(CardTableEntryClosure*, unsigned int)
+       12948    0.01%       13  io.netty.buffer.PoolArena.free
+       12948    0.01%       13  SymbolPropertyTable::oops_do(OopClosure*)
+       12940    0.01%       13  java.util.concurrent.atomic.AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.addAndGet
+       12937    0.01%       13  bool HeapRegion::oops_on_card_seq_iterate_careful<true, G1ScanObjsDuringUpdateRSClosure>(MemRegion, G1ScanObjsDuringUpdateRSClosure*)
+       12916    0.01%       13  reactor.core.publisher.MonoFlatMapMany$FlatMapManyInner.onNext
+       12898    0.01%       13  reactor.core.publisher.Operators$MonoSubscriber.complete
+       12860    0.01%       13  io.rsocket.frame.FrameHeaderFlyweight.hasMetadataLengthField
+       12377    0.01%       12  perf_event_task_tick_[k]
+       12373    0.01%       12  skb_page_frag_refill_[k]
+       12372    0.01%       12  lock_timer_base_[k]
+       12308    0.01%       12  set_task_cpu_[k]
+       12300    0.01%       12  default_wake_function_[k]
+       12217    0.01%       12  netif_skb_features_[k]
+       12216    0.01%       12  skb_clone_[k]
+       12215    0.01%       12  tcp_release_cb_[k]
+       12209    0.01%       12  jiffies_to_usecs_[k]
+       12198    0.01%       12  skb_release_head_state_[k]
+       12197    0.01%       12  tcp_rate_check_app_limited_[k]
+       12177    0.01%       12  tcp_send_delayed_ack_[k]
+       12107    0.01%       12  java.lang.ref.ReferenceQueue.reallyPoll
+       12031    0.01%       12  resource_allocate_bytes(unsigned long, AllocFailStrategy::AllocFailEnum)
+       12022    0.01%       12  ImmutableOopMapSet::find_map_at_offset(int) const
+       12010    0.01%       12  io.netty.channel.ChannelOutboundBuffer.isEmpty
+       12009    0.01%       12  io.netty.channel.unix.PreferredDirectByteBufAllocator.ioBuffer
+       11998    0.01%       12  io.rsocket.transport.netty.ChannelReadHandler.channelRead
+       11989    0.01%       12  os::PlatformEvent::park(long)
+       11988    0.01%       12  io.netty.buffer.PooledByteBufAllocator.threadCache
+       11969    0.01%       12  io.rsocket.transport.netty.ChannelReadHandler.channelReadComplete
+       11961    0.01%       12  io.rsocket.transport.netty.SendPublisher$InnerSubscriber$$Lambda$131.1544671894.run
+       11960    0.01%       12  __strncpy_sse2_unaligned
+       11958    0.01%       12  G1CodeRootSet::contains(nmethod*)
+       11957    0.01%       12  io.netty.buffer.AbstractByteBuf.writerIndex
+       11955    0.01%       12  java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.offer
+       11926    0.01%       12  G1YoungRemSetSamplingClosure::do_heap_region(HeapRegion*)
+       11896    0.01%       12  reactor.core.publisher.FlatMapTracker.offerFree
+       11325    0.01%       11  rcu_segcblist_ready_cbs_[k]
+       11304    0.01%       11  memcg_kmem_put_cache_[k]
+       11272    0.01%       11  kthread_data_[k]
+       11255    0.01%       11  apic_timer_interrupt_[k]
+       11250    0.01%       11  __sk_dst_check_[k]
+       11224    0.01%       11  __wake_up_common_lock_[k]
+       11179    0.01%       11  Monitor::wait(bool, long, bool)
+       11177    0.01%       11  security_file_permission_[k]
+       11175    0.01%       11  rcu_all_qs_[k]
+       11127    0.01%       11  validate_xmit_skb_[k]
+       11115    0.01%       11  rb_first_[k]
+       11105    0.01%       11  native_apic_mem_write_[k]
+       11100    0.01%       11  io.netty.buffer.PooledByteBuf.retainedSlice
+       11067    0.01%       11  org.HdrHistogram.AbstractHistogram.outputPercentileDistribution
+       11067    0.01%       11  io.netty.buffer.WrappedByteBuf.getUnsignedMedium
+       11045    0.01%       11  __pthread_disable_asynccancel
+       11038    0.01%       11  oopDesc::size_given_klass(Klass*)
+       11022    0.01%       11  io.netty.buffer.SimpleLeakAwareByteBuf.unwrappedDerived
+       11009    0.01%       11  io.netty.channel.epoll.AbstractEpollStreamChannel.isActive
+       10985    0.01%       11  os::elapsed_counter()
+       10977    0.01%       11  java.util.concurrent.FutureTask.runAndReset
+       10969    0.01%       11  PeriodicTask::real_time_tick(int)
+       10963    0.01%       11  reactor.core.publisher.DirectProcessor$DirectInner.request
+       10959    0.01%       11  JNIHandleBlock::oops_do(OopClosure*)
+       10951    0.01%       11  io.netty.channel.ChannelOutboundBuffer.addFlush
+       10894    0.01%       11  G1RemSet::prepare_for_oops_into_collection_set_do()
+       10889    0.01%       11  g1_post_barrier_slow
+       10859    0.01%       11  java.io.PrintStream.newLine
+       10436    0.01%       10  input_pass_values.part.6_[k]
+       10244    0.01%       10  tcp_wfree_[k]
+       10244    0.01%       10  gen8_gt_irq_ack	[i915]_[k]
+       10244    0.01%       10  flat_send_IPI_mask_[k]
+       10226    0.01%       10  ep_poll_[k]
+       10204    0.01%       10  __usecs_to_jiffies_[k]
+       10195    0.01%       10  handle_irq_event_[k]
+       10185    0.01%       10  free_compound_page_[k]
+       10174    0.01%       10  tick_sched_timer_[k]
+       10173    0.01%       10  ip6_input_[k]
+       10168    0.01%       10  do_writev_[k]
+       10145    0.01%       10  update_min_vruntime_[k]
+       10138    0.01%       10  tcp_v6_do_rcv_[k]
+       10133    0.01%       10  x86_pmu_disable_[k]
+       10126    0.01%       10  io.netty.buffer.PoolThreadCache$MemoryRegionCache.freeEntry
+       10123    0.01%       10  bictcp_cwnd_event_[k]
+       10096    0.01%       10  apparmor_socket_recvmsg_[k]
+       10088    0.01%       10  io.netty.buffer.SimpleLeakAwareByteBuf.retainedSlice
+       10083    0.01%       10  io.netty.buffer.WrappedByteBuf.readerIndex
+       10071    0.01%       10  io.netty.buffer.WrappedByteBuf.skipBytes
+       10031    0.01%       10  TruncatedSeq::add(double)
+       10031    0.01%       10  sock_poll_[k]
+       10027    0.01%       10  io.netty.util.concurrent.AbstractScheduledEventExecutor.pollScheduledTask
+       10024    0.01%       10  PreserveExceptionMark::~PreserveExceptionMark()
+       10010    0.01%       10  io.netty.buffer.PooledUnsafeDirectByteBuf.nioBufferCount
+       10007    0.01%       10  io.netty.channel.epoll.AbstractEpollStreamChannel.doWriteSingle
+       10005    0.01%       10  I2C/C2I adapters
+       10001    0.01%       10  futex_wake_[k]
+        9999    0.01%       10  CompiledMethod::cleanup_inline_caches_impl(bool, bool, bool)
+        9999    0.01%       10  InstanceKlass::find_method_index(Array<Method*> const*, Symbol const*, Symbol const*, Klass::OverpassLookupMode, Klass::StaticLookupMode, Klass::PrivateLookupMode) [clone .constprop.269]
+        9997    0.01%       10  java.util.concurrent.atomic.AtomicIntegerFieldUpdater$AtomicIntegerFieldUpdaterImpl.getAndIncrement
+        9996    0.01%       10  java.util.concurrent.atomic.AtomicReferenceFieldUpdater$AtomicReferenceFieldUpdaterImpl.compareAndSet
+        9990    0.01%       10  SurvRateGroup::record_surviving_words(int, unsigned long)
+        9967    0.01%       10  SafepointSynchronize::begin()
+        9964    0.01%       10  G1FreeCollectionSetTask::work(unsigned int)
+        9958    0.01%       10  oopDesc::release_obj_field_put(int, oopDesc*)
+        9957    0.01%       10  io.netty.channel.epoll.AbstractEpollStreamChannel.writeBytes
+        9950    0.01%       10  java.lang.AbstractStringBuilder.appendChars
+        9920    0.01%       10  __put_compound_page_[k]
+        9911    0.01%       10  __GI__IO_default_xsputn
+        9904    0.01%       10  OopMapStream::find_next()
+        9892    0.01%       10  to_abstime(timespec*, long, bool)
+        9308    0.01%        9  evdev_pass_values_[k]
+        9217    0.01%        9  run_posix_cpu_timers_[k]
+        9209    0.01%        9  scheduler_tick_[k]
+        9187    0.01%        9  get_futex_key_[k]
+        9181    0.01%        9  raise_softirq_[k]
+        9168    0.01%        9  pick_next_task_fair_[k]
+        9165    0.01%        9  sk_filter_trim_cap_[k]
+        9160    0.01%        9  raw6_local_deliver_[k]
+        9150    0.01%        9  __slab_alloc_[k]
+        9140    0.01%        9  __raise_softirq_irqoff_[k]
+        9138    0.01%        9  find_busiest_group_[k]
+        9097    0.01%        9  tcp_rearm_rto.part.61_[k]
+        9096    0.01%        9  dev_hard_start_xmit_[k]
+        9090    0.01%        9  G1CollectionSet::iterate(HeapRegionClosure*) const
+        9081    0.01%        9  JfrAllocationTracer::~JfrAllocationTracer()
+        9068    0.01%        9  io.netty.buffer.SimpleLeakAwareByteBuf.order
+        9068    0.01%        9  __cgroup_account_cputime_[k]
+        9038    0.01%        9  io.netty.buffer.PooledByteBuf.capacity
+        9019    0.01%        9  io.netty.buffer.AbstractByteBufAllocator.directBuffer
+        8994    0.01%        9  io.netty.util.ResourceLeakDetector$DefaultResourceLeak.reachabilityFence0
+        8993    0.01%        9  io.netty.util.concurrent.DefaultPromise.notifyListeners
+        8984    0.01%        9  io.netty.handler.codec.LengthFieldBasedFrameDecoder.getUnadjustedFrameLength
+        8970    0.01%        9  io.rsocket.frame.FrameHeaderFlyweight.encodeData
+        8957    0.01%        9  io.netty.buffer.PooledUnsafeDirectByteBuf.setBytes
+        8957    0.01%        9  java.util.concurrent.ConcurrentHashMap.put
+        8942    0.01%        9  java.util.Formatter$Flags.parse
+        8942    0.01%        9  io.netty.buffer.AbstractByteBuf.writeBytes
+        8939    0.01%        9  G1ScanRSForRegionClosure::do_heap_region(HeapRegion*)
+        8932    0.01%        9  io.netty.util.internal.PlatformDependent0.getInt
+        8920    0.01%        9  Monitor::IWait(Thread*, long)
+        8911    0.01%        9  WeakProcessor::weak_oops_do(BoolObjectClosure*, OopClosure*)
+        8279    0.01%        8  default_send_IPI_single_[k]
+        8260    0.01%        8  skb_condense_[k]
+        8245    0.01%        8  add_input_randomness_[k]
+        8220    0.01%        8  tick_sched_do_timer_[k]
+        8203    0.01%        8  account_entity_dequeue_[k]
+        8191    0.01%        8  ip6_dst_hoplimit_[k]
+        8191    0.01%        8  gen6_rps_boost	[i915]_[k]
+        8170    0.01%        8  apparmor_socket_sock_rcv_skb_[k]
+        8143    0.00%        8  tcp_rcv_space_adjust_[k]
+        8124    0.00%        8  __remove_hrtimer_[k]
+        8118    0.00%        8  rcu_segcblist_pend_cbs_[k]
+        8116    0.00%        8  nf_hook_slow_[k]
+        8109    0.00%        8  release_sock_[k]
+        8107    0.00%        8  cpumask_next_wrap_[k]
+        8101    0.00%        8  __pm_relax_[k]
+        8098    0.00%        8  apparmor_socket_sendmsg_[k]
+        8083    0.00%        8  epoll_wait
+        8082    0.00%        8  tcp_rate_gen_[k]
+        8074    0.00%        8  do_softirq_own_stack_[k]
+        8069    0.00%        8  bictcp_cong_avoid_[k]
+        8056    0.00%        8  io.netty.buffer.PoolArena.normalizeCapacity
+        8055    0.00%        8  io.netty.buffer.WrappedByteBuf.writableBytes
+        8045    0.00%        8  ObjectSynchronizer::deflate_thread_local_monitors(Thread*, DeflateMonitorCounters*)
+        8036    0.00%        8  io.netty.channel.DefaultMaxMessagesRecvByteBufAllocator$MaxMessageHandle.allocate
+        8032    0.00%        8  org.HdrHistogram.AtomicHistogram.getCountAtIndex
+        8031    0.00%        8  org.HdrHistogram.AbstractHistogramIterator.resetIterator
+        8030    0.00%        8  ThreadLocalAllocBuffer::myThread()
+        8029    0.00%        8  minmax_subwin_update_[k]
+        8023    0.00%        8  io.rsocket.transport.netty.ChannelReadHandler.tryRequestMore
+        8023    0.00%        8  io.netty.handler.codec.ByteToMessageDecoder.channelReadComplete
+        8014    0.00%        8  G1BarrierSet::enqueue(oopDesc*)
+        8012    0.00%        8  PerfLongVariant::sample()
+        8010    0.00%        8  io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection
+        8009    0.00%        8  BacktraceBuilder::BacktraceBuilder(Thread*)
+        8004    0.00%        8  intel_lrc_irq_handler	[i915]_[k]
+        8001    0.00%        8  __GI_timerfd_settime
+        7999    0.00%        8  io.netty.buffer.PoolChunkList.allocate
+        7983    0.00%        8  io.netty.channel.DefaultMaxMessagesRecvByteBufAllocator$MaxMessageHandle.attemptedBytesRead
+        7981    0.00%        8  io.netty.util.internal.PlatformDependent.getShort
+        7972    0.00%        8  JavaFrameAnchor::make_walkable(JavaThread*)
+        7969    0.00%        8  RSHashTable::clear()
+        7951    0.00%        8  Rdtsc::elapsed_counter()
+        7948    0.00%        8  frame::interpreter_frame_bcp() const
+        7945    0.00%        8  java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take
+        7940    0.00%        8  io.netty.buffer.AbstractByteBufAllocator.calculateNewCapacity
+        7289    0.00%        7  __get_vblank_counter	[drm]_[k]
+        7227    0.00%        7  drm_handle_vblank	[drm]_[k]
+        7206    0.00%        7  irq_work_tick_[k]
+        7185    0.00%        7  skb_push_[k]
+        7182    0.00%        7  tcp_v6_fill_cb_[k]
+        7175    0.00%        7  update_process_times_[k]
+        7172    0.00%        7  schedule_[k]
+        7168    0.00%        7  gen8_gt_irq_handler	[i915]_[k]
+        7165    0.00%        7  swapgs_restore_regs_and_return_to_usermode_[k]
+        7155    0.00%        7  inet6_csk_xmit_[k]
+        7153    0.00%        7  netdev_pick_tx_[k]
+        7152    0.00%        7  cpu_load_update_[k]
+        7149    0.00%        7  cpupri_set_[k]
+        7144    0.00%        7  io.netty.channel.unix.FileDescriptor.readAddress
+        7137    0.00%        7  skb_try_coalesce_[k]
+        7133    0.00%        7  OopMapSet::update_register_map(frame const*, RegisterMap*)
+        7124    0.00%        7  credit_entropy_bits_[k]
+        7122    0.00%        7  aa_profile_af_perm_[k]
+        7104    0.00%        7  security_sk_classify_flow_[k]
+        7100    0.00%        7  __queue_work_[k]
+        7097    0.00%        7  hrtimer_try_to_cancel_[k]
+        7090    0.00%        7  security_socket_sendmsg_[k]
+        7082    0.00%        7  aa_file_perm_[k]
+        7078    0.00%        7  PageHuge_[k]
+        7072    0.00%        7  I2C/C2I adapters
+        7061    0.00%        7  calc_wheel_index_[k]
+        7042    0.00%        7  io.netty.buffer.AbstractByteBuf.writeBytes
+        7037    0.00%        7  Method::mask_for(int, InterpreterOopMap*)
+        7036    0.00%        7  io.netty.buffer.PoolChunk.updateParentsAlloc
+        7033    0.00%        7  io.netty.channel.epoll.AbstractEpollStreamChannel.access$400
+        7012    0.00%        7  java.util.Formatter$FormatSpecifier.getZero
+        7008    0.00%        7  AgeTable::print_age_table(unsigned int)
+        6993    0.00%        7  reactor.core.publisher.StrictSubscriber.onNext
+        6989    0.00%        7  java.util.concurrent.ThreadPoolExecutor.getTask
+        6989    0.00%        7  io.netty.channel.unix.FileDescriptor.writevAddresses
+        6987    0.00%        7  __unqueue_futex_[k]
+        6985    0.00%        7  methodHandle::~methodHandle()
+        6983    0.00%        7  WatcherThread::run()
+        6982    0.00%        7  G1FreeCollectionSetTask::G1PrepareFreeCollectionSetClosure::do_heap_region(HeapRegion*)
+        6979    0.00%        7  aa_label_next_confined_[k]
+        6975    0.00%        7  reactor.core.publisher.MonoCreate$DefaultMonoSink.disposeResource
+        6972    0.00%        7  io.netty.buffer.PoolChunk.value
+        6969    0.00%        7  io.netty.channel.epoll.AbstractEpollChannel.doWriteBytes
+        6968    0.00%        7  jdk.internal.math.FloatingDecimal.getBinaryToASCIIConverter
+        6968    0.00%        7  RegisterMap::RegisterMap(JavaThread*, bool)
+        6967    0.00%        7  io.rsocket.frame.FrameHeaderFlyweight.computeMetadataLength
+        6960    0.00%        7  java.util.concurrent.ThreadPoolExecutor.runWorker
+        6959    0.00%        7  __strchr_avx2
+        6958    0.00%        7  sun.nio.cs.UTF_8$Encoder.encodeArrayLoop
+        6956    0.00%        7  free_one_page_[k]
+        6946    0.00%        7  nmethod::oops_do(OopClosure*, bool)
+        6945    0.00%        7  JVM_NanoTime
+        6933    0.00%        7  I2C/C2I adapters
+        6923    0.00%        7  CardTable::clear(MemRegion)
+        6918    0.00%        7  io.netty.buffer.PoolArena.reallocate
+        6849    0.00%        7  G1STWIsAliveClosure::do_object_b(oopDesc*)
+        6201    0.00%        6  __strchrnul_avx2
+        6198    0.00%        6  __bitmap_and_[k]
+        6196    0.00%        6  do_futex_[k]
+        6183    0.00%        6  handle_irq_[k]
+        6176    0.00%        6  java.util.concurrent.locks.LockSupport.parkNanos
+        6176    0.00%        6  input_event_[k]
+        6166    0.00%        6  i915_get_crtc_scanoutpos	[i915]_[k]
+        6166    0.00%        6  sys_futex_[k]
+        6166    0.00%        6  ntp_get_next_leap_[k]
+        6154    0.00%        6  tick_do_update_jiffies64.part.10_[k]
+        6152    0.00%        6  sock_write_iter_[k]
+        6149    0.00%        6  tcp_cleanup_rbuf_[k]
+        6140    0.00%        6  ep_item_poll.isra.10_[k]
+        6139    0.00%        6  native_smp_send_reschedule_[k]
+        6136    0.00%        6  account_process_tick_[k]
+        6129    0.00%        6  tcp_init_tso_segs_[k]
+        6125    0.00%        6  __mod_zone_page_state_[k]
+        6106    0.00%        6  fsnotify_[k]
+        6102    0.00%        6  tcp_rbtree_insert_[k]
+        6090    0.00%        6  remove_entity_load_avg_[k]
+        6084    0.00%        6  sock_recvmsg_[k]
+        6065    0.00%        6  WatcherThread::sleep() const
+        6065    0.00%        6  io.netty.buffer.PooledSlicedByteBuf.getShort
+        6049    0.00%        6  irq_exit_[k]
+        6042    0.00%        6  OopMapCache::lookup(methodHandle const&, int, InterpreterOopMap*)
+        6037    0.00%        6  wq_worker_waking_up_[k]
+        6030    0.00%        6  tcp_schedule_loss_probe_[k]
+        6029    0.00%        6  G1CollectedHeap::free_region(HeapRegion*, FreeRegionList*, bool, bool, bool)
+        6016    0.00%        6  tcp_rate_skb_sent_[k]
+        6015    0.00%        6  entry_SYSCALL_64_stage2_[k]
+        6014    0.00%        6  sun.nio.cs.UTF_8$Encoder.encodeLoop
+        6011    0.00%        6  PhaseChaitin::merge_multidefs()
+        6008    0.00%        6  java.io.Writer.write
+        6007    0.00%        6  io.netty.buffer.AbstractByteBuf.checkNewCapacity
+        6003    0.00%        6  CodeBlob::is_deoptimization_stub() const
+        6001    0.00%        6  io.netty.buffer.AbstractByteBuf.checkRangeBounds
+        5999    0.00%        6  io.netty.buffer.AbstractByteBuf.writerIndex
+        5998    0.00%        6  G1GCPhaseTimes::reset()
+        5996    0.00%        6  MutatorAllocRegion::retire_region(HeapRegion*, unsigned long)
+        5994    0.00%        6  PathFrequency::to(Node*)
+        5989    0.00%        6  __pthread_mutex_cond_lock
+        5985    0.00%        6  vtable stub
+        5984    0.00%        6  java.util.Formatter.parse
+        5980    0.00%        6  io.netty.util.internal.PlatformDependent0.getShort
+        5980    0.00%        6  ThreadLocalAllocBuffer::accumulate_statistics_before_gc()
+        5978    0.00%        6  Method::bci_from(unsigned char*) const
+        5977    0.00%        6  org.HdrHistogram.AbstractHistogram.init
+        5975    0.00%        6  java.util.Formatter$FormatSpecifier.print
+        5974    0.00%        6  io.netty.util.internal.PlatformDependent.getInt
+        5971    0.00%        6  io.netty.buffer.AbstractByteBuf.writeBytes
+        5952    0.00%        6  __pthread_mutex_lock
+        5947    0.00%        6  reactor.core.publisher.Operators.addCap
+        5206    0.00%        5  synaptics_report_buttons	[psmouse]_[k]
+        5182    0.00%        5  ath10k_htt_t2h_msg_handler	[ath10k_core]_[k]
+        5165    0.00%        5  _IO_str_init_static_internal
+        5150    0.00%        5  _IO_old_init
+        5139    0.00%        5  io.netty.buffer.PoolThreadCache.allocateNormal
+        5137    0.00%        5  add_timer_randomness_[k]
+        5136    0.00%        5  check_preempt_wakeup_[k]
+        5134    0.00%        5  calc_global_load_[k]
+        5131    0.00%        5  run_local_timers_[k]
+        5130    0.00%        5  __xfrm_policy_check2.constprop.23_[k]
+        5125    0.00%        5  __intel_get_crtc_scanline	[i915]_[k]
+        5118    0.00%        5  irq_enter_[k]
+        5118    0.00%        5  io.netty.util.internal.shaded.org.jctools.util.UnsafeRefArrayAccess.lvElement
+        5117    0.00%        5  jio_vsnprintf
+        5114    0.00%        5  hrtimer_start_range_ns_[k]
+        5113    0.00%        5  netif_rx_[k]
+        5112    0.00%        5  find_next_bit_[k]
+        5106    0.00%        5  timerqueue_del_[k]
+        5097    0.00%        5  synaptics_report_mt_data	[psmouse]_[k]
+        5097    0.00%        5  nohz_balance_exit_idle.part.98_[k]
+        5090    0.00%        5  dequeue_task_fair_[k]
+        5088    0.00%        5  __netif_receive_skb_[k]
+        5087    0.00%        5  notify_ring	[i915]_[k]
+        5085    0.00%        5  __tasklet_hi_schedule_[k]
+        5077    0.00%        5  tcp_rearm_rto_[k]
+        5070    0.00%        5  java.lang.StringBuilder.<init>
+        5069    0.00%        5  mutex_unlock_[k]
+        5067    0.00%        5  can_migrate_task_[k]
+        5065    0.00%        5  ParallelSPCleanupTask::work(unsigned int)
+        5062    0.00%        5  java.lang.StringLatin1.newString
+        5055    0.00%        5  GCTracer::send_metaspace_chunk_free_list_summary(GCWhen::Type, Metaspace::MetadataType, MetaspaceChunkFreeListSummary const&) const
+        5049    0.00%        5  io.netty.util.ResourceLeakDetector.reportLeak
+        5043    0.00%        5  validate_xmit_xfrm_[k]
+        5042    0.00%        5  java.io.BufferedWriter.flushBuffer
+        5040    0.00%        5  io.netty.util.internal.shaded.org.jctools.queues.BaseMpscLinkedArrayQueue.offer
+        5038    0.00%        5  _itoa_word
+        5031    0.00%        5  io.netty.channel.AdaptiveRecvByteBufAllocator$HandleImpl.record
+        5029    0.00%        5  rt6_check_expired_[k]
+        5028    0.00%        5  G1AllocRegion::new_alloc_region_and_allocate(unsigned long, bool)
+        5027    0.00%        5  io.netty.buffer.AbstractByteBuf.ensureWritable
+        5027    0.00%        5  ReferenceProcessorPhaseTimes::print_all_references(unsigned int, bool) const
+        5025    0.00%        5  oopFactory::new_objArray(Klass*, int, Thread*)
+        5016    0.00%        5  java.util.concurrent.locks.ReentrantLock$Sync.nonfairTryAcquire
+        5013    0.00%        5  nmethod::total_size() const
+        5003    0.00%        5  G1EvacPhaseWithTrimTimeTracker::~G1EvacPhaseWithTrimTimeTracker()
+        5001    0.00%        5  io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead
+        4999    0.00%        5  reactor.core.publisher.FluxInterval$IntervalRunnable.run
+        4999    0.00%        5  Compile::identify_useful_nodes(Unique_Node_List&)
+        4999    0.00%        5  io.rsocket.test.PingClient.lambda$startTracker$0
+        4998    0.00%        5  io.netty.buffer.SimpleLeakAwareByteBuf.release
+        4996    0.00%        5  G1CollectedHeap::do_collection_pause_at_safepoint(double)
+        4995    0.00%        5  G1ParEvacuateFollowersClosure::do_void()
+        4991    0.00%        5  PhaseChaitin::add_input_to_liveout(Block*, Node*, IndexSet*, double, PhaseChaitin::Pressure&, PhaseChaitin::Pressure&)
+        4990    0.00%        5  G1ParScanThreadStateSet::flush()
+        4988    0.00%        5  io.rsocket.transport.netty.SendPublisher$InnerSubscriber.tryRequestMoreUpstream
+        4987    0.00%        5  G1EvacStats::log_plab_allocation()
+        4986    0.00%        5  pthread_mutex_unlock
+        4985    0.00%        5  org.HdrHistogram.AbstractHistogram.getMean
+        4979    0.00%        5  os::elapsedTime()
+        4976    0.00%        5  NMethodSweeper::possibly_flush(nmethod*)
+        4975    0.00%        5  AllocateHeap(unsigned long, MemoryType, AllocFailStrategy::AllocFailEnum)
+        4973    0.00%        5  ep_scan_ready_list.constprop.17_[k]
+        4971    0.00%        5  PhaseLive::compute(unsigned int)
+        4934    0.00%        5  GCMemoryManager::gc_begin(bool, bool, bool)
+        4919    0.00%        5  G1CollectedHeap::post_evacuate_collection_set(EvacuationInfo&, G1ParScanThreadStateSet*)
+        4137    0.00%        4  psmouse_handle_byte	[psmouse]_[k]
+        4129    0.00%        4  G1YoungRemSetSamplingThread::run_service()
+        4117    0.00%        4  put_prev_task_fair_[k]
+        4114    0.00%        4  I2C/C2I adapters
+        4109    0.00%        4  __update_idle_core_[k]
+        4109    0.00%        4  tcp_filter_[k]
+        4108    0.00%        4  rcu_advance_cbs_[k]
+        4106    0.00%        4  gen8_cs_irq_handler	[i915]_[k]
+        4089    0.00%        4  skb_put_[k]
+        4088    0.00%        4  __update_load_avg_blocked_se.isra.37_[k]
+        4087    0.00%        4  ttwu_do_activate_[k]
+        4085    0.00%        4  iov_iter_init_[k]
+        4084    0.00%        4  __radix_tree_lookup_[k]
+        4083    0.00%        4  futex_wait_[k]
+        4082    0.00%        4  aa_sk_perm_[k]
+        4078    0.00%        4  skb_network_protocol_[k]
+        4078    0.00%        4  sk_reset_timer_[k]
+        4074    0.00%        4  _IO_setb
+        4073    0.00%        4  minmax_running_min_[k]
+        4071    0.00%        4  check_stack_object_[k]
+        4069    0.00%        4  _raw_spin_trylock_[k]
+        4068    0.00%        4  ttwu_do_wakeup_[k]
+        4066    0.00%        4  tick_sched_handle_[k]
+        4066    0.00%        4  __hrtimer_init_[k]
+        4065    0.00%        4  do_IRQ_[k]
+        4064    0.00%        4  note_interrupt_[k]
+        4064    0.00%        4  rb_insert_color_cached_[k]
+        4062    0.00%        4  mutex_lock_[k]
+        4060    0.00%        4  lapic_next_deadline_[k]
+        4058    0.00%        4  rcu_bh_qs_[k]
+        4058    0.00%        4  tcp_add_backlog_[k]
+        4057    0.00%        4  ThreadLocalAllocBuffer::resize_all_tlabs()
+        4055    0.00%        4  io.netty.channel.epoll.EpollRecvByteAllocatorHandle.attemptedBytesRead
+        4052    0.00%        4  load_balance_[k]
+        4050    0.00%        4  G1EvacPhaseTimesTracker::G1EvacPhaseTimesTracker(G1GCPhaseTimes*, G1ParScanThreadState*, G1GCPhaseTimes::GCParPhases, unsigned int)
+        4044    0.00%        4  __fsnotify_parent_[k]
+        4040    0.00%        4  cpu_load_update_active_[k]
+        4040    0.00%        4  org.HdrHistogram.AbstractHistogram.nextNonEquivalentValue
+        4035    0.00%        4  java.util.Arrays.copyOf
+        4034    0.00%        4  G1HeapSummary::accept(GCHeapSummaryVisitor*) const
+        4032    0.00%        4  G1EdenPool::get_memory_usage()
+        4031    0.00%        4  irq_entries_start_[k]
+        4029    0.00%        4  __kfree_skb_flush_[k]
+        4028    0.00%        4  os::PlatformEvent::unpark()
+        4027    0.00%        4  G1GCParPhaseTimesTracker::~G1GCParPhaseTimesTracker()
+        4020    0.00%        4  get_futex_key_refs.isra.13_[k]
+        4015    0.00%        4  JavaThread::oops_do(OopClosure*, CodeBlobClosure*)
+        4014    0.00%        4  void OopOopIterateBoundedDispatch<G1ScanObjsDuringUpdateRSClosure>::Table::oop_oop_iterate_bounded<ObjArrayKlass, unsigned int>(G1ScanObjsDuringUpdateRSClosure*, oopDesc*, Klass*, MemRegion)
+        4013    0.00%        4  RegMask::Size() const
+        4012    0.00%        4  HeapRegionManager::iterate(HeapRegionClosure*) const
+        4010    0.00%        4  java.lang.StrictMath.floorOrCeil
+        4009    0.00%        4  java.util.concurrent.ScheduledThreadPoolExecutor.reExecutePeriodic
+        4009    0.00%        4  skb_release_all_[k]
+        4007    0.00%        4  java.util.Formatter$FormatSpecifier.print
+        4006    0.00%        4  MetaspaceUtils::committed_bytes(Metaspace::MetadataType)
+        4005    0.00%        4  java.io.PrintStream.format
+        4002    0.00%        4  TypeInstPtr::make(TypePtr::PTR, ciKlass*, bool, ciObject*, int, int, TypePtr const*, int)
+        4001    0.00%        4  /lib/x86_64-linux-gnu/libc-2.27.so
+        3999    0.00%        4  G1CollectionSet::update_young_region_prediction(HeapRegion*, unsigned long)
+        3997    0.00%        4  io.rsocket.RSocketClient.handleIncomingFrames
+        3996    0.00%        4  java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.signal
+        3995    0.00%        4  PhaseChaitin::interfere_with_live(unsigned int, IndexSet*)
+        3994    0.00%        4  java.io.PrintStream.format
+        3994    0.00%        4  io.netty.buffer.PooledByteBuf.recycle
+        3993    0.00%        4  InterpreterOopMap::iterate_oop(OffsetClosure*) const
+        3990    0.00%        4  java.util.regex.Pattern$Branch.match
+        3987    0.00%        4  HeapRegion::hr_clear(bool, bool, bool)
+        3986    0.00%        4  jni_GetByteArrayRegion
+        3986    0.00%        4  G1EvacuationRootClosures::create_root_closures(G1ParScanThreadState*, G1CollectedHeap*)
+        3985    0.00%        4  io.netty.buffer.WrappedByteBuf.memoryAddress
+        3984    0.00%        4  G1RemSet::refine_card_during_gc(signed char*, G1ScanObjsDuringUpdateRSClosure*) [clone .part.121]
+        3983    0.00%        4  Node::clone() const
+        3983    0.00%        4  VirtualSpace::committed_size() const
+        3980    0.00%        4  PhaseChaitin::gather_lrg_masks(bool)
+        3975    0.00%        4  G1Analytics::predict_rs_lengths() const
+        3974    0.00%        4  java_lang_ref_SoftReference::clock()
+        3974    0.00%        4  Thread::muxRelease(long volatile*)
+        3972    0.00%        4  java.nio.CharBuffer.limit
+        3970    0.00%        4  jdk.internal.math.FormattedFloatingDecimal.create
+        3967    0.00%        4  MallocTracker::record_free(void*)
+        3966    0.00%        4  CardTableBarrierSet::make_parsable(JavaThread*)
+        3958    0.00%        4  vtable stub
+        3958    0.00%        4  sock_sendmsg_[k]
+        3955    0.00%        4  io.netty.buffer.AbstractByteBuf.checkReadableBounds
+        3947    0.00%        4  HighResTimeSampler::take_sample()
+        3942    0.00%        4  org.HdrHistogram.Recorder.performIntervalSample
+        3942    0.00%        4  io.netty.buffer.AbstractByteBuf.ensureWritable0
+        3941    0.00%        4  org.HdrHistogram.AbstractHistogram.<init>
+        3913    0.00%        4  PhaseIdealLoop::build_loop_late(VectorSet&, Node_List&, Node_Stack&)
+        3908    0.00%        4  PhaseChaitin::elide_copy(Node*, int, Block*, Node_List&, Node_List&, bool)
+        3897    0.00%        4  jni_GetObjectField
+        3858    0.00%        4  java.util.concurrent.locks.AbstractQueuedSynchronizer$Node.setPrevRelaxed
+        3147    0.00%        3  memcpy_erms_[k]
+        3124    0.00%        3  ns_to_timeval_[k]
+        3100    0.00%        3  ThreadsListHandle::ThreadsListHandle(Thread*)
+        3097    0.00%        3  __enqueue_entity_[k]
+        3096    0.00%        3  sysrq_filter_[k]
+        3088    0.00%        3  account_system_index_time_[k]
+        3080    0.00%        3  __kfree_skb_[k]
+        3077    0.00%        3  tcp_chrono_stop_[k]
+        3075    0.00%        3  drm_update_vblank_count	[drm]_[k]
+        3074    0.00%        3  hrtimer_forward_[k]
+        3071    0.00%        3  prepare_exit_to_usermode_[k]
+        3069    0.00%        3  atomic_notifier_call_chain_[k]
+        3066    0.00%        3  java.nio.CharBuffer.<init>
+        3066    0.00%        3  sk_page_frag_refill_[k]
+        3059    0.00%        3  GCHeapSummaryEventSender::visit(G1HeapSummary const*) const
+        3057    0.00%        3  timerfd_get_remaining_[k]
+        3056    0.00%        3  nmethod::is_nmethod() const
+        3054    0.00%        3  sys_epoll_wait_[k]
+        3054    0.00%        3  io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe$1.run
+        3053    0.00%        3  __tcp_push_pending_frames_[k]
+        3053    0.00%        3  sk_free_[k]
+        3053    0.00%        3  ath10k_pci_ps_timer	[ath10k_pci]_[k]
+        3053    0.00%        3  csum_ipv6_magic_[k]
+        3053    0.00%        3  cgroup_cpu_stat_updated_[k]
+        3052    0.00%        3  __tcp_ack_snd_check_[k]
+        3050    0.00%        3  cpumask_next_and_[k]
+        3048    0.00%        3  io.netty.util.internal.shaded.org.jctools.queues.ConcurrentCircularArrayQueue.calcElementOffset
+        3047    0.00%        3  tcp_tx_timestamp_[k]
+        3047    0.00%        3  fl6_update_dst_[k]
+        3046    0.00%        3  futex_wait_queue_me_[k]
+        3043    0.00%        3  rcu_report_qs_rnp_[k]
+        3042    0.00%        3  __condvar_cancel_waiting
+        3042    0.00%        3  drm_send_event_locked	[drm]_[k]
+        3040    0.00%        3  skb_free_head_[k]
+        3040    0.00%        3  JVMFlagEx::is_default(JVMFlags)
+        3039    0.00%        3  aa_apply_modes_to_perms_[k]
+        3038    0.00%        3  __kmalloc_reserve.isra.43_[k]
+        3036    0.00%        3  gen8_write32	[i915]_[k]
+        3035    0.00%        3  java.lang.Integer.stringSize
+        3034    0.00%        3  SparsePRT::cleanup_all()
+        3033    0.00%        3  java.util.Arrays.copyOf
+        3031    0.00%        3  java.lang.invoke.VarForm.getMemberName
+        3028    0.00%        3  G1Policy::record_collection_pause_end(double, unsigned long, unsigned long)
+        3028    0.00%        3  java.lang.System.nanoTime
+        3027    0.00%        3  RelocIterator::initialize(CompiledMethod*, unsigned char*, unsigned char*)
+        3026    0.00%        3  GCTimer::register_gc_phase_start(char const*, TimeInstant<CompositeCounterRepresentation, CompositeElapsedCounterSource> const&)
+        3026    0.00%        3  __memmove_sse2_unaligned
+        3025    0.00%        3  G1GCPhaseTimes::print_evacuate_collection_set() const
+        3025    0.00%        3  io.netty.util.concurrent.SingleThreadEventExecutor.execute
+        3025    0.00%        3  io.netty.buffer.WrappedByteBuf.order
+        3022    0.00%        3  java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.checkInterruptWhileWaiting
+        3022    0.00%        3  java.util.Formatter$FormatSpecifier.checkGeneral
+        3021    0.00%        3  VM_CollectForAllocation::VM_CollectForAllocation(unsigned long, unsigned int, GCCause::Cause)
+        3020    0.00%        3  IndexSetIterator::IndexSetIterator(IndexSet*)
+        3020    0.00%        3  java.lang.String.valueOf
+        3020    0.00%        3  rcu_accelerate_cbs_[k]
+        3020    0.00%        3  sock_put_[k]
+        3019    0.00%        3  G1HeapSizingPolicy::expansion_amount()
+        3019    0.00%        3  io.netty.buffer.PooledSlicedByteBuf.getInt
+        3019    0.00%        3  os::get_priority(Thread const*, ThreadPriority&)
+        3017    0.00%        3  bool clean_if_nmethod_is_unloaded<CompiledIC>(CompiledIC*, unsigned char*, CompiledMethod*, bool, bool)
+        3017    0.00%        3  java.util.concurrent.locks.ReentrantLock$Sync.isHeldExclusively
+        3017    0.00%        3  Parker::park(bool, long)
+        3016    0.00%        3  java.nio.charset.CharsetEncoder.encode
+        3014    0.00%        3  rcu_cblist_dequeue_[k]
+        3012    0.00%        3  G1CLDScanClosure::do_cld(ClassLoaderData*)
+        3012    0.00%        3  GCCause::to_string(GCCause::Cause)
+        3012    0.00%        3  getrusage_[k]
+        3012    0.00%        3  CompactibleSpace::clear(bool)
+        3011    0.00%        3  sun.nio.cs.StreamEncoder.implWrite
+        3010    0.00%        3  Runtime1::is_instance_of(oopDesc*, oopDesc*)
+        3010    0.00%        3  jni_GetArrayLength
+        3007    0.00%        3  void OopOopIterateBackwardsDispatch<G1ScanEvacuatedObjClosure>::Table::oop_oop_iterate_backwards<ObjArrayKlass, unsigned int>(G1ScanEvacuatedObjClosure*, oopDesc*, Klass*)
+        3006    0.00%        3  io.netty.buffer.AbstractByteBuf.isReadOnly
+        3005    0.00%        3  G1BlockOffsetTablePart::initialize_threshold_raw()
+        3004    0.00%        3  CompositeElapsedCounterSource::now()
+        3003    0.00%        3  MemoryService::oops_do(OopClosure*)
+        3003    0.00%        3  G1OldGenPool::get_memory_usage()
+        3003    0.00%        3  G1ParScanThreadStateSet::~G1ParScanThreadStateSet()
+        3003    0.00%        3  sun.misc.Unsafe.getInt
+        3002    0.00%        3  InterpreterFrameClosure::offset_do(int)
+        3002    0.00%        3  SystemDictionary::check_signature_loaders(Symbol*, Handle, Handle, bool, Thread*)
+        3002    0.00%        3  HeapRegionRemSet::cleanup()
+        3002    0.00%        3  G1ParScanThreadStateSet::state_for_worker(unsigned int)
+        3001    0.00%        3  JvmtiObjectAllocEventCollector::oops_do_for_all_threads(OopClosure*) [clone .part.122]
+        3001    0.00%        3  ThreadStateTransition::transition_from_native(JavaThread*, JavaThreadState) [clone .constprop.195]
+        3000    0.00%        3  org.HdrHistogram.PercentileIterator.next
+        3000    0.00%        3  RefProcTotalPhaseTimesTracker::RefProcTotalPhaseTimesTracker(ReferenceProcessor::RefProcPhases, ReferenceProcessorPhaseTimes*, ReferenceProcessor*)
+        3000    0.00%        3  VMThread::execute(VM_Operation*)
+        2998    0.00%        3  java.util.Arrays.copyOfRange
+        2998    0.00%        3  Dict::Insert(void*, void*, bool)
+        2998    0.00%        3  sun.nio.cs.StreamEncoder.writeBytes
+        2998    0.00%        3  io.netty.util.concurrent.FastThreadLocal.get
+        2998    0.00%        3  io.netty.util.ReferenceCountUtil.release
+        2997    0.00%        3  NodeHash::hash_find_insert(Node*)
+        2997    0.00%        3  CodeHeapPool::get_memory_usage()
+        2997    0.00%        3  frame::entry_frame_is_first() const
+        2996    0.00%        3  SafepointSynchronize::end()
+        2994    0.00%        3  wake_up_q_[k]
+        2994    0.00%        3  G1Policy::revise_young_list_target_length_if_necessary(unsigned long)
+        2993    0.00%        3  io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.executeEpollInReadyRunnable
+        2993    0.00%        3  reactor.util.concurrent.MpscLinkedQueue.poll
+        2993    0.00%        3  Compile::fill_buffer(CodeBuffer*, unsigned int*)
+        2992    0.00%        3  PhaseIdealLoop::build_loop_early(VectorSet&, Node_List&, Node_Stack&)
+        2990    0.00%        3  java.util.Formatter.format
+        2990    0.00%        3  Node::Node(unsigned int)
+        2989    0.00%        3  java.lang.invoke.MethodHandle.invokeBasic
+        2989    0.00%        3  ScopeDesc::decode_body()
+        2989    0.00%        3  ciObjectFactory::get_symbol(Symbol*)
+        2988    0.00%        3  HandleMark::~HandleMark()
+        2988    0.00%        3  GangWorker::loop()
+        2987    0.00%        3  CodeHeap::allocated_capacity() const
+        2982    0.00%        3  G1RefineCardClosure::do_card_ptr(signed char*, unsigned int)
+        2978    0.00%        3  io.netty.buffer.AbstractByteBuf.setIndex
+        2978    0.00%        3  Klass::start_of_vtable() const
+        2978    0.00%        3  skb_csum_hwoffload_help_[k]
+        2976    0.00%        3  G1Policy::record_collection_pause_start(double)
+        2976    0.00%        3  PhaseIFG::init(unsigned int)
+        2975    0.00%        3  SurvRateGroup::all_surviving_words_recorded(G1Predictions const&, bool)
+        2973    0.00%        3  tcp_send_mss_[k]
+        2971    0.00%        3  update_group_capacity_[k]
+        2971    0.00%        3  ch.qos.logback.classic.Logger.isErrorEnabled
+        2970    0.00%        3  Matcher::xform(Node*, int)
+        2968    0.00%        3  GCTracer::send_phase_events(TimePartitions*) const
+        2967    0.00%        3  java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireQueued
+        2966    0.00%        3  java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.finishPoll
+        2958    0.00%        3  PhaseIterGVN::remove_globally_dead_node(Node*)
+        2953    0.00%        3  ThreadsListHandle::~ThreadsListHandle()
+        2952    0.00%        3  io.netty.buffer.PoolThreadCache$MemoryRegionCache$Entry.recycle
+        2951    0.00%        3  G1KeepAliveClosure::do_oop(oopDesc**)
+        2947    0.00%        3  InstanceKlass::mask_for(methodHandle const&, int, InterpreterOopMap*)
+        2946    0.00%        3  ChunkPool::allocate(unsigned long, AllocFailStrategy::AllocFailEnum)
+        2944    0.00%        3  org.HdrHistogram.Recorder.validateFitAsReplacementHistogram
+        2942    0.00%        3  io.netty.buffer.PoolArena$DirectArena.memoryCopy
+        2937    0.00%        3  java.util.concurrent.locks.AbstractQueuedSynchronizer.enq
+        2912    0.00%        3  WorkGang::run_task(AbstractGangTask*)
+        2126    0.00%        2  strcmp
+        2119    0.00%        2  VMThread::loop()
+        2115    0.00%        2  java.lang.Integer.getChars
+        2088    0.00%        2  Dictionary::does_any_dictionary_needs_resizing()
+        2088    0.00%        2  memset_erms_[k]
+        2086    0.00%        2  get_page_from_freelist_[k]
+        2082    0.00%        2  drm_get_last_vbltimestamp	[drm]_[k]
+        2077    0.00%        2  radix_tree_lookup_[k]
+        2077    0.00%        2  irq_may_run_[k]
+        2071    0.00%        2  SYSC_getrusage_[k]
+        2069    0.00%        2  ns_to_timespec64_[k]
+        2069    0.00%        2  find_first_bit_[k]
+        2069    0.00%        2  ktime_mono_to_any_[k]
+        2067    0.00%        2  insert_work_[k]
+        2066    0.00%        2  G1CollectedHeap::attempt_allocation_at_safepoint(unsigned long, bool)
+        2065    0.00%        2  sched_clock_[k]
+        2065    0.00%        2  account_system_time_[k]
+        2064    0.00%        2  mix_pool_bytes_[k]
+        2064    0.00%        2  schedule_hrtimeout_range_clock_[k]
+        2062    0.00%        2  __x86_indirect_thunk_r14_[k]
+        2062    0.00%        2  rcu_segcblist_accelerate_[k]
+        2061    0.00%        2  cpumask_next_[k]
+        2058    0.00%        2  __wake_up_sync_key_[k]
+        2057    0.00%        2  run_rebalance_domains_[k]
+        2056    0.00%        2  __x86_indirect_thunk_rcx_[k]
+        2056    0.00%        2  drm_crtc_from_index	[drm]_[k]
+        2052    0.00%        2  irq_work_run_list_[k]
+        2052    0.00%        2  input_mt_report_slot_state_[k]
+        2050    0.00%        2  sys_read_[k]
+        2050    0.00%        2  java.lang.AbstractStringBuilder.append
+        2049    0.00%        2  Unsafe_Park
+        2049    0.00%        2  __mnt_want_write_[k]
+        2048    0.00%        2  calc_global_load_tick_[k]
+        2047    0.00%        2  ath10k_pci_interrupt_handler	[ath10k_pci]_[k]
+        2047    0.00%        2  aa_check_perms_[k]
+        2047    0.00%        2  kill_fasync_[k]
+        2046    0.00%        2  JavaThread::nmethods_do(CodeBlobClosure*)
+        2046    0.00%        2  java.util.concurrent.locks.AbstractQueuedSynchronizer$Node.<init>
+        2045    0.00%        2  __note_gp_changes_[k]
+        2045    0.00%        2  page_frag_free_[k]
+        2045    0.00%        2  AllocTracer::send_allocation_requiring_gc_event(unsigned long, unsigned int)
+        2043    0.00%        2  scheduler_ipi_[k]
+        2043    0.00%        2  ath10k_ce_completed_recv_next_nolock	[ath10k_pci]_[k]
+        2042    0.00%        2  java.lang.Long.valueOf
+        2041    0.00%        2  wake_q_add_[k]
+        2040    0.00%        2  __intel_uncore_forcewake_get	[i915]_[k]
+        2040    0.00%        2  key_put_[k]
+        2039    0.00%        2  __pthread_testcancel
+        2039    0.00%        2  java.lang.StringLatin1.getChars
+        2038    0.00%        2  _raw_spin_unlock_bh_[k]
+        2036    0.00%        2  pick_next_task_rt_[k]
+        2034    0.00%        2  __libc_disable_asynccancel
+        2033    0.00%        2  tcp_rack_advance_[k]
+        2033    0.00%        2  java_lang_Class::oop_size(oopDesc*)
+        2032    0.00%        2  sys_write_[k]
+        2031    0.00%        2  dev_queue_xmit_[k]
+        2030    0.00%        2  java.lang.invoke.VarHandleInts$FieldInstanceReadWrite.set
+        2030    0.00%        2  io.netty.buffer.SimpleLeakAwareByteBuf.newLeakAwareByteBuf
+        2029    0.00%        2  org.HdrHistogram.Histogram.<init>
+        2029    0.00%        2  I2C/C2I adapters
+        2028    0.00%        2  tcp_small_queue_check.isra.28_[k]
+        2028    0.00%        2  tcp_parse_md5sig_option_[k]
+        2028    0.00%        2  org.HdrHistogram.PercentileIterator.incrementIterationLevel
+        2028    0.00%        2  tick_program_event_[k]
+        2028    0.00%        2  autoremove_wake_function_[k]
+        2028    0.00%        2  io.netty.buffer.AbstractByteBuf.maxCapacity
+        2027    0.00%        2  Thread::is_VM_thread() const
+        2027    0.00%        2  TimePartitionPhasesIterator::has_next()
+        2026    0.00%        2  vsnprintf
+        2026    0.00%        2  pipe_write_[k]
+        2026    0.00%        2  G1NewTracer::send_old_evacuation_statistics(G1EvacSummary const&) const
+        2023    0.00%        2  __mutex_lock.isra.2_[k]
+        2022    0.00%        2  java.util.Formatter$FormatSpecifier.print
+        2022    0.00%        2  tcp_grow_window.isra.39_[k]
+        2021    0.00%        2  io.netty.channel.DefaultChannelConfig.getAllocator
+        2020    0.00%        2  PerfString::set_string(char const*)
+        2020    0.00%        2  LogDecorations::LogDecorations(LogLevel::type, LogTagSet const&, LogDecorators const&)
+        2020    0.00%        2  stringStream::stringStream(char*, unsigned long)
+        2020    0.00%        2  G1MMUTracer::send_g1_mmu_event(double, double, double)
+        2019    0.00%        2  Node::replace_by(Node*)
+        2018    0.00%        2  Threads::possibly_parallel_threads_do(bool, ThreadClosure*)
+        2018    0.00%        2  java.lang.StrictMath.ceil
+        2018    0.00%        2  java.util.regex.Pattern$GroupHead.match
+        2017    0.00%        2  io.netty.buffer.AbstractByteBuf.discardSomeReadBytes
+        2017    0.00%        2  tcp_v6_inbound_md5_hash_[k]
+        2016    0.00%        2  kmem_cache_alloc_[k]
+        2015    0.00%        2  MetaspaceCounters::update_performance_counters()
+        2015    0.00%        2  DirtyCardQueueSet::apply_closure_during_gc(CardTableEntryClosure*, unsigned int)
+        2014    0.00%        2  G1ParTask::work(unsigned int)
+        2014    0.00%        2  sys_timerfd_settime_[k]
+        2014    0.00%        2  PhaseTransform::PhaseTransform(Phase::PhaseNumber)
+        2013    0.00%        2  sys_writev_[k]
+        2013    0.00%        2  java.lang.AbstractStringBuilder.<init>
+        2013    0.00%        2  SparsePRT::clear()
+        2013    0.00%        2  void OopOopIterateDispatch<G1ScanObjsDuringUpdateRSClosure>::Table::oop_oop_iterate<InstanceRefKlass, unsigned int>(G1ScanObjsDuringUpdateRSClosure*, oopDesc*, Klass*)
+        2013    0.00%        2  io.netty.handler.codec.ByteToMessageDecoder$1.cumulate
+        2011    0.00%        2  ReferenceProcessor::process_soft_weak_final_refs(BoolObjectClosure*, OopClosure*, VoidClosure*, AbstractRefProcTaskExecutor*, ReferenceProcessorPhaseTimes*)
+        2011    0.00%        2  java.io.OutputStreamWriter.write
+        2011    0.00%        2  __put_page_[k]
+        2011    0.00%        2  java.util.Formatter$FixedString.print
+        2011    0.00%        2  G1BlockOffsetTablePart::alloc_block_work(HeapWord**, unsigned long*, HeapWord*, HeapWord*)
+        2011    0.00%        2  HeapRegion::block_size(HeapWord const*) const
+        2010    0.00%        2  G1CollectedHeap::trace_heap(GCWhen::Type, GCTracer const*)
+        2010    0.00%        2  CompiledMethod::preserve_callee_argument_oops(frame, RegisterMap const*, OopClosure*)
+        2010    0.00%        2  PhiNode::Value(PhaseGVN*) const
+        2009    0.00%        2  Compile::BuildOopMaps()
+        2009    0.00%        2  I2C/C2I adapters
+        2009    0.00%        2  pick_next_task_idle_[k]
+        2009    0.00%        2  oopDesc::size()
+        2009    0.00%        2  io.netty.buffer.WrappedByteBuf.writeBytes
+        2008    0.00%        2  ReferenceProcessor::process_final_keep_alive(OopClosure*, VoidClosure*, AbstractRefProcTaskExecutor*, ReferenceProcessorPhaseTimes*)
+        2008    0.00%        2  clean_if_nmethod_is_unloaded(CompiledStaticCall*, CompiledMethod*, bool, bool)
+        2008    0.00%        2  intel_atomic_commit_ready	[i915]_[k]
+        2007    0.00%        2  io.netty.handler.codec.CodecOutputList.recycle
+        2007    0.00%        2  NMethodSweeper::sweep_code_cache()
+        2007    0.00%        2  Node::Ideal(PhaseGVN*, bool)
+        2006    0.00%        2  os::get_native_priority(Thread const*, int*)
+        2006    0.00%        2  rRegPOper::type() const
+        2006    0.00%        2  java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.setIndex
+        2006    0.00%        2  SharedRuntime::java_calling_convention(BasicType const*, VMRegPair*, int, int)
+        2006    0.00%        2  io.netty.util.internal.PlatformDependent0.getInt
+        2006    0.00%        2  JNIHandles::make_local(JNIEnv_*, oopDesc*)
+        2006    0.00%        2  intel_pmu_disable_all_[k]
+        2005    0.00%        2  io.netty.channel.epoll.AbstractEpollChannel$AbstractEpollUnsafe.flush0
+        2005    0.00%        2  io.netty.util.concurrent.SingleThreadEventExecutor.fetchFromScheduledTaskQueue
+        2005    0.00%        2  AgeTable::AgeTable(bool)
+        2005    0.00%        2  JvmtiCurrentBreakpoints::oops_do(OopClosure*)
+        2005    0.00%        2  OopMapCache::cleanup_old_entries()
+        2004    0.00%        2  __libc_alloca_cutoff
+        2002    0.00%        2  PhaseIdealLoop::get_ctrl(Node*)
+        2002    0.00%        2  java.lang.invoke.VarHandleGuards.guard_LI_V
+        2002    0.00%        2  java.lang.String.valueOf
+        2002    0.00%        2  java.util.Formatter$FormatSpecifier.print
+        2001    0.00%        2  JVM_CurrentThread
+        2001    0.00%        2  deactivate_task_[k]
+        2001    0.00%        2  Type::cmp(Type const*, Type const*)
+        2001    0.00%        2  vtable stub
+        2001    0.00%        2  java.util.Formatter.<init>
+        2000    0.00%        2  SystemDictionary::vm_weak_oop_storage()
+        2000    0.00%        2  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.getDelay
+        2000    0.00%        2  PhiNode::Ideal(PhaseGVN*, bool)
+        1999    0.00%        2  G1RemSet::update_rem_set(G1ParScanThreadState*, unsigned int)
+        1999    0.00%        2  java.util.concurrent.ThreadPoolExecutor$Worker.lock
+        1999    0.00%        2  java.util.Formatter.ensureOpen
+        1999    0.00%        2  RuntimeService::record_safepoint_end()
+        1999    0.00%        2  NativeCall::destination() const
+        1998    0.00%        2  SymbolTable::lookup(int, char const*, int, unsigned int)
+        1998    0.00%        2  PhaseChaitin::build_ifg_physical(ResourceArea*)
+        1998    0.00%        2  itable stub
+        1998    0.00%        2  Compile::remove_useless_nodes(Unique_Node_List&)
+        1998    0.00%        2  elapsedTimer::stop()
+        1997    0.00%        2  CallStaticJavaDirectNode::emit(CodeBuffer&, PhaseRegAlloc*) const
+        1997    0.00%        2  __default_send_IPI_dest_field_[k]
+        1997    0.00%        2  State::_sub_Op_AddP(Node const*)
+        1997    0.00%        2  java.lang.StringLatin1.indexOf
+        1996    0.00%        2  java.util.Formatter$FormatSpecifier.print
+        1995    0.00%        2  LinkResolver::resolve_virtual_call_or_null(Klass*, LinkInfo const&)
+        1995    0.00%        2  CodeCache::reverse_free_ratio(int)
+        1994    0.00%        2  java.util.regex.Pattern$BmpCharPropertyGreedy.match
+        1994    0.00%        2  OverflowTaskQueue<StarTask, (MemoryType)5, 131072u>::push(StarTask) [clone .constprop.517]
+        1994    0.00%        2  org.HdrHistogram.Recorder$InternalAtomicHistogram.<init>
+        1994    0.00%        2  Unsafe_PutLongVolatile
+        1993    0.00%        2  InterpreterRuntime::newarray(JavaThread*, BasicType, int)
+        1993    0.00%        2  DirtyCardQueueSet::par_apply_closure_to_all_completed_buffers(CardTableEntryClosure*)
+        1993    0.00%        2  GCTracer::report_gc_start_impl(GCCause::Cause, TimeInstant<CompositeCounterRepresentation, CompositeElapsedCounterSource> const&)
+        1993    0.00%        2  G1GCPhaseTimes::sum_thread_work_items(G1GCPhaseTimes::GCParPhases, unsigned int)
+        1992    0.00%        2  nmethod::fix_oop_relocations(unsigned char*, unsigned char*, bool)
+        1992    0.00%        2  G1Policy::young_list_target_lengths(unsigned long) const
+        1992    0.00%        2  new_sync_write_[k]
+        1992    0.00%        2  CompiledMethod::oops_reloc_begin() const
+        1991    0.00%        2  AgeTable::compute_tenuring_threshold(unsigned long)
+        1991    0.00%        2  G1EvacPhaseWithTrimTimeTracker::G1EvacPhaseWithTrimTimeTracker(G1ParScanThreadState*, TimeInterval<CompositeCounterRepresentation, CompositeElapsedCounterSource>&, TimeInterval<CompositeCounterRepresentation, CompositeElapsedCounterSource>&)
+        1991    0.00%        2  OopStorage::ActiveArray::block_count() const
+        1991    0.00%        2  PerfEvents::destroyForThread(int)
+        1990    0.00%        2  MachNode::ideal_reg() const
+        1990    0.00%        2  reactor.core.publisher.FluxGroupBy$UnicastGroupedFlux.onNext
+        1990    0.00%        2  java.lang.Thread.currentThread
+        1990    0.00%        2  GrowableArray<Instruction*>::grow(int)
+        1990    0.00%        2  java.util.concurrent.TimeUnit.toNanos
+        1989    0.00%        2  reactor.core.publisher.Mono.doFinally
+        1988    0.00%        2  java.util.concurrent.locks.AbstractQueuedSynchronizer.acquire
+        1988    0.00%        2  G1EvacStats::compute_desired_plab_sz()
+        1988    0.00%        2  org.HdrHistogram.WriterReaderPhaser.flipPhase
+        1988    0.00%        2  jdk.internal.misc.Unsafe.getAndSetLong
+        1988    0.00%        2  io.netty.buffer.PooledByteBuf.capacity
+        1988    0.00%        2  java.util.concurrent.locks.ReentrantLock.lock
+        1988    0.00%        2  AbstractWorkGang::add_workers(unsigned int, bool)
+        1987    0.00%        2  IndexSetIterator::advance_and_next()
+        1987    0.00%        2  io.netty.buffer.WrappedByteBuf.maxCapacity
+        1987    0.00%        2  Parse::do_one_bytecode()
+        1986    0.00%        2  org.HdrHistogram.AbstractHistogram.determineArrayLengthNeeded
+        1985    0.00%        2  outputStream::print(char const*, ...)
+        1985    0.00%        2  io.netty.channel.unix.FileDescriptor.writeAddress
+        1984    0.00%        2  java.util.Formatter$FormatSpecifier.printString
+        1983    0.00%        2  vtable stub
+        1983    0.00%        2  vtable stub
+        1983    0.00%        2  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run
+        1982    0.00%        2  org.HdrHistogram.WriterReaderPhaser.readerLock
+        1980    0.00%        2  CodeHeap::deallocate(void*)
+        1980    0.00%        2  I2C/C2I adapters
+        1979    0.00%        2  VM_Operation::evaluate()
+        1979    0.00%        2  io.netty.channel.SingleThreadEventLoop.hasTasks
+        1978    0.00%        2  java.nio.Buffer.<init>
+        1978    0.00%        2  HeapRegionRemSet::add_strong_code_root(nmethod*)
+        1978    0.00%        2  G1CollectedHeap::start_new_collection_set()
+        1977    0.00%        2  java.io.BufferedOutputStream.flush
+        1975    0.00%        2  java_lang_ref_Reference::is_referent_field(oopDesc*, long)
+        1975    0.00%        2  org.HdrHistogram.AbstractHistogram.establishSize
+        1975    0.00%        2  G1CMRootRegions::wait_until_scan_finished()
+        1973    0.00%        2  WorkerDataArray<double>::uninitialized()
+        1972    0.00%        2  java.util.concurrent.ThreadPoolExecutor$Worker.tryRelease
+        1971    0.00%        2  void OopOopIterateDispatch<G1ScanObjsDuringUpdateRSClosure>::Table::oop_oop_iterate<ObjArrayKlass, unsigned int>(G1ScanObjsDuringUpdateRSClosure*, oopDesc*, Klass*)
+        1971    0.00%        2  __GI__IO_padn
+        1971    0.00%        2  io.netty.buffer.PoolArena$DirectArena.memoryCopy
+        1969    0.00%        2  Matcher::Label_Root(Node const*, State*, Node*, Node const*)
+        1968    0.00%        2  JvmtiCodeBlobEvents::build_jvmti_addr_location_map(nmethod*, _jvmtiAddrLocationMap**, int*)
+        1967    0.00%        2  java.util.concurrent.locks.AbstractQueuedSynchronizer.transferAfterCancelledWait
+        1966    0.00%        2  PLAB::flush_and_retire_stats(PLABStats*)
+        1965    0.00%        2  java.lang.invoke.VarHandleLongs$Array.getVolatile
+        1963    0.00%        2  java.util.concurrent.atomic.AtomicLongFieldUpdater$CASUpdater.set
+        1960    0.00%        2  io.netty.util.concurrent.SingleThreadEventExecutor.isShuttingDown
+        1958    0.00%        2  VMThread::evaluate_operation(VM_Operation*) [clone .constprop.54]
+        1952    0.00%        2  java.io.PrintStream.write
+        1951    0.00%        2  Assembler::locate_operand(unsigned char*, Assembler::WhichOperand)
+        1949    0.00%        2  org.HdrHistogram.Recorder.getIntervalHistogram
+        1945    0.00%        2  PosixSemaphore::signal(unsigned int)
+        1944    0.00%        2  __pthread_cleanup_pop
+        1938    0.00%        2  G1CollectedHeap::create_g1_heap_summary()
+        1929    0.00%        2  SafepointSynchronize::do_cleanup_tasks()
+        1919    0.00%        2  nmethod::oops_do_marking_prologue()
+        1919    0.00%        2  SemaphoreGangTaskDispatcher::coordinator_execute_on_workers(AbstractGangTask*, unsigned int)
+        1079    0.00%        1  ip_finish_output2_[k]
+        1073    0.00%        1  _IO_no_init
+        1065    0.00%        1  G1CollectedHeap::safepoint_synchronize_begin()
+        1061    0.00%        1  getname_[k]
+        1061    0.00%        1  __tasklet_schedule_[k]
+        1060    0.00%        1  RuntimeService::record_safepoint_begin()
+        1058    0.00%        1  evdev_events_[k]
+        1057    0.00%        1  queue_work_on_[k]
+        1053    0.00%        1  VM_Operation::evaluation_mode() const
+        1050    0.00%        1  os::vsnprintf(char*, unsigned long, char const*, __va_list_tag*)
+        1048    0.00%        1  g4x_get_vblank_counter	[i915]_[k]
+        1047    0.00%        1  G1Policy::adaptive_young_list_length() const
+        1047    0.00%        1  __wake_up_[k]
+        1044    0.00%        1  __mempcpy_avx_unaligned_erms
+        1044    0.00%        1  enqueue_task_rt_[k]
+        1042    0.00%        1  rb_erase_cached_[k]
+        1042    0.00%        1  LeakProfiler::oops_do(BoolObjectClosure*, OopClosure*)
+        1040    0.00%        1  __msecs_to_jiffies_[k]
+        1039    0.00%        1  ath10k_wmi_tlv_parse_alloc.constprop.15	[ath10k_core]_[k]
+        1037    0.00%        1  atkbd_interrupt_[k]
+        1037    0.00%        1  clear_page_erms_[k]
+        1037    0.00%        1  scsi_softirq_done_[k]
+        1036    0.00%        1  intel_uncore_forcewake_get	[i915]_[k]
+        1036    0.00%        1  __dev_kfree_skb_any_[k]
+        1035    0.00%        1  ath10k_htt_htc_t2h_msg_handler	[ath10k_core]_[k]
+        1035    0.00%        1  drm_calc_vbltimestamp_from_scanoutpos	[drm]_[k]
+        1034    0.00%        1  Runtime1::new_instance(JavaThread*, Klass*)
+        1034    0.00%        1  ath10k_pci_disable_and_clear_legacy_irq	[ath10k_pci]_[k]
+        1033    0.00%        1  dequeue_rt_stack_[k]
+        1033    0.00%        1  __mod_node_page_state_[k]
+        1032    0.00%        1  org.HdrHistogram.HistogramIterationValue.reset
+        1031    0.00%        1  free_unref_page_prepare.part.64_[k]
+        1031    0.00%        1  PLABStats::desired_plab_sz(unsigned int)
+        1031    0.00%        1  CompileQueue::add(CompileTask*)
+        1030    0.00%        1  ClassLoaderDataGraph::resize_if_needed()
+        1030    0.00%        1  drm_printk	[drm]_[k]
+        1030    0.00%        1  rcu_segcblist_advance_[k]
+        1030    0.00%        1  blk_update_request_[k]
+        1030    0.00%        1  __nf_conntrack_find_get	[nf_conntrack]_[k]
+        1029    0.00%        1  StackFrameStream::StackFrameStream(JavaThread*, bool)
+        1029    0.00%        1  G1EvacuationClosures::strong_clds()
+        1027    0.00%        1  generic_pipe_buf_confirm_[k]
+        1026    0.00%        1  do_timer_[k]
+        1026    0.00%        1  tcp_data_queue_[k]
+        1026    0.00%        1  java.util.Formatter$FormatSpecifier.appendJustified
+        1026    0.00%        1  TypeAry::cleanup_speculative() const
+        1026    0.00%        1  ath10k_wmi_process_rx	[ath10k_core]_[k]
+        1026    0.00%        1  VM_GC_Operation::skip_operation() const
+        1026    0.00%        1  i915_sw_fence_complete	[i915]_[k]
+        1025    0.00%        1  __sb_start_write_[k]
+        1025    0.00%        1  State::_sub_Op_DecodeN(Node const*)
+        1025    0.00%        1  is_init_completed()
+        1025    0.00%        1  ath10k_ce_per_engine_service	[ath10k_pci]_[k]
+        1025    0.00%        1  ioread32_[k]
+        1025    0.00%        1  G1CollectedHeap::pre_evacuate_collection_set()
+        1025    0.00%        1  nf_ct_seq_offset	[nf_conntrack]_[k]
+        1025    0.00%        1  tcp_rate_skb_delivered_[k]
+        1024    0.00%        1  tick_nohz_tick_stopped_[k]
+        1024    0.00%        1  java.util.concurrent.TimeUnit.convert
+        1024    0.00%        1  handle_mm_fault_[k]
+        1024    0.00%        1  LoadKlassNode::make(PhaseGVN&, Node*, Node*, Node*, TypePtr const*, TypeKlassPtr const*)
+        1024    0.00%        1  adjust_dual_[k]
+        1024    0.00%        1  frame::oops_entry_do(OopClosure*, RegisterMap const*)
+        1024    0.00%        1  ret_from_intr_[k]
+        1024    0.00%        1  copy_page_from_iter_[k]
+        1023    0.00%        1  drm_vblank_put	[drm]_[k]
+        1023    0.00%        1  clockevents_program_event_[k]
+        1023    0.00%        1  alloc_pages_vma_[k]
+        1023    0.00%        1  G1ParScanThreadState::G1ParScanThreadState(G1CollectedHeap*, unsigned int, unsigned long)
+        1023    0.00%        1  consume_skb_[k]
+        1022    0.00%        1  io.netty.buffer.PoolThreadCache$MemoryRegionCache.trim
+        1022    0.00%        1  select_task_rq_rt_[k]
+        1022    0.00%        1  GCLocker::check_active_before_gc()
+        1022    0.00%        1  LinkResolver::resolve_interface_method(LinkInfo const&, Bytecodes::Code, Thread*)
+        1022    0.00%        1  hash_futex_[k]
+        1022    0.00%        1  ciObjectFactory::vm_symbol_at(int)
+        1022    0.00%        1  TraceTime::TraceTime(char const*, void (*)(char const*, ...))
+        1021    0.00%        1  rcu_irq_enter_[k]
+        1021    0.00%        1  swake_up_locked.part.2_[k]
+        1021    0.00%        1  read_hpet_[k]
+        1021    0.00%        1  get_futex_value_locked_[k]
+        1021    0.00%        1  can_remove(CompilerThread*, bool) [clone .part.138]
+        1020    0.00%        1  G1NewTracer::send_basic_ihop_statistics(unsigned long, unsigned long, unsigned long, unsigned long, double, double)
+        1020    0.00%        1  sock_zerocopy_put_[k]
+        1020    0.00%        1  HSpaceCounters::update_capacity(unsigned long)
+        1020    0.00%        1  input_to_handler_[k]
+        1020    0.00%        1  MachTypeNode::bottom_type() const
+        1019    0.00%        1  wakeup_preempt_entity.isra.69_[k]
+        1019    0.00%        1  SystemDictionaryShared::oops_do(OopClosure*)
+        1019    0.00%        1  send_vblank_event	[drm]_[k]
+        1019    0.00%        1  ParallelSPCleanupThreadClosure::do_thread(Thread*)
+        1019    0.00%        1  GlobalTLABStats::publish()
+        1018    0.00%        1  RegMask::clear_to_pairs()
+        1018    0.00%        1  outputStream::do_vsnprintf_and_write_with_automatic_buffer(char const*, __va_list_tag*, bool)
+        1018    0.00%        1  Compile::TracePhase::TracePhase(char const*, elapsedTimer*)
+        1018    0.00%        1  io.netty.buffer.PoolThreadCache$NormalMemoryRegionCache.initBuf
+        1018    0.00%        1  G1AdaptiveIHOPControl::print()
+        1018    0.00%        1  get_work_pool_[k]
+        1017    0.00%        1  MemRegion::intersection(MemRegion) const
+        1017    0.00%        1  jdk.internal.math.FormattedFloatingDecimal.applyPrecision
+        1017    0.00%        1  runtime_call_Relocation::type()
+        1017    0.00%        1  drop_futex_key_refs.isra.14_[k]
+        1017    0.00%        1  CmpINode::Opcode() const
+        1017    0.00%        1  nr_blockdev_pages_[k]
+        1017    0.00%        1  hrtimer_init_[k]
+        1017    0.00%        1  current_kernel_time64_[k]
+        1016    0.00%        1  java.util.regex.Pattern.inRange
+        1016    0.00%        1  PhiNode::Opcode() const
+        1016    0.00%        1  ScopeDesc::ScopeDesc(CompiledMethod const*, int, bool, bool, bool)
+        1016    0.00%        1  io.netty.buffer.WrappedByteBuf.discardSomeReadBytes
+        1016    0.00%        1  attach_entity_load_avg_[k]
+        1016    0.00%        1  Method::set_code(methodHandle const&, CompiledMethod*)
+        1015    0.00%        1  PLAB::PLAB(unsigned long)
+        1015    0.00%        1  hrtick_update_[k]
+        1015    0.00%        1  io.netty.util.Recycler$Stack.newHandle
+        1015    0.00%        1  VM_G1CollectForAllocation::doit_prologue()
+        1015    0.00%        1  __new_sem_wait_slow.constprop.0
+        1015    0.00%        1  common_interrupt_[k]
+        1014    0.00%        1  Relocation::pd_set_data_value(unsigned char*, long, bool)
+        1014    0.00%        1  PhaseIdealLoop::build_and_optimize(bool, bool, bool)
+        1014    0.00%        1  sun.misc.Unsafe.getObjectVolatile
+        1014    0.00%        1  _linkToStatic
+        1014    0.00%        1  complete_all_[k]
+        1014    0.00%        1  do_rps_boost	[i915]_[k]
+        1014    0.00%        1  org.HdrHistogram.RecordedValuesIterator.reset
+        1014    0.00%        1  __brelse_[k]
+        1014    0.00%        1  __mnt_drop_write_file_[k]
+        1014    0.00%        1  ReferenceProcessor::process_soft_ref_reconsider(BoolObjectClosure*, OopClosure*, VoidClosure*, AbstractRefProcTaskExecutor*, ReferenceProcessorPhaseTimes*)
+        1014    0.00%        1  MethodLiveness::BasicBlock::compute_gen_kill_single(ciBytecodeStream*)
+        1014    0.00%        1  Thread::get_priority(Thread const*)
+        1013    0.00%        1  io.netty.channel.epoll.EpollEventArray.length
+        1013    0.00%        1  ciSignature::type_at(int) const
+        1013    0.00%        1  sun.nio.cs.StreamEncoder.flushBuffer
+        1013    0.00%        1  _raw_read_lock_[k]
+        1013    0.00%        1  BitMap::set_from(BitMap const&)
+        1013    0.00%        1  CodeHeap::next_used(HeapBlock*) const
+        1013    0.00%        1  Monitor::notify()
+        1013    0.00%        1  AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<573558ul, G1BarrierSet>, (AccessInternal::BarrierType)3, 573558ul>::oop_access_barrier(oopDesc*, long)
+        1013    0.00%        1  G1CollectedHeap::gc_epilogue(bool)
+        1012    0.00%        1  java.lang.invoke.VarHandle.getTypesAndInvokers
+        1012    0.00%        1  G1CollectedHeap::evacuate_collection_set(G1ParScanThreadStateSet*)
+        1012    0.00%        1  timerfd_fget_[k]
+        1012    0.00%        1  G1CollectedHeap::capacity() const
+        1012    0.00%        1  ath10k_ce_completed_send_next_nolock	[ath10k_pci]_[k]
+        1012    0.00%        1  G1CodeRootSet::nmethods_do(CodeBlobClosure*) const
+        1012    0.00%        1  iommu_is_span_boundary_[k]
+        1011    0.00%        1  IndexSet::alloc_block_containing(unsigned int)
+        1011    0.00%        1  GCIdMark::GCIdMark()
+        1011    0.00%        1  ProfileData::is_VirtualCallTypeData() const
+        1011    0.00%        1  account_kernel_stack_[k]
+        1011    0.00%        1  G1ConcurrentRefine::adjust(double, unsigned long, double)
+        1011    0.00%        1  hrtimer_run_queues_[k]
+        1011    0.00%        1  io.netty.handler.codec.ByteToMessageDecoder.discardSomeReadBytes
+        1011    0.00%        1  YoungGCTracer::should_send_promotion_in_new_plab_event() const
+        1011    0.00%        1  io.netty.util.Recycler$DefaultHandle.access$1402
+        1011    0.00%        1  LoadNode::Ideal(PhaseGVN*, bool)
+        1011    0.00%        1  JNIHandleBlock::release_block(JNIHandleBlock*, Thread*)
+        1011    0.00%        1  G1CollectionSet::start_incremental_building()
+        1011    0.00%        1  G1MonitoringSupport::update_sizes()
+        1010    0.00%        1  RegionNode::pinned() const
+        1010    0.00%        1  io.netty.channel.AdaptiveRecvByteBufAllocator$HandleImpl.lastBytesRead
+        1010    0.00%        1  VMOperationQueue::add(VM_Operation*)
+        1010    0.00%        1  java.util.regex.Pattern$Start.match
+        1010    0.00%        1  LShiftLNode::Ideal(PhaseGVN*, bool)
+        1010    0.00%        1  I2C/C2I adapters
+        1009    0.00%        1  LinkResolver::check_field_accessability(Klass*, Klass*, Klass*, fieldDescriptor const&, Thread*)
+        1009    0.00%        1  io.netty.buffer.PoolThreadCache.cache
+        1009    0.00%        1  LinearScan::create_interval(int)
+        1009    0.00%        1  PhaseCFG::remove_empty_blocks()
+        1009    0.00%        1  org.HdrHistogram.AbstractHistogramBase.<init>
+        1009    0.00%        1  PhaseIdealLoop::split_if_with_blocks_pre(Node*)
+        1009    0.00%        1  Dependencies::initialize(ciEnv*)
+        1009    0.00%        1  MemoryPool::record_peak_memory_usage()
+        1009    0.00%        1  ciMethodData::set_compilation_stats(short, short)
+        1009    0.00%        1  Compile::print_method(CompilerPhaseType, int) [clone .isra.337]
+        1009    0.00%        1  pthread_cond_signal@@GLIBC_2.3.2
+        1009    0.00%        1  LIRGenerator::do_If(If*)
+        1009    0.00%        1  Assembler::nop(int)
+        1008    0.00%        1  Block::has_uncommon_code() const
+        1008    0.00%        1  sun.nio.cs.StreamEncoder.implFlushBuffer
+        1008    0.00%        1  RootNode::is_block_proj() const
+        1008    0.00%        1  ciType::make(BasicType)
+        1008    0.00%        1  G1CollectedHeap::satisfy_failed_allocation(unsigned long, bool*)
+        1008    0.00%        1  TraceTime::~TraceTime()
+        1008    0.00%        1  io.netty.buffer.AbstractByteBuf.writableBytes
+        1008    0.00%        1  PhaseIterGVN::operator=(PhaseIterGVN const&)
+        1008    0.00%        1  SimpleThresholdPolicy::should_not_inline(ciEnv*, ciMethod*)
+        1008    0.00%        1  java.lang.invoke.VarHandle$AccessType.values
+        1008    0.00%        1  PhaseAggressiveCoalesce::coalesce(Block*)
+        1008    0.00%        1  org.HdrHistogram.AbstractHistogram.getStdDeviation
+        1008    0.00%        1  G1RemSet::cleanupHRRS()
+        1008    0.00%        1  CompileBroker::compile_method_base(methodHandle const&, int, int, methodHandle const&, int, CompileTask::CompileReason, bool, Thread*) [clone .part.132]
+        1008    0.00%        1  JNIHandles::weak_oops_do(BoolObjectClosure*, OopClosure*)
+        1007    0.00%        1  ciObjectFactory::ciObjectFactory(Arena*, int)
+        1007    0.00%        1  io.netty.channel.epoll.EpollEventLoop.epollWait
+        1007    0.00%        1  G1CollectedHeap::max_capacity() const
+        1007    0.00%        1  PhaseRemoveUseless::PhaseRemoveUseless(PhaseGVN*, Unique_Node_List*, Phase::PhaseNumber)
+        1007    0.00%        1  io.netty.channel.ChannelOutboundBuffer.safeSuccess
+        1007    0.00%        1  __GI__IO_vfscanf
+        1007    0.00%        1  TaskQueueSetSuper::randomParkAndMiller(int*)
+        1007    0.00%        1  Node::match_edge(unsigned int) const
+        1007    0.00%        1  GlobalValueNumbering::GlobalValueNumbering(IR*)
+        1007    0.00%        1  io.netty.buffer.WrappedByteBuf.retainedSlice
+        1007    0.00%        1  io.netty.channel.DefaultSelectStrategy.calculateStrategy
+        1007    0.00%        1  JVMState::clone_deep(Compile*) const
+        1007    0.00%        1  G1CollectedHeap::tlab_capacity(Thread*) const
+        1007    0.00%        1  PhaseChaitin::cache_lrg_info()
+        1007    0.00%        1  java.util.regex.Matcher.search
+        1007    0.00%        1  InlineTree::try_to_inline(ciMethod*, ciMethod*, int, JVMState*, ciCallProfile&, WarmCallInfo*, bool&)
+        1006    0.00%        1  java.util.Formatter$FormatSpecifier.checkBadFlags
+        1006    0.00%        1  MachNode::alignment_required() const
+        1006    0.00%        1  G1CollectedHeap::used() const
+        1006    0.00%        1  G1HeapTransition::print()
+        1006    0.00%        1  __jbd2_journal_temp_unlink_buffer_[k]
+        1006    0.00%        1  java.util.concurrent.ThreadPoolExecutor.runStateAtLeast
+        1006    0.00%        1  PhaseCFG::insert_anti_dependences(Block*, Node*, bool)
+        1006    0.00%        1  java.nio.CharBuffer.position
+        1006    0.00%        1  os::elapsed_frequency()
+        1006    0.00%        1  Node::grow(unsigned int)
+        1005    0.00%        1  ciInstanceKlass::get_field_by_offset(int, bool)
+        1005    0.00%        1  State::_sub_Op_CmpL(Node const*)
+        1005    0.00%        1  Node::is_block_proj() const
+        1005    0.00%        1  MachNode::rematerialize() const
+        1005    0.00%        1  io.rsocket.RSocketClient.handleStreamZero
+        1005    0.00%        1  rcu_start_gp_[k]
+        1005    0.00%        1  void QuickSort::inner_sort<true, unsigned int, int (*)(unsigned int, unsigned int)>(unsigned int*, unsigned long, int (*)(unsigned int, unsigned int))
+        1005    0.00%        1  PhaseChaitin::bias_color(LRG&, int)
+        1005    0.00%        1  tcp_try_coalesce_[k]
+        1005    0.00%        1  InlineCacheBuffer::update_inline_caches()
+        1005    0.00%        1  ThreadService::oops_do(OopClosure*)
+        1005    0.00%        1  ThreadLocalAllocBuffer::make_parsable(bool, bool)
+        1005    0.00%        1  PhaseCFG::build_dominator_tree()
+        1005    0.00%        1  CompileTask::allocate()
+        1004    0.00%        1  OopStorage::release(oopDesc* const*)
+        1004    0.00%        1  Parse::Parse(JVMState*, ciMethod*, float)
+        1004    0.00%        1  intel_uncore_forcewake_get.part.7	[i915]_[k]
+        1004    0.00%        1  G1Policy::should_allocate_mutator_region() const
+        1004    0.00%        1  PhaseGVN::transform_no_reclaim(Node*)
+        1004    0.00%        1  G1Analytics::report_alloc_rate_ms(double)
+        1004    0.00%        1  Compile::print_inlining_update(CallGenerator*)
+        1004    0.00%        1  io.netty.util.Recycler$WeakOrderQueue.transfer
+        1004    0.00%        1  ConNNode::Opcode() const
+        1004    0.00%        1  lock_hrtimer_base.isra.20_[k]
+        1004    0.00%        1  BitMap::set_union(BitMap const&)
+        1004    0.00%        1  Throw::visit(InstructionVisitor*)
+        1004    0.00%        1  Parse::do_call()
+        1004    0.00%        1  G1Analytics::report_pending_cards(double)
+        1004    0.00%        1  Dependencies::assert_evol_method(ciMethod*)
+        1004    0.00%        1  _new_array_Java
+        1004    0.00%        1  I2C/C2I adapters
+        1004    0.00%        1  vmacache_update_[k]
+        1004    0.00%        1  LinkResolver::check_method_loader_constraints(LinkInfo const&, methodHandle const&, char const*, Thread*)
+        1004    0.00%        1  __mpn_extract_double
+        1003    0.00%        1  vframeArrayElement::on_stack_size(int, int, bool, int) const
+        1003    0.00%        1  GCTracer::send_meta_space_summary_event(GCWhen::Type, MetaspaceSummary const&) const
+        1003    0.00%        1  io.netty.handler.codec.LengthFieldBasedFrameDecoder.extractFrame
+        1003    0.00%        1  Node::find_int_type() const
+        1003    0.00%        1  SharedRuntime::find_callee_info_helper(JavaThread*, vframeStream&, Bytecodes::Code&, CallInfo&, Thread*)
+        1003    0.00%        1  java.nio.Buffer.position
+        1003    0.00%        1  Node::out_grow(unsigned int)
+        1003    0.00%        1  XHandlers::XHandlers(ciMethod*)
+        1003    0.00%        1  metadata_Relocation::fix_metadata_relocation()
+        1003    0.00%        1  Compile::copy_node_notes_to(Node*, Node*)
+        1003    0.00%        1  Arena::contains(void const*) const
+        1003    0.00%        1  TypeInt::xmeet(Type const*) const
+        1003    0.00%        1  os::javaTimeMillis()
+        1003    0.00%        1  PhaseChaitin::de_ssa()
+        1003    0.00%        1  org.HdrHistogram.AtomicHistogram.<init>
+        1003    0.00%        1  G1Policy::predict_base_elapsed_time_ms(unsigned long) const
+        1003    0.00%        1  ciInstanceKlass::compute_nonstatic_fields_impl(GrowableArray<ciField*>*)
+        1003    0.00%        1  CmpUNode::sub(Type const*, Type const*) const
+        1003    0.00%        1  Type::has_memory() const
+        1003    0.00%        1  java.lang.StringBuilder.append
+        1003    0.00%        1  GCIdMark::GCIdMark(unsigned int)
+        1003    0.00%        1  PhiResolverState::reset(int)
+        1003    0.00%        1  Phase::Phase(Phase::PhaseNumber)
+        1003    0.00%        1  VMThread::is_VM_thread() const
+        1003    0.00%        1  java.nio.Buffer.limit
+        1003    0.00%        1  DebugInformationRecorder::find_sharable_decode_offset(int)
+        1003    0.00%        1  NonSafepointEmitter::emit_non_safepoint()
+        1003    0.00%        1  MergeMemNode::Ideal(PhaseGVN*, bool)
+        1003    0.00%        1  java.io.PrintStream.print
+        1003    0.00%        1  G1RootProcessor::process_java_roots(G1RootClosures*, G1GCPhaseTimes*, unsigned int)
+        1003    0.00%        1  PhaseChaitin::stretch_base_pointer_live_ranges(ResourceArea*)
+        1003    0.00%        1  G1OldGenerationCounters::update_all()
+        1002    0.00%        1  java.util.concurrent.locks.ReentrantLock$Sync.tryRelease
+        1002    0.00%        1  Unique_Node_List::remove_useless_nodes(VectorSet&)
+        1002    0.00%        1  jdk.internal.misc.Unsafe.park
+        1002    0.00%        1  r15_RegPOper::type() const
+        1002    0.00%        1  Node::set_req(unsigned int, Node*) [clone .constprop.194]
+        1002    0.00%        1  Dependencies::assert_unique_concrete_method(ciKlass*, ciMethod*)
+        1002    0.00%        1  CodeHeap::block_start(void*) const
+        1002    0.00%        1  VM_G1CollectForAllocation::VM_G1CollectForAllocation(unsigned long, unsigned int, GCCause::Cause, bool, double)
+        1002    0.00%        1  G1Analytics::predict_alloc_rate_ms() const
+        1002    0.00%        1  bool CompilerOracle::has_option_value<double>(methodHandle const&, char const*, double&)
+        1002    0.00%        1  SubINode::Ideal(PhaseGVN*, bool)
+        1002    0.00%        1  StrongRootsScope::~StrongRootsScope()
+        1002    0.00%        1  Unsafe_PutInt
+        1002    0.00%        1  ScopeDesc::sender() const
+        1002    0.00%        1  OopStorage::Block::release_entries(unsigned long, OopStorage::Block* volatile*)
+        1002    0.00%        1  PhiNode::unique_input(PhaseTransform*, bool)
+        1002    0.00%        1  CodeCacheSweeperThread::is_Code_cache_sweeper_thread() const
+        1002    0.00%        1  Parse::build_exits()
+        1002    0.00%        1  swiotlb_tbl_map_single_[k]
+        1002    0.00%        1  LoadNode::make(PhaseGVN&, Node*, Node*, Node*, TypePtr const*, Type const*, BasicType, MemNode::MemOrd, LoadNode::ControlDependency, bool, bool)
+        1001    0.00%        1  LIR_List::move(LIR_OprDesc*, LIR_OprDesc*, CodeEmitInfo*)
+        1001    0.00%        1  MetaspaceUtils::print_on(outputStream*)
+        1001    0.00%        1  plist_add_[k]
+        1001    0.00%        1  G1Policy::decide_on_conc_mark_initiation()
+        1001    0.00%        1  io.rsocket.RSocketClient$$Lambda$140.480536021.get$Lambda
+        1001    0.00%        1  io.netty.util.Recycler$Stack.access$700
+        1001    0.00%        1  rRegIOper::type() const
+        1001    0.00%        1  ring_buffer_get_[k]
+        1001    0.00%        1  nmethod::maybe_invalidate_installed_code()
+        1001    0.00%        1  CodeCacheSweeperThread::oops_do(OopClosure*, CodeBlobClosure*)
+        1001    0.00%        1  Assembler::cmpq(RegisterImpl*, Address)
+        1001    0.00%        1  GCTracer::send_reference_stats_event(ReferenceType, unsigned long) const
+        1001    0.00%        1  __mutex_lock_slowpath_[k]
+        1001    0.00%        1  GCTraceTimeImpl::~GCTraceTimeImpl()
+        1001    0.00%        1  CodeBuffer::verify_section_allocation()
+        1001    0.00%        1  PhaseChaitin::Register_Allocate()
+        1001    0.00%        1  io.rsocket.internal.UnicastMonoProcessor.create
+        1001    0.00%        1  java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take
+        1001    0.00%        1  Dict::doubhash()
+        1001    0.00%        1  Matcher::ReduceOper(State*, int, Node*&, MachNode*)
+        1001    0.00%        1  Compile::scratch_emit_size(Node const*)
+        1001    0.00%        1  G1CollectionSet::add_survivor_regions(HeapRegion*)
+        1001    0.00%        1  JVM_IsInterrupted
+        1001    0.00%        1  __fdget_pos_[k]
+        1001    0.00%        1  Node::remove_dead_region(PhaseGVN*, bool)
+        1000    0.00%        1  DirectivesStack::release(DirectiveSet*)
+        1000    0.00%        1  __inode_permission_[k]
+        1000    0.00%        1  Node::size_of() const
+        1000    0.00%        1  ciMethodBlocks::do_analysis()
+        1000    0.00%        1  java.io.BufferedOutputStream.write
+        1000    0.00%        1  JVMState::interpreter_frame_size() const
+        1000    0.00%        1  ReplacedNodes::merge_with(ReplacedNodes const&)
+        1000    0.00%        1  reactor.core.publisher.LambdaSubscriber.onNext
+        1000    0.00%        1  io.rsocket.transport.netty.SendPublisher$$Lambda$130.1333104569.get$Lambda
+        1000    0.00%        1  TypeNode::hash() const
+        1000    0.00%        1  CProjNode::is_block_proj() const
+        1000    0.00%        1  LiveRangeMap::compress_uf_map_for_nodes()
+        1000    0.00%        1  G1CodeRootSet::clear()
+        1000    0.00%        1  sem_post@@GLIBC_2.2.5
+        1000    0.00%        1  Klass::is_subclass_of(Klass const*) const
+        1000    0.00%        1  dequeue_top_rt_rq_[k]
+        1000    0.00%        1  java.lang.Math.getExponent
+        1000    0.00%        1  java.util.Formatter$FormatSpecifier.print
+        1000    0.00%        1  Node::jvms() const
+        1000    0.00%        1  PhaseIdealLoop::split_if_with_blocks(VectorSet&, Node_Stack&, bool)
+        1000    0.00%        1  java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.addConditionWaiter
+        1000    0.00%        1  unmap_page_range_[k]
+        1000    0.00%        1  __mpn_mul
+        1000    0.00%        1  java.util.regex.Pattern$$Lambda$25.1021436681.is
+         999    0.00%        1  __mpn_mul_1
+         999    0.00%        1  ciEnv::get_method_by_index(constantPoolHandle const&, int, Bytecodes::Code, ciInstanceKlass*)
+         999    0.00%        1  java.io.FileOutputStream.writeBytes
+         999    0.00%        1  java_lang_ClassLoader::non_reflection_class_loader(oopDesc*)
+         999    0.00%        1  create_inline_record(nmethod*)
+         999    0.00%        1  Node::unique_ctrl_out() const
+         999    0.00%        1  PhaseIFG::Compute_Effective_Degree()
+         999    0.00%        1  G1EvacuationClosures::raw_strong_oops()
+         999    0.00%        1  TypeInstPtr::remove_speculative() const
+         999    0.00%        1  MethodLiveness::init_basic_blocks()
+         999    0.00%        1  metadata_Relocation::unpack_data()
+         999    0.00%        1  finish_task_switch_[k]
+         999    0.00%        1  VectorSet::operator<<=(unsigned int)
+         999    0.00%        1  BitMap::set_difference(BitMap const&)
+         999    0.00%        1  ciField::will_link(ciMethod*, Bytecodes::Code)
+         999    0.00%        1  CmpNode::Identity(PhaseGVN*)
+         999    0.00%        1  G1CollectedHeap::print_on(outputStream*) const
+         998    0.00%        1  vtable stub
+         998    0.00%        1  TraceTime::TraceTime(char const*, elapsedTimer*, bool, bool)
+         998    0.00%        1  org.HdrHistogram.AbstractHistogram.getBucketsNeededToCoverValue
+         998    0.00%        1  StringEventLog::log(Thread*, char const*, ...)
+         998    0.00%        1  PhaseCFG::build_cfg()
+         998    0.00%        1  Matcher::match_sfpt(SafePointNode*)
+         998    0.00%        1  JvmtiGCMarker::~JvmtiGCMarker()
+         998    0.00%        1  G1CodeRootSet::purge()
+         998    0.00%        1  VM_GC_Operation::notify_gc_begin(bool)
+         998    0.00%        1  __memcmp_avx2_movbe
+         998    0.00%        1  PhaseCFG::is_uncommon(Block const*)
+         998    0.00%        1  java.lang.Double.<init>
+         998    0.00%        1  TraceCollectorStats::TraceCollectorStats(CollectorCounters*)
+         998    0.00%        1  org.HdrHistogram.AbstractHistogram.updateMinAndMax
+         998    0.00%        1  __perf_event_task_sched_in_[k]
+         998    0.00%        1  CmpPNode::Ideal(PhaseGVN*, bool)
+         998    0.00%        1  ReferenceProcessor::weak_oops_do(OopClosure*)
+         997    0.00%        1  RedirtyLoggedCardTableEntryClosure::do_card_ptr(signed char*, unsigned int)
+         997    0.00%        1  reactor.core.scheduler.PeriodicWorkerTask.call
+         997    0.00%        1  PhaseConservativeCoalesce::coalesce(Block*)
+         997    0.00%        1  Compile::Process_OopMap_Node(MachNode*, int)
+         997    0.00%        1  StoreNode::bottom_type() const
+         997    0.00%        1  AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<5292148ul, G1BarrierSet>, (AccessInternal::BarrierType)0, 5292148ul>::oop_access_barrier(void*, oopDesc*)
+         997    0.00%        1  PhaseIdealLoop::build_loop_late_post(Node*)
+         997    0.00%        1  java.util.concurrent.locks.AbstractQueuedSynchronizer$Node.predecessor
+         997    0.00%        1  oop_Relocation::unpack_data()
+         997    0.00%        1  CodeBuffer::CodeBuffer(CodeBlob*)
+         997    0.00%        1  DirectNativeCallWrapper::get_load_instruction(virtual_call_Relocation*) const
+         997    0.00%        1  Parse::do_one_block()
+         997    0.00%        1  Node::add_out(Node*)
+         997    0.00%        1  WorkerDataArray<unsigned long>::uninitialized()
+         997    0.00%        1  ciBytecodeStream::get_method(bool&, ciSignature**)
+         997    0.00%        1  Node::set_req(unsigned int, Node*)
+         997    0.00%        1  MemNode::can_see_stored_value(Node*, PhaseTransform*) const
+         996    0.00%        1  InstanceMirrorKlass::oop_size(oopDesc*) const
+         996    0.00%        1  CodeHeap::max_capacity() const
+         996    0.00%        1  java.lang.Math.ceil
+         996    0.00%        1  InlineCacheBuffer::contains(unsigned char*)
+         996    0.00%        1  io.netty.buffer.AbstractReferenceCountedByteBuf.refCnt
+         996    0.00%        1  Symbol::decrement_refcount()
+         996    0.00%        1  MetaspaceGC::capacity_until_GC()
+         996    0.00%        1  MetaspaceUtils::print_metaspace_change(unsigned long)
+         996    0.00%        1  ciTypeFlow::Block::Block(ciTypeFlow*, ciBlock*, ciTypeFlow::JsrSet*)
+         996    0.00%        1  java.lang.Double.valueOf
+         996    0.00%        1  JvmtiExport::oops_do(OopClosure*)
+         996    0.00%        1  Dependencies::copy_to(nmethod*)
+         996    0.00%        1  Node_Backward_Iterator::next()
+         996    0.00%        1  Node::disconnect_inputs(Node*, Compile*)
+         996    0.00%        1  G1YoungGenerationCounters::update_all()
+         995    0.00%        1  ValueRecorder<_jobject*>::ValueRecorder(Arena*)
+         995    0.00%        1  Matcher::match_tree(Node const*)
+         995    0.00%        1  I2C/C2I adapters
+         995    0.00%        1  ciEnv::get_instance_klass_for_declared_method_holder(ciKlass*)
+         995    0.00%        1  Compile::find_alias_type(TypePtr const*, bool, ciField*) [clone .part.237]
+         995    0.00%        1  GCTimer::register_gc_phase_end(TimeInstant<CompositeCounterRepresentation, CompositeElapsedCounterSource> const&)
+         995    0.00%        1  org.HdrHistogram.AbstractHistogram.getLowestDiscernibleValue
+         995    0.00%        1  MachNode::bottom_type() const
+         995    0.00%        1  ciInstanceKlass::super()
+         995    0.00%        1  InstanceKlass::find_method_index(Array<Method*> const*, Symbol const*, Symbol const*, Klass::OverpassLookupMode, Klass::StaticLookupMode, Klass::PrivateLookupMode)
+         995    0.00%        1  G1GCPhaseTimes::record_time_secs(G1GCPhaseTimes::GCParPhases, unsigned int, double)
+         995    0.00%        1  Assembler::cmpq(RegisterImpl*, int)
+         995    0.00%        1  LinkResolver::check_method_accessability(Klass*, Klass*, Klass*, methodHandle const&, Thread*)
+         995    0.00%        1  G1Analytics::predict_pending_cards() const
+         995    0.00%        1  JavaThreadParkedState::JavaThreadParkedState(JavaThread*, bool)
+         994    0.00%        1  TypeInt::eq(Type const*) const
+         994    0.00%        1  MachNode::two_adr() const
+         994    0.00%        1  NamedThread::is_Named_thread() const
+         994    0.00%        1  PhaseTransform::intcon(int)
+         994    0.00%        1  void OopOopIterateDispatch<G1ScanObjsDuringUpdateRSClosure>::Table::oop_oop_iterate<InstanceMirrorKlass, unsigned int>(G1ScanObjsDuringUpdateRSClosure*, oopDesc*, Klass*)
+         994    0.00%        1  G1Policy::calculate_young_list_target_length(unsigned long, unsigned int, unsigned int, unsigned int) const [clone .part.72]
+         994    0.00%        1  io.netty.handler.codec.CodecOutputList.getUnsafe
+         994    0.00%        1  DictI::operator++()
+         994    0.00%        1  IndexSet::IndexSet(IndexSet*)
+         994    0.00%        1  java.util.concurrent.locks.AbstractQueuedSynchronizer.transferForSignal
+         994    0.00%        1  ciMethod::is_accessor() const
+         994    0.00%        1  __write
+         994    0.00%        1  Block::num_fall_throughs()
+         993    0.00%        1  LinearScan::build_intervals()
+         993    0.00%        1  PhasePeephole::do_transform()
+         993    0.00%        1  DebugInformationRecorder::end_scopes(int, bool)
+         993    0.00%        1  Method::verified_code_entry()
+         993    0.00%        1  Node::replace_edge(Node*, Node*)
+         993    0.00%        1  PhaseAggressiveCoalesce::insert_copies(Matcher&)
+         993    0.00%        1  LIR_OpVisitState::visit(LIR_Op*)
+         993    0.00%        1  ObjectSynchronizer::thread_local_used_oops_do(Thread*, OopClosure*)
+         993    0.00%        1  LogTargetHandle::print(char const*, ...)
+         993    0.00%        1  CompileBroker::compiler_thread_loop()
+         993    0.00%        1  PhaseIFG::SquareUp()
+         993    0.00%        1  MachCallJavaNode::in_RegMask(unsigned int) const
+         993    0.00%        1  G1Allocator::release_gc_alloc_regions(EvacuationInfo&)
+         993    0.00%        1  G1AdaptiveIHOPControl::send_trace_event(G1NewTracer*)
+         992    0.00%        1  G1Allocator::init_gc_alloc_regions(EvacuationInfo&)
+         992    0.00%        1  Events::log(Thread*, char const*, ...)
+         992    0.00%        1  vtable stub
+         992    0.00%        1  PtrQueue::enqueue_known_active(void*)
+         992    0.00%        1  MoveResolver::MoveResolver(LinearScan*)
+         992    0.00%        1  MetaspaceUtils::chunk_free_list_summary(Metaspace::MetadataType)
+         992    0.00%        1  io.rsocket.test.PingClient$$Lambda$138.289778850.get$Lambda
+         992    0.00%        1  PhiNode::Identity(PhaseGVN*)
+         992    0.00%        1  Monitor::notify_all()
+         992    0.00%        1  Threads::possibly_parallel_oops_do(bool, OopClosure*, CodeBlobClosure*)
+         992    0.00%        1  vtable stub
+         992    0.00%        1  CodeBuffer::finalize_oop_references(methodHandle const&)
+         992    0.00%        1  void OopOopIterateBackwardsDispatch<G1ScanEvacuatedObjClosure>::Table::oop_oop_iterate_backwards<TypeArrayKlass, unsigned int>(G1ScanEvacuatedObjClosure*, oopDesc*, Klass*)
+         992    0.00%        1  __memmove_avx_unaligned_erms
+         991    0.00%        1  java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.add
+         991    0.00%        1  java.util.Formatter.locale
+         991    0.00%        1  __pthread_mutex_unlock_usercnt
+         991    0.00%        1  Assembler::prefix(Address, RegisterImpl*, bool) [clone .constprop.66]
+         991    0.00%        1  ProjNode::Value(PhaseGVN*) const
+         991    0.00%        1  LinkResolver::linktime_resolve_virtual_method(LinkInfo const&, Thread*)
+         991    0.00%        1  Matcher::narrow_oop_use_complex_address()
+         991    0.00%        1  Universe::print_heap_before_gc()
+         991    0.00%        1  G1CardTable::mark_card_deferred(unsigned long)
+         991    0.00%        1  jshort_arraycopy
+         990    0.00%        1  Node::Node(Node*)
+         990    0.00%        1  TypeNarrowOop::cleanup_speculative() const
+         990    0.00%        1  PhaseCCP::transform(Node*)
+         990    0.00%        1  ReplacedNodes::apply(Node*, unsigned int)
+         990    0.00%        1  io.netty.buffer.PoolChunk.usage
+         989    0.00%        1  G1GCPhaseTimes::note_gc_end()
+         989    0.00%        1  ciEnv::get_klass_by_index_impl(constantPoolHandle const&, int, bool&, ciInstanceKlass*)
+         989    0.00%        1  ciMethodData::bci_to_data(int, ciMethod*)
+         989    0.00%        1  ciInstanceKlass::get_canonical_holder(int)
+         989    0.00%        1  java_lang_Thread::set_thread_status(oopDesc*, java_lang_Thread::ThreadStatus)
+         989    0.00%        1  jdk.internal.math.FormattedFloatingDecimal.fillDecimal
+         988    0.00%        1  MetaspacePool::get_memory_usage()
+         988    0.00%        1  LogPrefix<(LogTag::type)42, (LogTag::type)88, (LogTag::type)94, (LogTag::type)0, (LogTag::type)0, (LogTag::type)0>::prefix(char*, unsigned long)
+         988    0.00%        1  org.HdrHistogram.PercentileIterator.reset
+         988    0.00%        1  PhaseIdealLoop::dom_lca_for_get_late_ctrl_internal(Node*, Node*, Node*)
+         988    0.00%        1  I2C/C2I adapters
+         988    0.00%        1  G1CollectionSet::iterate_from(HeapRegionClosure*, unsigned int, unsigned int) const
+         988    0.00%        1  PhaseIterGVN::register_new_node_with_optimizer(Node*, Node*)
+         988    0.00%        1  JVMState::of_depth(int) const
+         988    0.00%        1  CollectedHeap::create_metaspace_summary()
+         987    0.00%        1  JavaThread::check_and_handle_async_exceptions(bool)
+         987    0.00%        1  __fdget_[k]
+         987    0.00%        1  clear_buddies_[k]
+         987    0.00%        1  ciTypeFlow::flow_block(ciTypeFlow::Block*, ciTypeFlow::StateVector*, ciTypeFlow::JsrSet*)
+         987    0.00%        1  SemaphoreGangTaskDispatcher::worker_done_with_task()
+         987    0.00%        1  org.HdrHistogram.PercentileIterator.<init>
+         987    0.00%        1  G1ParCopyHelper::G1ParCopyHelper(G1CollectedHeap*, G1ParScanThreadState*)
+         987    0.00%        1  PosixSemaphore::wait()
+         987    0.00%        1  ciInstanceKlass::unique_concrete_subklass()
+         987    0.00%        1  io.netty.handler.codec.LengthFieldBasedFrameDecoder.decode
+         986    0.00%        1  Chunk::next_chop()
+         986    0.00%        1  flush_data_end_io_[k]
+         986    0.00%        1  irq_i915_sw_fence_work	[i915]_[k]
+         986    0.00%        1  Arena::Arealloc(void*, unsigned long, unsigned long, AllocFailStrategy::AllocFailEnum)
+         986    0.00%        1  io.netty.util.Recycler$WeakOrderQueue$Link.access$1300
+         986    0.00%        1  Management::timestamp()
+         986    0.00%        1  ciSignature::ciSignature(ciKlass*, constantPoolHandle const&, ciSymbol*)
+         986    0.00%        1  Method::is_initializer() const
+         986    0.00%        1  InstanceKlass::find_instance_method(Symbol const*, Symbol const*, Klass::PrivateLookupMode) const
+         985    0.00%        1  jdk.internal.math.FormattedFloatingDecimal.valueOf
+         985    0.00%        1  AccessInternal::PostRuntimeDispatch<G1BarrierSet::AccessBarrier<802934ul, G1BarrierSet>, (AccessInternal::BarrierType)3, 802934ul>::oop_access_barrier(oopDesc*, long)
+         985    0.00%        1  io.rsocket.KeepAliveHandler.doCheckTimeout
+         985    0.00%        1  bool std::has_facet<std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > > >(std::locale const&)
+         985    0.00%        1  AdaptiveSizePolicy::calc_active_workers(unsigned long, unsigned long, unsigned long)
+         985    0.00%        1  SharedRuntime::ldiv(long, long)
+         984    0.00%        1  ConstantPool::klass_ref_at_noresolve(int)
+         984    0.00%        1  PhaseChaitin::post_allocate_copy_removal()
+         984    0.00%        1  nmethod::is_unloaded() const
+         983    0.00%        1  CompileQueue::get()
+         983    0.00%        1  fw_domains_get	[i915]_[k]
+         983    0.00%        1  java.util.concurrent.locks.AbstractQueuedSynchronizer.isOnSyncQueue
+         982    0.00%        1  java.util.concurrent.atomic.AtomicInteger.get
+         982    0.00%        1  LinkResolver::lookup_method_in_klasses(LinkInfo const&, bool, bool)
+         982    0.00%        1  java.lang.AbstractStringBuilder.append
+         982    0.00%        1  RelocIterator::advance_over_prefix()
+         982    0.00%        1  enqueue_hrtimer_[k]
+         982    0.00%        1  hack_digit
+         982    0.00%        1  LinkResolver::resolve_special_call_or_null(LinkInfo const&)
+         982    0.00%        1  java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.doSignal
+         982    0.00%        1  aa_dfa_match_len_[k]
+         982    0.00%        1  MethodLiveness::BasicBlock::BasicBlock(MethodLiveness*, int, int)
+         982    0.00%        1  Type::uhash(Type const*)
+         981    0.00%        1  java_lang_Class::as_Klass(oopDesc*)
+         981    0.00%        1  G1NewTracer::report_gc_end_impl(TimeInstant<CompositeCounterRepresentation, CompositeElapsedCounterSource> const&, TimePartitions*)
+         981    0.00%        1  PLABStats::adjust_desired_plab_sz()
+         981    0.00%        1  CollectedHeap::print_heap_after_gc()
+         981    0.00%        1  InterpreterOopMap::~InterpreterOopMap()
+         981    0.00%        1  CodeBlob::is_nmethod() const
+         981    0.00%        1  task_cputime_adjusted_[k]
+         981    0.00%        1  vtable stub
+         980    0.00%        1  java.io.OutputStream.flush
+         980    0.00%        1  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.setNextRunTime
+         980    0.00%        1  TimePartitionPhasesIterator::next()
+         980    0.00%        1  java.util.Formatter$Conversion.isFloat
+         980    0.00%        1  G1CollectedHeap::soft_ref_policy()
+         980    0.00%        1  stringStream::write(char const*, unsigned long)
+         979    0.00%        1  io.rsocket.test.PingClient$$Lambda$80.1828873985.accept
+         979    0.00%        1  G1CollectedHeap::get_safepoint_workers()
+         978    0.00%        1  Compile::final_graph_reshaping_walk(Node_Stack&, Node*, Final_Reshape_Counts&)
+         978    0.00%        1  frame::interpreter_frame_method() const
+         977    0.00%        1  os::get_default_process_handle()
+         977    0.00%        1  PhaseIdealLoop::build_loop_tree()
+         976    0.00%        1  do_lookup_x
+         976    0.00%        1  VM_G1CollectForAllocation::doit_epilogue()
+         976    0.00%        1  ThreadsListHandle::cv_internal_thread_to_JavaThread(_jobject*, JavaThread**, oopDesc**)
+         975    0.00%        1  __memchr_avx2
+         973    0.00%        1  TimeStamp::update()
+         972    0.00%        1  io.netty.util.internal.shaded.org.jctools.queues.CircularArrayOffsetCalculator.calcElementOffset
+         971    0.00%        1  PhaseChaitin::fixup_spills()
+         971    0.00%        1  java.io.PrintStream.ensureOpen
+         970    0.00%        1  OopMapSet::oops_do(frame const*, RegisterMap const*, OopClosure*)
+         970    0.00%        1  StrongRootsScope::StrongRootsScope(unsigned int)
+         970    0.00%        1  Universe::has_reference_pending_list()
+         969    0.00%        1  MachCallNode::bottom_type() const
+         968    0.00%        1  ext4_page_mkwrite_[k]
+         967    0.00%        1  Bytecode_member_ref::signature() const
+         967    0.00%        1  VM_G1CollectForAllocation::doit()
+         966    0.00%        1  AbstractAssembler::generate_stack_overflow_check(int)
+         966    0.00%        1  Threads::change_thread_claim_parity()
+         966    0.00%        1  compare_region_idx(unsigned int, unsigned int)
+         965    0.00%        1  ciConstantPoolCache::get(int)
+         965    0.00%        1  java.util.Formatter$FormatSpecifier.addZeros
+         963    0.00%        1  java.util.concurrent.locks.AbstractQueuedSynchronizer.compareAndSetTail
+         963    0.00%        1  org.HdrHistogram.AbstractHistogram.sizeOfEquivalentValueRange
+         962    0.00%        1  io.netty.buffer.PoolArena.freeChunk
+         960    0.00%        1  io.netty.util.Recycler$WeakOrderQueue.add
+         960    0.00%        1  oop_Relocation::offset()
+         957    0.00%        1  java.lang.invoke.VarHandleGuards.guard_LL_V
+         955    0.00%        1  NTarjan::DFS(NTarjan*, VectorSet&, PhaseIdealLoop*, unsigned int*)
+         954    0.00%        1  java.util.regex.Pattern$BranchConn.match
+         954    0.00%        1  kvmalloc_node_[k]
+         949    0.00%        1  __new_sem_wait
+         949    0.00%        1  java.util.concurrent.locks.AbstractQueuedSynchronizer$Node.compareAndSetWaitStatus
+         944    0.00%        1  java.lang.invoke.VarHandleGuards.guard_LLL_Z
+         938    0.00%        1  ObjectSynchronizer::prepare_deflate_idle_monitors(DeflateMonitorCounters*)
+         892    0.00%        1  std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)

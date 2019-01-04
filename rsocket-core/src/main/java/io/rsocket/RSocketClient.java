@@ -26,18 +26,22 @@ import io.rsocket.internal.UnicastMonoProcessor;
 import org.reactivestreams.Processor;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
-import reactor.core.publisher.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.core.publisher.SignalType;
+import reactor.core.publisher.UnicastProcessor;
 
 import java.nio.channels.ClosedChannelException;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-/** Client Side of a RSocket socket. Sends {@link Frame}s to a {@link RSocketServer} */
+/**
+ * Client Side of a RSocket socket. Sends {@link Frame}s to a {@link RSocketServer}
+ */
 class RSocketClient implements RSocket {
 
   private final DuplexConnection connection;
@@ -47,7 +51,6 @@ class RSocketClient implements RSocket {
   private final Map<Integer, LimitableRequestPublisher> senders;
   private final Map<Integer, Processor<Payload, Payload>> receivers;
   private final UnboundedProcessor<Frame> sendProcessor;
-  private final Lifecycle lifecycle = new Lifecycle();
   private KeepAliveHandler keepAliveHandler;
 
   /*server requester*/
@@ -100,7 +103,6 @@ class RSocketClient implements RSocket {
                 String message =
                     String.format("No keep-alive acks for %d ms", keepAlive.getTimeoutMillis());
                 ConnectionErrorException err = new ConnectionErrorException(message);
-                lifecycle.setTerminationError(err);
                 errorConsumer.accept(err);
                 connection.dispose();
               });
@@ -111,11 +113,9 @@ class RSocketClient implements RSocket {
   }
 
   private void handleSendProcessorError(Throwable t) {
-    Throwable terminationError = lifecycle.getTerminationError();
-    Throwable err = terminationError != null ? terminationError : t;
     receivers.values().forEach(subscriber -> {
       try {
-        subscriber.onError(err);
+        subscriber.onError(t);
       } catch (Throwable e) {
         errorConsumer.accept(e);
       }
@@ -186,198 +186,197 @@ class RSocketClient implements RSocket {
   }
 
   private Mono<Void> handleFireAndForget(Payload payload) {
-    return lifecycle
-        .active()
-        .then(
-            Mono.fromRunnable(
-                () -> {
-                  final int streamId = streamIdSupplier.nextStreamId();
-                  final Frame requestFrame =
-                      Frame.Request.from(streamId, FrameType.REQUEST_FNF, payload, 1);
-                  payload.release();
-                  sendProcessor.onNext(requestFrame);
-                }));
+    return Mono.fromRunnable(() -> {
+      validateConnection();
+      final int streamId = streamIdSupplier.nextStreamId();
+      final Frame requestFrame =
+          Frame.Request.from(streamId, FrameType.REQUEST_FNF, payload, 1);
+      payload.release();
+      sendProcessor.onNext(requestFrame);
+    });
+  }
+
+  private void validateConnection() {
+    if (connection.isDisposed()) {
+      throw reactor.core.Exceptions.propagate(new ClosedChannelException());
+    }
   }
 
   private Flux<Payload> handleRequestStream(final Payload payload) {
-    return lifecycle
-        .active()
-        .thenMany(
-            Flux.defer(
-                () -> {
-                  int streamId = streamIdSupplier.nextStreamId();
+    try {
+      validateConnection();
+      int streamId = streamIdSupplier.nextStreamId();
 
-                  UnicastProcessor<Payload> receiver = UnicastProcessor.create();
-                  receivers.put(streamId, receiver);
+      UnicastProcessor<Payload> receiver = UnicastProcessor.create();
+      receivers.put(streamId, receiver);
 
-                  AtomicBoolean first = new AtomicBoolean(false);
+      AtomicBoolean first = new AtomicBoolean(false);
 
-                  return receiver
-                      .doOnRequest(
-                          n -> {
-                            if (first.compareAndSet(false, true) && !receiver.isDisposed()) {
-                              final Frame requestFrame =
-                                  Frame.Request.from(
-                                      streamId, FrameType.REQUEST_STREAM, payload, n);
-                              payload.release();
-                              sendProcessor.onNext(requestFrame);
-                            } else if (contains(streamId) && !receiver.isDisposed()) {
-                              sendProcessor.onNext(Frame.RequestN.from(streamId, n));
-                            }
-                            sendProcessor.drain();
-                          })
-                      .doOnError(
-                          t -> {
-                            if (contains(streamId) && !receiver.isDisposed()) {
-                              sendProcessor.onNext(Frame.Error.from(streamId, t));
-                            }
-                          })
-                      .doOnCancel(
-                          () -> {
-                            if (contains(streamId) && !receiver.isDisposed()) {
-                              sendProcessor.onNext(Frame.Cancel.from(streamId));
-                            }
-                          })
-                      .doFinally(
-                          s -> {
-                            receivers.remove(streamId);
-                          });
-                }));
+      return receiver
+          .doOnRequest(
+              n -> {
+                if (first.compareAndSet(false, true) && !receiver.isDisposed()) {
+                  final Frame requestFrame =
+                      Frame.Request.from(
+                          streamId, FrameType.REQUEST_STREAM, payload, n);
+                  payload.release();
+                  sendProcessor.onNext(requestFrame);
+                } else if (contains(streamId) && !receiver.isDisposed()) {
+                  sendProcessor.onNext(Frame.RequestN.from(streamId, n));
+                }
+                sendProcessor.drain();
+              })
+          .doOnError(
+              t -> {
+                if (contains(streamId) && !receiver.isDisposed()) {
+                  sendProcessor.onNext(Frame.Error.from(streamId, t));
+                }
+              })
+          .doOnCancel(
+              () -> {
+                if (contains(streamId) && !receiver.isDisposed()) {
+                  sendProcessor.onNext(Frame.Cancel.from(streamId));
+                }
+              })
+          .doFinally(
+              s -> {
+                receivers.remove(streamId);
+              });
+    } catch (Throwable t) {
+      return Flux.error(t);
+    }
   }
 
   private Mono<Payload> handleRequestResponse(final Payload payload) {
-    return lifecycle
-        .active()
-        .then(
-            Mono.defer(
-                () -> {
-                  int streamId = streamIdSupplier.nextStreamId();
-                  final Frame requestFrame =
-                      Frame.Request.from(streamId, FrameType.REQUEST_RESPONSE, payload, 1);
-                  payload.release();
+    try {
+      validateConnection();
+      int streamId = streamIdSupplier.nextStreamId();
+      final Frame requestFrame =
+          Frame.Request.from(streamId, FrameType.REQUEST_RESPONSE, payload, 1);
+      payload.release();
 
-                  UnicastMonoProcessor<Payload> receiver = UnicastMonoProcessor.create();
-                  receivers.put(streamId, receiver);
+      UnicastMonoProcessor<Payload> receiver = UnicastMonoProcessor.create();
+      receivers.put(streamId, receiver);
 
-                  sendProcessor.onNext(requestFrame);
+      sendProcessor.onNext(requestFrame);
 
-                  return receiver
-                      .doOnError(t -> sendProcessor.onNext(Frame.Error.from(streamId, t)))
-                      .doFinally(
-                          s -> {
-                            if (s == SignalType.CANCEL) {
-                              sendProcessor.onNext(Frame.Cancel.from(streamId));
-                            }
+      return receiver
+          .doOnError(t -> sendProcessor.onNext(Frame.Error.from(streamId, t)))
+          .doFinally(
+              s -> {
+                if (s == SignalType.CANCEL) {
+                  sendProcessor.onNext(Frame.Cancel.from(streamId));
+                }
 
-                            receivers.remove(streamId);
-                          });
-                }));
+                receivers.remove(streamId);
+              });
+    } catch (Throwable t) {
+      return Mono.error(t);
+    }
   }
 
   private Flux<Payload> handleChannel(Flux<Payload> request) {
-    return lifecycle
-        .active()
-        .thenMany(
-            Flux.defer(
-                () -> {
-                  final UnicastProcessor<Payload> receiver = UnicastProcessor.create();
-                  final int streamId = streamIdSupplier.nextStreamId();
-                  final AtomicBoolean firstRequest = new AtomicBoolean(true);
+    try {
+      validateConnection();
+      final UnicastProcessor<Payload> receiver = UnicastProcessor.create();
+      final int streamId = streamIdSupplier.nextStreamId();
+      final AtomicBoolean firstRequest = new AtomicBoolean(true);
 
-                  return receiver
-                      .doOnRequest(
-                          n -> {
-                            if (firstRequest.compareAndSet(true, false)) {
-                              final AtomicBoolean firstPayload = new AtomicBoolean(true);
-                              final Flux<Frame> requestFrames =
-                                  request
-                                      .transform(
-                                          f -> {
-                                            LimitableRequestPublisher<Payload> wrapped =
-                                                LimitableRequestPublisher.wrap(f);
-                                            // Need to set this to one for first the frame
-                                            wrapped.increaseRequestLimit(1);
-                                            senders.put(streamId, wrapped);
-                                            receivers.put(streamId, receiver);
+      return receiver
+          .doOnRequest(
+              n -> {
+                if (firstRequest.compareAndSet(true, false)) {
+                  final AtomicBoolean firstPayload = new AtomicBoolean(true);
+                  final Flux<Frame> requestFrames =
+                      request
+                          .transform(
+                              f -> {
+                                LimitableRequestPublisher<Payload> wrapped =
+                                    LimitableRequestPublisher.wrap(f);
+                                // Need to set this to one for first the frame
+                                wrapped.increaseRequestLimit(1);
+                                senders.put(streamId, wrapped);
+                                receivers.put(streamId, receiver);
 
-                                            return wrapped;
-                                          })
-                                      .map(
-                                          payload -> {
-                                            final Frame requestFrame;
-                                            if (firstPayload.compareAndSet(true, false)) {
-                                              requestFrame =
-                                                  Frame.Request.from(
-                                                      streamId,
-                                                      FrameType.REQUEST_CHANNEL,
-                                                      payload,
-                                                      n);
-                                            } else {
-                                              requestFrame =
-                                                  Frame.PayloadFrame.from(
-                                                      streamId, FrameType.NEXT, payload);
-                                            }
-                                            payload.release();
-                                            return requestFrame;
-                                          })
-                                      .doOnComplete(
-                                          () -> {
-                                            if (contains(streamId) && !receiver.isDisposed()) {
-                                              sendProcessor.onNext(
-                                                  Frame.PayloadFrame.from(
-                                                      streamId, FrameType.COMPLETE));
-                                            }
-                                            if (firstPayload.get()) {
-                                              receiver.onComplete();
-                                            }
-                                          });
+                                return wrapped;
+                              })
+                          .map(
+                              payload -> {
+                                final Frame requestFrame;
+                                if (firstPayload.compareAndSet(true, false)) {
+                                  requestFrame =
+                                      Frame.Request.from(
+                                          streamId,
+                                          FrameType.REQUEST_CHANNEL,
+                                          payload,
+                                          n);
+                                } else {
+                                  requestFrame =
+                                      Frame.PayloadFrame.from(
+                                          streamId, FrameType.NEXT, payload);
+                                }
+                                payload.release();
+                                return requestFrame;
+                              })
+                          .doOnComplete(
+                              () -> {
+                                if (contains(streamId) && !receiver.isDisposed()) {
+                                  sendProcessor.onNext(
+                                      Frame.PayloadFrame.from(
+                                          streamId, FrameType.COMPLETE));
+                                }
+                                if (firstPayload.get()) {
+                                  receiver.onComplete();
+                                }
+                              });
 
-                              requestFrames.subscribe(
-                                  sendProcessor::onNext,
-                                  t -> {
-                                    errorConsumer.accept(t);
-                                    receiver.dispose();
-                                  });
-                            } else {
-                              if (contains(streamId) && !receiver.isDisposed()) {
-                                sendProcessor.onNext(Frame.RequestN.from(streamId, n));
-                              }
-                            }
-                          })
-                      .doOnError(
-                          t -> {
-                            if (contains(streamId) && !receiver.isDisposed()) {
-                              sendProcessor.onNext(Frame.Error.from(streamId, t));
-                            }
-                          })
-                      .doOnCancel(
-                          () -> {
-                            if (contains(streamId) && !receiver.isDisposed()) {
-                              sendProcessor.onNext(Frame.Cancel.from(streamId));
-                            }
-                          })
-                      .doFinally(
-                          s -> {
-                            receivers.remove(streamId);
-                            LimitableRequestPublisher sender = senders.remove(streamId);
-                            if (sender != null) {
-                              sender.cancel();
-                            }
-                          });
-                }));
+                  requestFrames.subscribe(
+                      sendProcessor::onNext,
+                      t -> {
+                        errorConsumer.accept(t);
+                        receiver.dispose();
+                      });
+                } else {
+                  if (contains(streamId) && !receiver.isDisposed()) {
+                    sendProcessor.onNext(Frame.RequestN.from(streamId, n));
+                  }
+                }
+              })
+          .doOnError(
+              t -> {
+                if (contains(streamId) && !receiver.isDisposed()) {
+                  sendProcessor.onNext(Frame.Error.from(streamId, t));
+                }
+              })
+          .doOnCancel(
+              () -> {
+                if (contains(streamId) && !receiver.isDisposed()) {
+                  sendProcessor.onNext(Frame.Cancel.from(streamId));
+                }
+              })
+          .doFinally(
+              s -> {
+                receivers.remove(streamId);
+                LimitableRequestPublisher sender = senders.remove(streamId);
+                if (sender != null) {
+                  sender.cancel();
+                }
+              });
+    } catch (Throwable t) {
+      return Flux.error(t);
+    }
   }
 
   private Mono<Void> handleMetadataPush(Payload payload) {
-    return lifecycle
-        .active()
-        .then(
-            Mono.fromRunnable(
-                () -> {
-                  final Frame requestFrame =
-                      Frame.Request.from(0, FrameType.METADATA_PUSH, payload, 1);
-                  payload.release();
-                  sendProcessor.onNext(requestFrame);
-                }));
+    return
+        Mono.fromRunnable(
+            () -> {
+              validateConnection();
+              final Frame requestFrame =
+                  Frame.Request.from(0, FrameType.METADATA_PUSH, payload, 1);
+              payload.release();
+              sendProcessor.onNext(requestFrame);
+            });
   }
 
   private boolean contains(int streamId) {
@@ -385,8 +384,6 @@ class RSocketClient implements RSocket {
   }
 
   protected void terminate() {
-    lifecycle.setTerminationError(new ClosedChannelException());
-
     if (keepAliveHandler != null) {
       keepAliveHandler.dispose();
     }
@@ -411,7 +408,7 @@ class RSocketClient implements RSocket {
 
   private synchronized void cleanUpSubscriber(Processor subscriber) {
     try {
-      subscriber.onError(lifecycle.getTerminationError());
+      subscriber.onError(new ClosedChannelException());
     } catch (Throwable t) {
       errorConsumer.accept(t);
     }
@@ -435,7 +432,6 @@ class RSocketClient implements RSocket {
     switch (type) {
       case ERROR:
         RuntimeException error = Exceptions.from(frame);
-        lifecycle.setTerminationError(error);
         errorConsumer.accept(error);
         connection.dispose();
         break;
@@ -468,8 +464,7 @@ class RSocketClient implements RSocket {
           receiver.onNext(frameDecoder.apply(frame));
           receiver.onComplete();
           break;
-        case CANCEL:
-        {
+        case CANCEL: {
           LimitableRequestPublisher sender = senders.remove(streamId);
           receivers.remove(streamId);
           if (sender != null) {
@@ -480,8 +475,7 @@ class RSocketClient implements RSocket {
         case NEXT:
           receiver.onNext(frameDecoder.apply(frame));
           break;
-        case REQUEST_N:
-        {
+        case REQUEST_N: {
           LimitableRequestPublisher sender = senders.get(streamId);
           if (sender != null) {
             int n = Frame.RequestN.requestN(frame);
@@ -525,30 +519,4 @@ class RSocketClient implements RSocket {
     // so ignore (cancellation is async so there is a race condition)
   }
 
-  private static class Lifecycle {
-
-    private static final AtomicReferenceFieldUpdater<Lifecycle, Throwable> TERMINATION_ERROR =
-        AtomicReferenceFieldUpdater.newUpdater(
-            Lifecycle.class, Throwable.class, "terminationError");
-    private volatile Throwable terminationError;
-
-    public Mono<Void> active() {
-      return Mono.create(
-          sink -> {
-            if (terminationError == null) {
-              sink.success();
-            } else {
-              sink.error(terminationError);
-            }
-          });
-    }
-
-    public void setTerminationError(Throwable err) {
-      TERMINATION_ERROR.compareAndSet(this, null, err);
-    }
-
-    public Throwable getTerminationError() {
-      return terminationError;
-    }
-  }
 }
