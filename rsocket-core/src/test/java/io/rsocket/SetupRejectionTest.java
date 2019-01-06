@@ -9,6 +9,8 @@ import io.rsocket.framing.FrameType;
 import io.rsocket.test.util.TestDuplexConnection;
 import io.rsocket.transport.ServerTransport;
 import io.rsocket.util.DefaultPayload;
+
+import java.nio.channels.ClosedChannelException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +58,10 @@ public class SetupRejectionTest {
 
     StepVerifier.create(rSocket.requestResponse(DefaultPayload.create("test")))
         .expectErrorMatches(
-            err -> err instanceof RejectedSetupException && errorMsg.equals(err.getMessage()))
+            err ->
+            {
+              return (err instanceof RejectedSetupException && errorMsg.equals(err.getMessage())) || (err instanceof ClosedChannelException);
+            })
         .verify(Duration.ofSeconds(5));
 
     assertThat(errors).hasSize(1);
@@ -77,7 +82,7 @@ public class SetupRejectionTest {
                 .requestResponse(DefaultPayload.create("test"))
                 .delaySubscription(Duration.ofMillis(100)))
         .expectErrorMatches(
-            err -> err instanceof RejectedSetupException && "error".equals(err.getMessage()))
+            err -> err instanceof ClosedChannelException)
         .verify(Duration.ofSeconds(5));
   }
 

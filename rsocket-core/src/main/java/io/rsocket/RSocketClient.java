@@ -433,6 +433,7 @@ class RSocketClient implements RSocket {
       case ERROR:
         RuntimeException error = Exceptions.from(frame);
         errorConsumer.accept(error);
+        handleSendProcessorError(error);
         connection.dispose();
         break;
       case LEASE:

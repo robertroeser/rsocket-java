@@ -23,19 +23,27 @@ import io.rsocket.framing.FrameType;
 import io.rsocket.plugins.DuplexConnectionInterceptor.Type;
 import io.rsocket.plugins.PluginRegistry;
 import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.FluxProcessor;
 import reactor.core.publisher.Mono;
-import reactor.core.publisher.MonoProcessor;
+import reactor.core.publisher.DirectProcessor;
+import reactor.util.concurrent.Queues;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
 /**
  * {@link DuplexConnection#receive()} is a single stream on which the following type of frames
  * arrive:
  *
  * <ul>
- *   <li>Frames for streams initiated by the initiator of the connection (client).
- *   <li>Frames for streams initiated by the acceptor of the connection (server).
+ * <li>Frames for streams initiated by the initiator of the connection (client).
+ * <li>Frames for streams initiated by the acceptor of the connection (server).
  * </ul>
  *
  * <p>The only way to differentiate these two frames is determining whether the stream Id is odd or
@@ -52,9 +60,10 @@ public class ClientServerInputMultiplexer implements Closeable {
 
   public ClientServerInputMultiplexer(DuplexConnection source, PluginRegistry plugins) {
     this.source = source;
-    final MonoProcessor<Flux<Frame>> streamZero = MonoProcessor.create();
-    final MonoProcessor<Flux<Frame>> server = MonoProcessor.create();
-    final MonoProcessor<Flux<Frame>> client = MonoProcessor.create();
+
+    DirectProcessor<Frame> streamZero = DirectProcessor.create();
+    DirectProcessor<Frame> server = DirectProcessor.create();
+    DirectProcessor<Frame> client = DirectProcessor.create();
 
     source = plugins.applyConnection(Type.SOURCE, source);
     streamZeroConnection =
@@ -66,43 +75,75 @@ public class ClientServerInputMultiplexer implements Closeable {
 
     source
         .receive()
-        .groupBy(
-            frame -> {
-              int streamId = frame.getStreamId();
-              final Type type;
-              if (streamId == 0) {
-                if (frame.getType() == FrameType.SETUP) {
-                  type = Type.STREAM_ZERO;
-                } else {
-                  type = Type.CLIENT;
-                }
-              } else if ((streamId & 0b1) == 0) {
-                type = Type.SERVER;
-              } else {
-                type = Type.CLIENT;
-              }
-              return type;
-            })
-        .subscribe(
-            group -> {
-              switch (group.key()) {
-                case STREAM_ZERO:
-                  streamZero.onNext(group);
-                  break;
+        .subscribe(new InnerSubscriber(streamZero, server, client));
+  }
 
-                case SERVER:
-                  server.onNext(group);
-                  break;
+  private volatile long request = 256;
 
-                case CLIENT:
-                  client.onNext(group);
-                  break;
-              }
-            },
-            t -> {
-              LOGGER.error("Error receiving frame:", t);
-              dispose();
-            });
+  private class InnerSubscriber extends AtomicBoolean implements Subscriber<Frame> {
+    private volatile Subscription s;
+
+    final DirectProcessor<Frame> streamZero;
+    final DirectProcessor<Frame> server;
+    final DirectProcessor<Frame> client;
+
+    public InnerSubscriber(DirectProcessor<Frame> streamZero, DirectProcessor<Frame> server, DirectProcessor<Frame> client) {
+      this.streamZero = streamZero;
+      this.server = server;
+      this.client = client;
+    }
+
+    @Override
+    public void onSubscribe(Subscription s) {
+      this.s = s;
+      s.request(256);
+    }
+
+    @Override
+    public void onNext(Frame frame) {
+      if (get()) {
+        frame.release();
+        return;
+      }
+
+      int streamId = frame.getStreamId();
+      if (streamId == 0) {
+        if (frame.getType() == FrameType.SETUP) {
+          streamZero.onNext(frame);
+        } else {
+          client.onNext(frame);
+        }
+      } else if ((streamId & 0b1) == 0) {
+        server.onNext(frame);
+      } else {
+        client.onNext(frame);
+      }
+
+      long r = 0;
+      synchronized (ClientServerInputMultiplexer.this) {
+        request--;
+        if (request <= 64) {
+          r = 256 - request;
+          request = 256;
+        }
+      }
+
+      if (r > 0) {
+       s.request(r);
+      }
+    }
+
+    @Override
+    public void onError(Throwable t) {
+      set(true);
+      LOGGER.error("Error receiving frame:", t);
+      dispose();
+    }
+
+    @Override
+    public void onComplete() {
+      set(true);
+    }
   }
 
   public DuplexConnection asServerConnection() {
@@ -134,10 +175,10 @@ public class ClientServerInputMultiplexer implements Closeable {
 
   private static class InternalDuplexConnection implements DuplexConnection {
     private final DuplexConnection source;
-    private final MonoProcessor<Flux<Frame>> processor;
+    private final FluxProcessor<Frame, Frame> processor;
     private final boolean debugEnabled;
 
-    public InternalDuplexConnection(DuplexConnection source, MonoProcessor<Flux<Frame>> processor) {
+    public InternalDuplexConnection(DuplexConnection source, FluxProcessor<Frame, Frame> processor) {
       this.source = source;
       this.processor = processor;
       this.debugEnabled = LOGGER.isDebugEnabled();
@@ -163,13 +204,13 @@ public class ClientServerInputMultiplexer implements Closeable {
 
     @Override
     public Flux<Frame> receive() {
-      return processor.flatMapMany(
+      return processor.map(
           f -> {
             if (debugEnabled) {
-              return f.doOnNext(frame -> LOGGER.debug("receiving -> " + frame.toString()));
-            } else {
-              return f;
+              LOGGER.debug("receiving -> " + f.toString());
             }
+
+            return f;
           });
     }
 
