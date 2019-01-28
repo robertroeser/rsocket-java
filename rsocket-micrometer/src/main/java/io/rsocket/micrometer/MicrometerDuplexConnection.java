@@ -57,9 +57,9 @@ import reactor.core.publisher.Mono;
  * metrics about them.
  *
  * <p>The metric is called {@code rsocket.frame} and is tagged with {@code connection.type} ({@link
- * Type}), {@code frame.type} ({@link FrameType}), and any additional configured tags. {@code
+ * Type}), {@code frame.type} ({@link FrameType}), and any additional configured toIterable. {@code
  * rsocket.duplex.connection.close} and {@code rsocket.duplex.connection.dispose} metrics, tagged
- * with {@code connection.type} ({@link Type}) and any additional configured tags are also
+ * with {@code connection.type} ({@link Type}) and any additional configured toIterable are also
  * collected.
  *
  * @see <a href="https://micrometer.io">Micrometer</a>
@@ -80,7 +80,7 @@ final class MicrometerDuplexConnection implements DuplexConnection {
    * @param connectionType the type of connection being monitored
    * @param delegate the {@link DuplexConnection} to delegate to
    * @param meterRegistry the {@link MeterRegistry} to use
-   * @param tags additional tags to attach to {@link Meter}s
+   * @param tags additional toIterable to attach to {@link Meter}s
    * @throws NullPointerException if {@code connectionType}, {@code delegate}, or {@code
    *     meterRegistry} is {@code null}
    */

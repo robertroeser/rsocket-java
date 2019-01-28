@@ -30,7 +30,7 @@ import reactor.core.publisher.SignalType;
  *
  * <p>The metrics are called {@code rsocket.[ metadata.push | request.channel | request.fnf |
  * request.response | request.stream ]} and is tagged with {@code signal.type} ({@link SignalType})
- * and any additional configured tags.
+ * and any additional configured toIterable.
  *
  * @see <a href="https://micrometer.io">Micrometer</a>
  */
@@ -44,7 +44,7 @@ public final class MicrometerRSocketInterceptor implements RSocketInterceptor {
    * Creates a new {@link RSocketInterceptor}.
    *
    * @param meterRegistry the {@link MeterRegistry} to use to create {@link Meter}s.
-   * @param tags the additional tags to attach to each {@link Meter}
+   * @param tags the additional toIterable to attach to each {@link Meter}
    * @throws NullPointerException if {@code meterRegistry} is {@code null}
    */
   public MicrometerRSocketInterceptor(MeterRegistry meterRegistry, Tag... tags) {
