@@ -49,7 +49,7 @@ public enum WellKnownMimeType {
   video_VP8("video/VP8", 37),
 
   // RSocket Types
-  message_x_rsocket_tags_v0("message/x.rsocket.toIterable.v0", 123),
+  message_x_rsocket_tags_v0("message/x.rsocket.tags.v0", 123),
   message_x_rsocket_path_v0("message/x.rsocket.path.v0", 124),
   message_x_rsocket_rpc_v0("message/x.rsocket.rpc.v0", 125),
   message_x_rsocket_tracing_zipkin_v0("message/x.rsocket.tracing-zipkin.v0", 126),
