@@ -2,6 +2,8 @@ package io.rsocket.frame;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
+import io.netty.buffer.Unpooled;
+import io.netty.buffer.UnpooledDirectByteBuf;
 import org.reactivestreams.Subscriber;
 
 /**
@@ -53,7 +55,7 @@ public final class FrameHeaderFlyweight {
 
     short typeAndFlags = (short) (frameType.getEncodedType() << FRAME_TYPE_SHIFT | (short) flags);
 
-    return allocator.buffer().writeInt(streamId).writeShort(typeAndFlags);
+    return allocator.buffer(3).writeInt(streamId).writeShort(typeAndFlags);
   }
 
   public static int streamId(ByteBuf byteBuf) {

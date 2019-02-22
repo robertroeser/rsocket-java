@@ -32,7 +32,7 @@ public class FrameLengthFlyweight {
   }
 
   public static ByteBuf encode(ByteBufAllocator allocator, int length, ByteBuf frame) {
-    ByteBuf buffer = allocator.buffer();
+    ByteBuf buffer = allocator.heapBuffer(3);
     encodeLength(buffer, length);
     return allocator.compositeBuffer(2).addComponents(true, buffer, frame);
   }
