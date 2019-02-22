@@ -20,14 +20,13 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.util.ReferenceCountUtil;
 import io.netty.util.collection.IntObjectHashMap;
+import io.netty.util.collection.IntObjectMap;
 import io.rsocket.exceptions.ApplicationErrorException;
 import io.rsocket.exceptions.ConnectionErrorException;
 import io.rsocket.frame.*;
 import io.rsocket.frame.decoder.PayloadDecoder;
 import io.rsocket.internal.LimitableRequestPublisher;
 import io.rsocket.internal.UnboundedProcessor;
-import java.util.Collections;
-import java.util.Map;
 import java.util.function.Consumer;
 import org.reactivestreams.Processor;
 import org.reactivestreams.Publisher;
@@ -47,8 +46,8 @@ class RSocketServer implements RSocket {
   private final PayloadDecoder payloadDecoder;
   private final Consumer<Throwable> errorConsumer;
 
-  private final Map<Integer, Subscription> sendingSubscriptions;
-  private final Map<Integer, Processor<Payload, Payload>> channelProcessors;
+  private final SubscriptionHolder sendingSubscriptions;
+  private final ChannelProcessorHolder channelProcessors;
 
   private final UnboundedProcessor<ByteBuf> sendProcessor;
   private final ByteBufAllocator allocator;
@@ -78,8 +77,8 @@ class RSocketServer implements RSocket {
     this.requestHandler = requestHandler;
     this.payloadDecoder = payloadDecoder;
     this.errorConsumer = errorConsumer;
-    this.sendingSubscriptions = Collections.synchronizedMap(new IntObjectHashMap<>());
-    this.channelProcessors = Collections.synchronizedMap(new IntObjectHashMap<>());
+    this.sendingSubscriptions = new SubscriptionHolder();
+    this.channelProcessors = new ChannelProcessorHolder();
 
     // DO NOT Change the order here. The Send processor must be subscribed to before receiving
     // connections
@@ -121,27 +120,9 @@ class RSocketServer implements RSocket {
   }
 
   private void handleSendProcessorError(Throwable t) {
-    sendingSubscriptions
-        .values()
-        .forEach(
-            subscription -> {
-              try {
-                subscription.cancel();
-              } catch (Throwable e) {
-                errorConsumer.accept(e);
-              }
-            });
+    sendingSubscriptions.cancel(errorConsumer);
 
-    channelProcessors
-        .values()
-        .forEach(
-            subscription -> {
-              try {
-                subscription.onError(t);
-              } catch (Throwable e) {
-                errorConsumer.accept(e);
-              }
-            });
+    channelProcessors.cancel(errorConsumer, t);
   }
 
   private void handleSendProcessorCancel(SignalType t) {
@@ -149,27 +130,8 @@ class RSocketServer implements RSocket {
       return;
     }
 
-    sendingSubscriptions
-        .values()
-        .forEach(
-            subscription -> {
-              try {
-                subscription.cancel();
-              } catch (Throwable e) {
-                errorConsumer.accept(e);
-              }
-            });
-
-    channelProcessors
-        .values()
-        .forEach(
-            subscription -> {
-              try {
-                subscription.onComplete();
-              } catch (Throwable e) {
-                errorConsumer.accept(e);
-              }
-            });
+    sendingSubscriptions.cancel(errorConsumer);
+    channelProcessors.complete(errorConsumer);
   }
 
   @Override
@@ -244,12 +206,12 @@ class RSocketServer implements RSocket {
   }
 
   private synchronized void cleanUpSendingSubscriptions() {
-    sendingSubscriptions.values().forEach(Subscription::cancel);
+    sendingSubscriptions.cancel(errorConsumer);
     sendingSubscriptions.clear();
   }
 
   private synchronized void cleanUpChannelProcessors() {
-    channelProcessors.values().forEach(Processor::onComplete);
+    channelProcessors.complete(errorConsumer);
     channelProcessors.clear();
   }
 
@@ -415,6 +377,85 @@ class RSocketServer implements RSocket {
     if (subscription != null) {
       int n = RequestNFrameFlyweight.requestN(frame);
       subscription.request(n >= Integer.MAX_VALUE ? Long.MAX_VALUE : n);
+    }
+  }
+
+  private static class SubscriptionHolder {
+    private final IntObjectMap<Subscription> sendingSubscriptions = new IntObjectHashMap<>();
+
+    private synchronized Subscription get(int i) {
+      return sendingSubscriptions.get(i);
+    }
+
+    private synchronized void put(int i, Subscription subscription) {
+      sendingSubscriptions.put(i, subscription);
+    }
+
+    private synchronized Subscription remove(int i) {
+      return sendingSubscriptions.remove(i);
+    }
+
+    private synchronized void cancel(Consumer<Throwable> errorConsumer) {
+      sendingSubscriptions
+          .values()
+          .forEach(
+              (subscription) -> {
+                try {
+                  subscription.cancel();
+                } catch (Throwable t) {
+                  errorConsumer.accept(t);
+                }
+              });
+    }
+
+    private synchronized void clear() {
+      sendingSubscriptions.clear();
+    }
+  }
+
+  private static class ChannelProcessorHolder {
+    IntObjectMap<Processor<Payload, Payload>> channelProcessors = new IntObjectHashMap<>();
+
+    private synchronized Processor<Payload, Payload> get(int i) {
+      return channelProcessors.get(i);
+    }
+
+    private synchronized void put(int i, Processor<Payload, Payload> subscription) {
+      channelProcessors.put(i, subscription);
+    }
+
+    private synchronized Processor<Payload, Payload> remove(int i) {
+      return channelProcessors.remove(i);
+    }
+
+    private synchronized void cancel(Consumer<Throwable> errorConsumer, Throwable error) {
+      channelProcessors
+          .values()
+          .forEach(
+              (subscription) -> {
+                try {
+                  subscription.onError(error);
+                } catch (Throwable t) {
+                  errorConsumer.accept(t);
+                }
+              });
+    }
+
+    private synchronized void complete(Consumer<Throwable> errorConsumer) {
+      channelProcessors
+          .values()
+          .forEach(
+              (subscription) -> {
+                try {
+                  subscription.onComplete();
+                } catch (Throwable t) {
+                  errorConsumer.accept(t);
+                }
+              });
+    }
+
+    private synchronized void clear() {
+      channelProcessors.clear();
     }
   }
 }

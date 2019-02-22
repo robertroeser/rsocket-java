@@ -21,6 +21,8 @@ import java.util.Objects;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
+
+import io.netty.util.internal.shaded.org.jctools.queues.MpscUnboundedArrayQueue;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 import reactor.core.CoreSubscriber;
@@ -65,7 +67,7 @@ public final class UnboundedProcessor<T> extends FluxProcessor<T, T>
   volatile boolean outputFused;
 
   public UnboundedProcessor() {
-    this.queue = Queues.<T>unboundedMultiproducer().get();
+    this.queue = new MpscUnboundedArrayQueue(1024);
   }
 
   @Override

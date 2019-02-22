@@ -165,14 +165,15 @@ public class ClientServerInputMultiplexer implements Closeable {
 
     @Override
     public Flux<ByteBuf> receive() {
-      return processor.flatMapMany(
-          f -> {
-            if (debugEnabled) {
-              return f.doOnNext(frame -> LOGGER.debug("receiving -> " + frame.toString()));
-            } else {
-              return f;
-            }
-          });
+      return Flux.from(s -> processor.subscribe(byteBufFlux -> byteBufFlux.subscribe(s)));
+      /*.flatMapMany(
+      f -> {
+        if (debugEnabled) {
+          return f.doOnNext(frame -> LOGGER.debug("receiving -> " + frame.toString()));
+        } else {
+          return f;
+        }
+      });*/
     }
 
     @Override
